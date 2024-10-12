@@ -1,0 +1,216 @@
+{
+    "buildhost_description": {
+        "id": "etf.c9prim2",
+        "os": "Linux 5.15.0-82-generic x86_64\nUbuntu 20.04.6 LTS\n"
+    },
+    "tools": {
+        "compile": "9.4.0",
+        "compile[debug]": "9.4.0",
+        "debug": "9.2",
+        "profile[asan]": "9.4.0"
+    },
+    "status": 4,
+    "test_results": {
+        "1": {
+            "success": true,
+            "status": 1,
+            "tools": {
+                "patch": {
+                    "success": true
+                },
+                "compile[debug]": {
+                    "status": 1,
+                    "duration": 1,
+                    "output": "",
+                    "exit_code": 0,
+                    "success": true,
+                    "parsed_output": []
+                },
+                "execute": {
+                    "status": 1,
+                    "duration": 0,
+                    "output": "Odaberite opciju (1 - unos cvorova, 2 - aproksimacija):\nUnesite broj cvorova:\nUnesite cvorove kao parove x y:\nUnesite argument (ili \"kraj\" za kraj):\nf(1.5) = 4.26042\nUnesite argument (ili \"kraj\" za kraj):\nf(2.5) = 5.28125\nUnesite argument (ili \"kraj\" za kraj):\nf(4.5) = 3\nUnesite argument (ili \"kraj\" za kraj):\nArgument izvan opsega!\nUnesite argument (ili \"kraj\" za kraj):\nf(7) = 1\nUnesite argument (ili \"kraj\" za kraj):\nf(6) = 0.6\nUnesite argument (ili \"kraj\" za kraj):",
+                    "exit_code": 0,
+                    "success": true
+                },
+                "debug": {
+                    "success": true
+                },
+                "profile[asan]": {
+                    "output": "",
+                    "status": 1,
+                    "success": true,
+                    "parsed_output": []
+                }
+            }
+        },
+        "2": {
+            "success": true,
+            "status": 1,
+            "tools": {
+                "patch": {
+                    "success": true
+                },
+                "compile[debug]": {
+                    "status": 1,
+                    "duration": 1,
+                    "output": "",
+                    "exit_code": 0,
+                    "success": true,
+                    "parsed_output": []
+                },
+                "execute": {
+                    "status": 1,
+                    "duration": 0,
+                    "output": "Odaberite opciju (1 - unos cvorova, 2 - aproksimacija):\nUnesite krajeve intervala i korak:\nUnesite argument (ili \"kraj\" za kraj):\nf(0.9) = 2.23518 fapprox(0.9) = 2.23518\nUnesite argument (ili \"kraj\" za kraj):\nArgument izvan opsega!\nUnesite argument (ili \"kraj\" za kraj):\nf(0.3) = 0.647884 fapprox(0.3) = 0.647955\nUnesite argument (ili \"kraj\" za kraj):",
+                    "exit_code": 0,
+                    "success": true
+                },
+                "debug": {
+                    "success": true
+                },
+                "profile[asan]": {
+                    "output": "",
+                    "status": 1,
+                    "success": true,
+                    "parsed_output": []
+                }
+            }
+        },
+        "3": {
+            "success": true,
+            "status": 1,
+            "tools": {
+                "patch": {
+                    "success": true
+                },
+                "compile[debug]": {
+                    "status": 1,
+                    "duration": 2,
+                    "output": "",
+                    "exit_code": 0,
+                    "success": true,
+                    "parsed_output": []
+                },
+                "execute": {
+                    "status": 1,
+                    "duration": 0,
+                    "output": "Odaberite opciju (1 - unos cvorova, 2 - aproksimacija):\nUnesite broj cvorova:\nUnesite cvorove kao parove x y:\nNedovoljan broj cvorova",
+                    "exit_code": 0,
+                    "success": true
+                },
+                "debug": {
+                    "success": true
+                },
+                "profile[asan]": {
+                    "output": "",
+                    "status": 1,
+                    "success": true,
+                    "parsed_output": []
+                }
+            }
+        },
+        "4": {
+            "success": true,
+            "status": 1,
+            "tools": {
+                "patch": {
+                    "success": true
+                },
+                "compile[debug]": {
+                    "status": 1,
+                    "duration": 1,
+                    "output": "",
+                    "exit_code": 0,
+                    "success": true,
+                    "parsed_output": []
+                },
+                "execute": {
+                    "status": 1,
+                    "duration": 0,
+                    "output": "Odaberite opciju (1 - unos cvorova, 2 - aproksimacija):\nUnesite broj cvorova:\nUnesite cvorove kao parove x y:\nNeispravni cvorovi",
+                    "exit_code": 0,
+                    "success": true
+                },
+                "debug": {
+                    "success": true
+                },
+                "profile[asan]": {
+                    "output": "",
+                    "status": 1,
+                    "success": true,
+                    "parsed_output": []
+                }
+            }
+        },
+        "5": {
+            "success": true,
+            "status": 1,
+            "tools": {
+                "patch": {
+                    "success": true
+                },
+                "compile[debug]": {
+                    "status": 1,
+                    "duration": 1,
+                    "output": "",
+                    "exit_code": 0,
+                    "success": true,
+                    "parsed_output": []
+                },
+                "execute": {
+                    "status": 1,
+                    "duration": 0,
+                    "output": "Odaberite opciju (1 - unos cvorova, 2 - aproksimacija):\nUnesite krajeve intervala i korak:\nNekorektni parametri",
+                    "exit_code": 0,
+                    "success": true
+                },
+                "debug": {
+                    "success": true
+                },
+                "profile[asan]": {
+                    "output": "",
+                    "status": 1,
+                    "success": true,
+                    "parsed_output": []
+                }
+            }
+        },
+        "6": {
+            "success": true,
+            "status": 1,
+            "tools": {
+                "patch": {
+                    "success": true
+                },
+                "compile[debug]": {
+                    "status": 1,
+                    "duration": 1,
+                    "output": "",
+                    "exit_code": 0,
+                    "success": true,
+                    "parsed_output": []
+                },
+                "execute": {
+                    "status": 1,
+                    "duration": 0,
+                    "output": "Odaberite opciju (1 - unos cvorova, 2 - aproksimacija):\nUnesite krajeve intervala i korak:\nNekorektni parametri",
+                    "exit_code": 0,
+                    "success": true
+                },
+                "debug": {
+                    "success": true
+                },
+                "profile[asan]": {
+                    "output": "",
+                    "status": 1,
+                    "success": true,
+                    "parsed_output": []
+                }
+            }
+        }
+    },
+    "time": 1716231645,
+    "program_id": 55056,
+    "task_id": "78942"
+}

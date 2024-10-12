@@ -1,0 +1,438 @@
+{
+    "id": 0,
+    "name": "Tehnike programiranja, Zadaća 5, Zadatak 3",
+    "version": "3",
+    "languages": [
+        "C++"
+    ],
+    "tools": {
+        "compile": {
+            "require": "g++",
+            "features": [
+                "optimize",
+                "warn",
+                "pedantic",
+                "C++14"
+            ]
+        },
+        "compile[debug]": {
+            "require": "g++",
+            "features": [
+                "debug",
+                "C++14",
+                "asan"
+            ]
+        },
+        "execute": {
+            "require": "asan"
+        },
+        "debug": [],
+        "profile[asan]": {
+            "require": "asan",
+            "input_file": "stderr.txt",
+            "fast": true
+        }
+    },
+    "prepare": [
+        "compile"
+    ],
+    "tests": [
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "top_of_file",
+                            "code": "//---------------------------------------------------------------------------------------------------------------\n// Tehnike programiranja - Akademska 2023/2024 godina\n// Zadaca 5 - Zadatak 3\n// Odgovorni asistent: Tarik Pozderac - tpozderac1@etf.unsa.ba\n// Za sva tehnicka pitanja vezana za autotestove za zadatak 3, obratite se na navedeni mail.\n//---------------------------------------------------------------------------------------------------------------\n"
+                        },
+                        {
+                            "position": "main",
+                            "code": "// AT 1: Test metode Ucitaj\n    {\n        try\n        {\n            std::ofstream izlaz(\"TEST.TXT\");\n            izlaz << \"S Tepsije\\n0.1 90\\n\";\n            izlaz << \"V Brasno\\n10 9 2 3 1 2 2 4 3 1 3\";\n            izlaz << \"B Suncokretovo ulje\\n5 1300 150\";\n            izlaz.flush();\n            izlaz.close();\n\n            Skladiste ETF;\n            ETF.UcitajIzDatoteke(\"TEST.TXT\");\n        }\n        catch(std::logic_error le)\n        {\n            std::cout << le.what();\n        }\n    }"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "Datoteka sadrzi besmislene podatke"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 1",
+            "id": 1
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "top_of_file",
+                            "code": "//---------------------------------------------------------------------------------------------------------------\n// Tehnike programiranja - Akademska 2023/2024 godina\n// Zadaca 5 - Zadatak 3\n// Odgovorni asistent: Tarik Pozderac - tpozderac1@etf.unsa.ba\n// Za sva tehnicka pitanja vezana za autotestove za zadatak 3, obratite se na navedeni mail.\n//---------------------------------------------------------------------------------------------------------------\n"
+                        },
+                        {
+                            "position": "main",
+                            "code": "// AT 2: Test main-a\n    {\n        std::ofstream izlaz(\"ROBA.TXT\");\n        izlaz << \"S Tepsije\\n10 9 2 3 1 2 2 4 3 1 3\\n\";\n        izlaz << \"V Brasno\\n0.2 5\\n\";\n        izlaz << \"B Suncokretovo ulje\\n5 1300 150\";\n        izlaz.flush();\n        izlaz.close();\n\n        // Main poziv\n        _main();\n    }"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "Vrsta spremnika: Bure\nSadrzaj: Suncokretovo ulje\nVlastita tezina: 5 (kg)\nSpecificna tezina tecnosti: 1300 (kg/m^3)\nZapremina tecnosti: 150 (l)\nUkupna tezina: 200 (kg)\nVrsta spremnika: Sanduk\nSadrzaj: Tepsije\nTezine predmeta: 2 3 1 2 2 4 3 1 3 (kg)\nVlastita tezina: 10 (kg)\nUkupna tezina: 31 (kg)\nVrsta spremnika: Vreca\nSadrzaj: Brasno\nVlastita tezina: 0.2 (kg)\nTezina pohranjene materije: 5 (kg)\nUkupna tezina: 5.2 (kg)\n"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 2",
+            "id": 2
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "top_of_file",
+                            "code": "//---------------------------------------------------------------------------------------------------------------\n// Tehnike programiranja - Akademska 2023/2024 godina\n// Zadaca 5 - Zadatak 3\n// Odgovorni asistent: Tarik Pozderac - tpozderac1@etf.unsa.ba\n// Za sva tehnicka pitanja vezana za autotestove za zadatak 3, obratite se na navedeni mail.\n//---------------------------------------------------------------------------------------------------------------\n"
+                        },
+                        {
+                            "position": "main",
+                            "code": "// AT 3: Test ciscenja kolecije prije ucitavanja\n    {\n        std::ofstream izlaz(\"ROBA.TXT\");\n        izlaz << \"S Tepsije\\n10 9 2 3 1 2 2 4 3 1 3\\n\";\n        izlaz << \"V Brasno\\n0.2 5\\n\";\n        izlaz << \"B Suncokretovo ulje\\n5 1300 150\";\n        izlaz.flush();\n        izlaz.close();\n\n        Skladiste ETF;\n        ETF.DodajSanduk(1, \"A\", {1, 2, 3});\n        ETF.UcitajIzDatoteke(\"ROBA.TXT\");\n        ETF.IzlistajSkladiste();\n    }"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "Vrsta spremnika: Bure\nSadrzaj: Suncokretovo ulje\nVlastita tezina: 5 (kg)\nSpecificna tezina tecnosti: 1300 (kg/m^3)\nZapremina tecnosti: 150 (l)\nUkupna tezina: 200 (kg)\nVrsta spremnika: Sanduk\nSadrzaj: Tepsije\nTezine predmeta: 2 3 1 2 2 4 3 1 3 (kg)\nVlastita tezina: 10 (kg)\nUkupna tezina: 31 (kg)\nVrsta spremnika: Vreca\nSadrzaj: Brasno\nVlastita tezina: 0.2 (kg)\nTezina pohranjene materije: 5 (kg)\nUkupna tezina: 5.2 (kg)\n"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 3",
+            "id": 3
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "top_of_file",
+                            "code": "//---------------------------------------------------------------------------------------------------------------\n// Tehnike programiranja - Akademska 2023/2024 godina\n// Zadaca 5 - Zadatak 3\n// Odgovorni asistent: Tarik Pozderac - tpozderac1@etf.unsa.ba\n// Za sva tehnicka pitanja vezana za autotestove za zadatak 3, obratite se na navedeni mail.\n//---------------------------------------------------------------------------------------------------------------\n"
+                        },
+                        {
+                            "position": "main",
+                            "code": "// AT 4: Test metode Ucitaj (izuzetak)\n    {\n        try\n        {\n            std::ofstream izlaz(\"TEST.TXT\");\n            izlaz << \"S Tepsije\\n9 10 2 3 1 2 2 4 3 1 3\\n\";\n            izlaz << \"V Brasno\\n0.9 100\\n\";\n            izlaz << \"B Suncokretovo ulje\\n5 1300 150\";\n            izlaz.flush();\n            izlaz.close();\n\n            Skladiste ETF;\n            ETF.UcitajIzDatoteke(\"TEST.TXT\");\n            ETF.IzlistajSkladiste();\n        }\n        catch(std::logic_error le)\n        {\n            std::cout << le.what();\n        }\n    }"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "Datoteka sadrzi besmislene podatke"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 4",
+            "id": 4
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "top_of_file",
+                            "code": "//---------------------------------------------------------------------------------------------------------------\n// Tehnike programiranja - Akademska 2023/2024 godina\n// Zadaca 5 - Zadatak 3\n// Odgovorni asistent: Tarik Pozderac - tpozderac1@etf.unsa.ba\n// Za sva tehnicka pitanja vezana za autotestove za zadatak 3, obratite se na navedeni mail.\n//---------------------------------------------------------------------------------------------------------------\n"
+                        },
+                        {
+                            "position": "main",
+                            "code": "// AT 5: Test metoda dodavanja u spremnik\n    {\n        try\n        {\n\n            Skladiste ETF;\n            ETF.DodajSanduk(50, \"Voce\", {1,3,5,6});\n            ETF.DodajVrecu(0.1, \"Brasno\", 25.5);\n            ETF.DodajBure(5, \"Krv\", 1300, 150);\n            ETF.DodajSpremnik(new Vreca(0.5, \"Secer\", 40), true);\n            Bure *b = new Bure(15, \"Voda\", 1000, 200);\n            ETF.DodajSpremnik(b, false);\n            delete b;\n            ETF.IzlistajSkladiste();\n\n        }\n        catch(std::range_error re)\n        {\n            std::cout << re.what();\n        }\n    }"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "Vrsta spremnika: Bure\nSadrzaj: Voda\nVlastita tezina: 15 (kg)\nSpecificna tezina tecnosti: 1000 (kg/m^3)\nZapremina tecnosti: 200 (l)\nUkupna tezina: 215 (kg)\nVrsta spremnika: Bure\nSadrzaj: Krv\nVlastita tezina: 5 (kg)\nSpecificna tezina tecnosti: 1300 (kg/m^3)\nZapremina tecnosti: 150 (l)\nUkupna tezina: 200 (kg)\nVrsta spremnika: Sanduk\nSadrzaj: Voce\nTezine predmeta: 1 3 5 6 (kg)\nVlastita tezina: 50 (kg)\nUkupna tezina: 65 (kg)\nVrsta spremnika: Vreca\nSadrzaj: Secer\nVlastita tezina: 0.5 (kg)\nTezina pohranjene materije: 40 (kg)\nUkupna tezina: 40.5 (kg)\nVrsta spremnika: Vreca\nSadrzaj: Brasno\nVlastita tezina: 0.1 (kg)\nTezina pohranjene materije: 25.5 (kg)\nUkupna tezina: 25.6 (kg)\n"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 5",
+            "id": 5
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "top_of_file",
+                            "code": "//---------------------------------------------------------------------------------------------------------------\n// Tehnike programiranja - Akademska 2023/2024 godina\n// Zadaca 5 - Zadatak 3\n// Odgovorni asistent: Tarik Pozderac - tpozderac1@etf.unsa.ba\n// Za sva tehnicka pitanja vezana za autotestove za zadatak 3, obratite se na navedeni mail.\n//---------------------------------------------------------------------------------------------------------------\n"
+                        },
+                        {
+                            "position": "main",
+                            "code": "// AT 6: Test metoda DajNajlaksi, DajNajtezi i BrojPreteskih\n    {\n        try\n        {\n\n            Skladiste ETF;\n            ETF.DodajSanduk(50, \"Voce\", {1,3,5,6});\n            ETF.DodajVrecu(0.1, \"Brasno\", 25.5);\n            ETF.DodajBure(5, \"Krv\", 1300, 150);\n            ETF.DodajSpremnik(new Vreca(0.5, \"Secer\", 40), true);\n            Bure *b = new Bure(15, \"Voda\", 1000, 200);\n            ETF.DodajSpremnik(b, false);\n            delete b;\n            ETF.DajNajlaksi().Ispisi();\n            std::cout << ETF.BrojPreteskih(40) << std::endl;\n            ETF.DajNajtezi().Ispisi();\n        }\n        catch(std::range_error re)\n        {\n            std::cout << re.what();\n        }\n    }"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "Vrsta spremnika: Vreca\nSadrzaj: Brasno\nVlastita tezina: 0.1 (kg)\nTezina pohranjene materije: 25.5 (kg)\nUkupna tezina: 25.6 (kg)\n4\nVrsta spremnika: Sanduk\nSadrzaj: Voce\nTezine predmeta: 1 3 5 6 (kg)\nVlastita tezina: 50 (kg)\nUkupna tezina: 65 (kg)\n"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 6",
+            "id": 6
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "top_of_file",
+                            "code": "//---------------------------------------------------------------------------------------------------------------\n// Tehnike programiranja - Akademska 2023/2024 godina\n// Zadaca 5 - Zadatak 3\n// Odgovorni asistent: Tarik Pozderac - tpozderac1@etf.unsa.ba\n// Za sva tehnicka pitanja vezana za autotestove za zadatak 3, obratite se na navedeni mail.\n//---------------------------------------------------------------------------------------------------------------\n"
+                        },
+                        {
+                            "position": "main",
+                            "code": "// AT 7: Test metode BrisiSpremnik\n    {\n        try\n        {\n\n            Skladiste ETF;\n            ETF.DodajSanduk(50, \"Voce\", {1,3,5,6});\n            ETF.DodajVrecu(0.1, \"Brasno\", 25.5);\n            ETF.DodajBure(5, \"Krv\", 1300, 150);\n            Spremnik *s = ETF.DodajSpremnik(new Vreca(0.5, \"Secer\", 40), true);\n            ETF.BrisiSpremnik(s);\n            ETF.IzlistajSkladiste();\n        }\n        catch(std::range_error re)\n        {\n            std::cout << re.what();\n        }\n    }"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "Vrsta spremnika: Bure\nSadrzaj: Krv\nVlastita tezina: 5 (kg)\nSpecificna tezina tecnosti: 1300 (kg/m^3)\nZapremina tecnosti: 150 (l)\nUkupna tezina: 200 (kg)\nVrsta spremnika: Sanduk\nSadrzaj: Voce\nTezine predmeta: 1 3 5 6 (kg)\nVlastita tezina: 50 (kg)\nUkupna tezina: 65 (kg)\nVrsta spremnika: Vreca\nSadrzaj: Brasno\nVlastita tezina: 0.1 (kg)\nTezina pohranjene materije: 25.5 (kg)\nUkupna tezina: 25.6 (kg)\n"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 7",
+            "id": 7
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "top_of_file",
+                            "code": "//---------------------------------------------------------------------------------------------------------------\n// Tehnike programiranja - Akademska 2023/2024 godina\n// Zadaca 5 - Zadatak 3\n// Odgovorni asistent: Tarik Pozderac - tpozderac1@etf.unsa.ba\n// Za sva tehnicka pitanja vezana za autotestove za zadatak 3, obratite se na navedeni mail.\n//---------------------------------------------------------------------------------------------------------------\n"
+                        },
+                        {
+                            "position": "main",
+                            "code": "// AT 8: Test izuzetka metode DajNajtezi\n    {\n        try\n        {\n\n            Skladiste ETF;\n            Spremnik *s = ETF.DodajSpremnik(new Vreca(0.5, \"Secer\", 40), true);\n            ETF.BrisiSpremnik(s);\n            ETF.DajNajtezi().Ispisi();\n        }\n        catch(std::range_error re)\n        {\n            std::cout << re.what();\n        }\n    }"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "Skladiste je prazno"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 8",
+            "id": 8
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "top_of_file",
+                            "code": "//---------------------------------------------------------------------------------------------------------------\n// Tehnike programiranja - Akademska 2023/2024 godina\n// Zadaca 5 - Zadatak 3\n// Odgovorni asistent: Tarik Pozderac - tpozderac1@etf.unsa.ba\n// Za sva tehnicka pitanja vezana za autotestove za zadatak 3, obratite se na navedeni mail.\n//---------------------------------------------------------------------------------------------------------------\n"
+                        },
+                        {
+                            "position": "main",
+                            "code": "// AT 9: Test izuzetka metode DajNajlaksi\n    {\n        try\n        {\n\n            Skladiste ETF;\n            Spremnik *s = ETF.DodajSpremnik(new Vreca(0.5, \"Secer\", 40), true);\n            ETF.BrisiSpremnik(s);\n            ETF.DajNajlaksi().Ispisi();\n        }\n        catch(std::range_error re)\n        {\n            std::cout << re.what();\n        }\n    }"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "Skladiste je prazno"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 9",
+            "id": 9
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "top_of_file",
+                            "code": "//---------------------------------------------------------------------------------------------------------------\n// Tehnike programiranja - Akademska 2023/2024 godina\n// Zadaca 5 - Zadatak 3\n// Odgovorni asistent: Tarik Pozderac - tpozderac1@etf.unsa.ba\n// Za sva tehnicka pitanja vezana za autotestove za zadatak 3, obratite se na navedeni mail.\n//---------------------------------------------------------------------------------------------------------------\n"
+                        },
+                        {
+                            "position": "main",
+                            "code": "// AT 10: Test metode ucitaj izuzetak nepostojeca datoteka\n    {\n        try\n        {\n            Skladiste ETF;\n            ETF.UcitajIzDatoteke(\"dummy.txt\");\n            ETF.IzlistajSkladiste();\n        }\n        catch(std::logic_error le)\n        {\n            std::cout << le.what();\n        }\n    }"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "Trazena datoteka ne postoji"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 10",
+            "id": 10
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "top_of_file",
+                            "code": "//---------------------------------------------------------------------------------------------------------------\n// Tehnike programiranja - Akademska 2023/2024 godina\n// Zadaca 5 - Zadatak 3\n// Odgovorni asistent: Tarik Pozderac - tpozderac1@etf.unsa.ba\n// Za sva tehnicka pitanja vezana za autotestove za zadatak 3, obratite se na navedeni mail.\n//---------------------------------------------------------------------------------------------------------------\n"
+                        },
+                        {
+                            "position": "main",
+                            "code": "// AT 11: Test pomjerajuceg konstruktora kopije i operatora dodjele\n    {\n        Skladiste ETF;\n        ETF.DodajSanduk(50, \"Voce\", {1,3,5,6});\n        ETF.DodajVrecu(0.1, \"Brasno\", 25.5);\n        ETF.DodajBure(5, \"Krv\", 1300, 150);\n        Skladiste ETF1(std::move(ETF));\n        Skladiste ETF2;\n        ETF2 = std::move(ETF1);\n        ETF2.IzlistajSkladiste();\n    }"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "Vrsta spremnika: Bure\nSadrzaj: Krv\nVlastita tezina: 5 (kg)\nSpecificna tezina tecnosti: 1300 (kg/m^3)\nZapremina tecnosti: 150 (l)\nUkupna tezina: 200 (kg)\nVrsta spremnika: Sanduk\nSadrzaj: Voce\nTezine predmeta: 1 3 5 6 (kg)\nVlastita tezina: 50 (kg)\nUkupna tezina: 65 (kg)\nVrsta spremnika: Vreca\nSadrzaj: Brasno\nVlastita tezina: 0.1 (kg)\nTezina pohranjene materije: 25.5 (kg)\nUkupna tezina: 25.6 (kg)\n"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 11",
+            "id": 11
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "top_of_file",
+                            "code": "//---------------------------------------------------------------------------------------------------------------\n// Tehnike programiranja - Akademska 2023/2024 godina\n// Zadaca 5 - Zadatak 3\n// Odgovorni asistent: Tarik Pozderac - tpozderac1@etf.unsa.ba\n// Za sva tehnicka pitanja vezana za autotestove za zadatak 3, obratite se na navedeni mail.\n//---------------------------------------------------------------------------------------------------------------\n"
+                        },
+                        {
+                            "position": "main",
+                            "code": "// AT 12: Test konstruktora kopije i operatora dodjele\n    {\n        Skladiste ETF;\n        ETF.DodajSanduk(50, \"Voce\", {1,3,5,6});\n        ETF.DodajVrecu(0.1, \"Brasno\", 25.5);\n        ETF.DodajBure(5, \"Krv\", 1300, 150);\n        Skladiste ETF1(ETF);\n        Skladiste ETF2;\n        ETF2 = ETF1;\n        ETF2.IzlistajSkladiste();\n    }"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "Vrsta spremnika: Bure\nSadrzaj: Krv\nVlastita tezina: 5 (kg)\nSpecificna tezina tecnosti: 1300 (kg/m^3)\nZapremina tecnosti: 150 (l)\nUkupna tezina: 200 (kg)\nVrsta spremnika: Sanduk\nSadrzaj: Voce\nTezine predmeta: 1 3 5 6 (kg)\nVlastita tezina: 50 (kg)\nUkupna tezina: 65 (kg)\nVrsta spremnika: Vreca\nSadrzaj: Brasno\nVlastita tezina: 0.1 (kg)\nTezina pohranjene materije: 25.5 (kg)\nUkupna tezina: 25.6 (kg)\n"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 12",
+            "id": 12
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "top_of_file",
+                            "code": "//---------------------------------------------------------------------------------------------------------------\n// Tehnike programiranja - Akademska 2023/2024 godina\n// Zadaca 5 - Zadatak 3\n// Odgovorni asistent: Tarik Pozderac - tpozderac1@etf.unsa.ba\n// Za sva tehnicka pitanja vezana za autotestove za zadatak 3, obratite se na navedeni mail.\n//---------------------------------------------------------------------------------------------------------------\n"
+                        },
+                        {
+                            "position": "main",
+                            "code": "// AT 13: Test velicina pojedinih klasa (po parametrima)\n    {\n        std::cout << sizeof(Spremnik) << std::endl;\n        std::cout << sizeof(Sanduk) << std::endl;\n        std::cout << sizeof(Vreca) << std::endl;\n        std::cout << sizeof(Bure) << std::endl;\n        std::cout << sizeof(Skladiste) << std::endl;\n    }"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "40\n56\n48\n56\n12\n",
+                            "48\n72\n56\n64\n24"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 13",
+            "id": 13
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "top_of_file",
+                            "code": "//---------------------------------------------------------------------------------------------------------------\n// Tehnike programiranja - Akademska 2023/2024 godina\n// Zadaca 5 - Zadatak 3\n// Odgovorni asistent: Tarik Pozderac - tpozderac1@etf.unsa.ba\n// Za sva tehnicka pitanja vezana za autotestove za zadatak 3, obratite se na navedeni mail.\n//---------------------------------------------------------------------------------------------------------------\n"
+                        },
+                        {
+                            "position": "main",
+                            "code": "// AT 14: Eliminatoran test - Da li je Spremnik apstrakna bazna klasa\n    {\n        Ruksak r;\n        r.DajUkupnuTezinu();\n        r.Ispisi();\n        auto a = r.DajKopiju();\n        std::cout<<std::endl;\n        Skladiste ETF;\n        ETF.DodajSpremnik(&r, false);\n        ETF.IzlistajSkladiste();\n        delete a;\n    }\n"
+                        },
+                        {
+                            "position": "above_main",
+                            "code": "class Ruksak : public Spremnik\n{\npublic:\n    Ruksak() : Spremnik(1,\"2\")\n    {\n\n    }\n    virtual double DajUkupnuTezinu() const override\n    {\n        std::cout << \"Ruksak je \";\n    }\n    virtual void Ispisi() const override\n    {\n        std::cout << \"kreiran iz apstrakne bazne klase Spremnik.\";\n    }\n    virtual Spremnik *DajKopiju() const override\n    {\n        return new Ruksak(*this);\n    }\n};"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "Ruksak je kreiran iz apstrakne bazne klase Spremnik.\nkreiran iz apstrakne bazne klase Spremnik."
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 14",
+            "id": 14
+        }
+    ]
+}

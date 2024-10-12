@@ -1,0 +1,319 @@
+{
+    "id": 0,
+    "name": "Tehnike programiranja, Zadaća 2, Zadatak 5",
+    "version": "3",
+    "languages": [
+        "C++"
+    ],
+    "tools": {
+        "compile": {
+            "require": "g++",
+            "features": [
+                "optimize",
+                "warn",
+                "pedantic",
+                "C++14"
+            ]
+        },
+        "compile[debug]": {
+            "require": "g++",
+            "features": [
+                "debug",
+                "C++14",
+                "asan"
+            ]
+        },
+        "execute": {
+            "require": "asan"
+        },
+        "debug": [],
+        "profile[asan]": {
+            "require": "asan",
+            "input_file": "stderr.txt",
+            "fast": true
+        }
+    },
+    "prepare": [
+        "compile"
+    ],
+    "tests": [
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "main",
+                            "code": "//AT1 - primjer iz postavke zadatka, sva pitanja poslati na mail kerim.hodzic@etf.unsa.ba\n_main();"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "Duzina sekvenci: \nElementi prve sekvence: \nElementi druge sekvence: \nTablica mnozenja:\n5\n2 6\n8 24 48\n7 21 42 14"
+                        ],
+                        "environment": {
+                            "stdin": "4\n5 2 8 7\n1 3 6 2"
+                        }
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 1",
+            "id": 1
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "main",
+                            "code": " //AT2 scenario nedostatka memorije\ntry {\n   std::srand(unsigned(std::time(nullptr))); \n   std::vector<int> a(1000000);\n   std::generate(a.begin(), a.end(), std::rand);\n   // std::for_each(a.begin(), a.begin()+1000, [](int x) {std::cout<<x<<\" \";});\n    std::vector<int> b(1000000);\n   std::generate(b.begin(), b.end(), std::rand);\n   // std::for_each(b.begin(), b.begin()+1000, [](int x) {std::cout<<x<<\" \";});\n   auto c = KreirajTablicuMnozenja(a,b);\n   for(int i = 0; i < 100000; i++) {\n     for(int j = 0; j <= i; j++) std::cout << c[i][j] << \" \";\n     std::cout << std::endl;\n   } \n   delete[] c[0]; delete[] c;\n   } \n   catch (std::range_error err) {\n    std::cout << err.what();\n  }"
+                        },
+                        {
+                            "position": "top_of_file",
+                            "code": "#include <algorithm>\n#include <ctime>"
+                        },
+                        {
+                            "position": "above_main",
+                            "code": "static size_t alocirano(0);\nstatic int brojac_new(0);\nstatic int brojac_deleteniz(0);\nstatic size_t alokacije[20];\nconst size_t RAM = 35 * sizeof(int);\n\nvoid *operator new[] (size_t vel)\n{\n    if (RAM < alocirano+vel) throw std::bad_alloc();\n    alokacije[brojac_new]=vel;    \n    brojac_new++;\n    alocirano+=vel;   \n    return std::malloc (vel);\n}\nvoid operator delete [] ( void* ptr)  noexcept{\n  brojac_deleteniz++;\n  free(ptr);\n}"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "Nema dovoljno memorije"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 2",
+            "id": 2
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "main",
+                            "code": "//AT3 main\n_main();"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "Duzina sekvenci:\nElementi prve sekvence:\nElementi druge sekvence:\nTablica mnozenja: \n200  \n500  750  \n420  630  25.83  \n66  99  4.059  -18.15  \n20000  30000  1230  -5500  -250"
+                        ],
+                        "environment": {
+                            "stdin": "5\n1 2.5 2.1 0.33 100\n200 300 12.3 -55 -2.5"
+                        }
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 3",
+            "id": 3
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "main",
+                            "code": " try {\n        std::vector<Cigla> a{ 1,2,3};\n        std::vector<Cigla> b{ 4,5,6};\n        auto c = KreirajTablicuMnozenja(a, b);\n\n     for(int i = 0; i < 3; i++) {\n     for(int j = 0; j <= i; j++) c[i][j].Ispisi();\n     std::cout << std::endl;\n   }\n   delete[] c[0]; delete[] c;\n    }\n     catch (std::logic_error err) {\n    std::cout << err.what();\n  }"
+                        },
+                        {
+                            "position": "above_main",
+                            "code": "class Cigla { \n    int x;\n    public:\n    Cigla (int y=0){x=y;}\n    void Ispisi () {std::cout<<\"Ja sam Cigla.\";}\n    Cigla operator*(const Cigla& druga) const {\n        return Cigla(x*(druga.getX()+1));\n    }\n        bool operator!=(const Cigla& druga) const {\n        return x != druga.x;\n    }\n       int getX() const {\n        return x;\n    }\n};"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "Nije ispunjena pretpostavka o komutativnosti"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 4",
+            "id": 4
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "above_main",
+                            "code": "class Cigla { \n    int x;\n    public:\n    Cigla (int c){x=c;};\n    void Ispisi () {std::cout<<\"Ja sam Cigla.\";}\n};\nclass Lopata { \n    int x;\n    public:\n    Lopata () {x=1;};\n    void Ispisi () {std::cout<<\"Ja sam Lopata.\";}};\n\nLopata operator*(Cigla a, Cigla b) { return Lopata(); }\nbool operator!=(Lopata a, Lopata b) { return 0; }\n"
+                        },
+                        {
+                            "position": "main",
+                            "code": "  try {\n        std::vector<Cigla> a{  1,2,3};\n        std::vector<Cigla> b{ 4,5,6};\n        auto c = KreirajTablicuMnozenja(a, b);\n\n     for(int i = 0; i < 3; i++) {\n     for(int j = 0; j <= i; j++) c[i][j].Ispisi();\n     std::cout << std::endl;\n   }\n   delete[] c[0]; delete[] c;\n    }\n     catch (std::logic_error err) {\n    std::cout << err.what();\n  }"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "Ja sam Lopata.\nJa sam Lopata.Ja sam Lopata.\nJa sam Lopata.Ja sam Lopata.Ja sam Lopata."
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 5",
+            "id": 5
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "main",
+                            "code": "//AT6 testiranje izuzetka\n    try {\n        std::vector<int> a{ 123, -23, 99, 1000 };\n        std::deque<float> b{ -1.5, 12, 1.77 };\n        auto c = KreirajTablicuMnozenja(a, b);\n\n     for(int i = 0; i < 3; i++) {\n     for(int j = 0; j <= i; j++) std::cout << c[i][j] << \" \";\n     std::cout << std::endl;\n   }\n   delete[] c[0]; delete[] c;\n    }\n     catch (std::range_error err) {\n    std::cout << err.what();\n  }"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "Kontejneri nisu iste duzine"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 6",
+            "id": 6
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "top_of_file",
+                            "code": "#include <list>"
+                        },
+                        {
+                            "position": "main",
+                            "code": "try {\n        std::list<double> a{ 123.1, -23, 99.87, 55.5 };\n        std::deque<float> b{ -1.5, 12, -1.7, -33 };\n        auto c = KreirajTablicuMnozenja(a,b);\n\n     for(int i = 0; i < 4; i++) {\n     for(int j = 0; j <= i; j++) std::cout << c[i][j] << \" \";\n     std::cout << std::endl;\n   }\n   delete[] c[0]; delete[] c;\n    }\n     catch (std::logic_error err) {\n    std::cout << err.what();\n  }"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "-184.65 \n34.5 -276 \n-149.805 1198.44 -169.779 \n-83.25 666 -94.35 -1831.5 "
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 7",
+            "id": 7
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "main",
+                            "code": "try {\n        std::vector<long int> a{ 200, -23, 100, 22 };\n        std::array<short,4>b = { -1, 12, 2, -33 };\n        auto c = KreirajTablicuMnozenja(a, b);\n     for(int i = 0; i < 4; i++) {\n     for(int j = 0; j <= i; j++) std::cout << c[i][j] << \" \";\n     std::cout << std::endl;\n   }\n   delete[] c[0]; delete[] c;\n    }\n     catch (std::logic_error err) {\n    std::cout << err.what();\n  }"
+                        },
+                        {
+                            "position": "top_of_file",
+                            "code": "#include <array>"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "-200 \n23 -276 \n-100 1200 200 \n-22 264 44 -726 "
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 8",
+            "id": 8
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "main",
+                            "code": "\n       try {\n        std::list<double> a{ 200.1, -23.2, 100.666, 22.1233456 };\n        std::array<int,4>b = { -1, 12, 2, -33 };\n        auto c = KreirajTablicuMnozenja(a, b);\n\n     for(int i = 0; i < 4; i++) {\n     for(int j = 0; j <= i; j++) std::cout << c[i][j] << \" \";\n     std::cout << std::endl;\n   }\n   delete[] c[0]; delete[] c;\n    }\n     catch (std::logic_error err) {\n    std::cout << err.what();\n  }"
+                        },
+                        {
+                            "position": "top_of_file",
+                            "code": "#include <array>\n#include <list>\n"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "-200.1 \n23.2 -278.4 \n-100.666 1207.99 201.332 \n-22.1233 265.48 44.2467 -730.07"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 9",
+            "id": 9
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "main",
+                            "code": "      try {\n        std::deque<double> a{ 123.33333, 1368.111234,12.1};\n        std::vector<long int>b = { -1, 120,12 };\n        auto c = KreirajTablicuMnozenja(a,b);\n\n     for(int i = 0; i < 3; i++) {\n     for(int j = 0; j <= i; j++) std::cout << c[i][j] << \" \";\n     std::cout << std::endl;\n   \n   }\n     std::cout << \"New pozvan \" << brojac_new << \" puta\" << \" puta, a alocirano ukupno \" << alocirano << \" bajta.\";\n     delete[] c[0]; delete[] c;\n\n    }\n     catch (std::logic_error err) {\n    std::cout << err.what();\n  }"
+                        },
+                        {
+                            "position": "above_main",
+                            "code": "static size_t alocirano(0);\nstatic int brojac_new(0);\nstatic int brojac_deleteniz(0);\nstatic size_t alokacije[20];\nconst size_t RAM = 35 * sizeof(int);\n\nvoid *operator new[] (size_t vel)\n{\n    if (RAM < alocirano+vel) throw std::bad_alloc();\n    alokacije[brojac_new]=vel;    \n    brojac_new++;\n    alocirano+=vel;   \n    return std::malloc (vel);\n}\nvoid operator delete [] ( void* ptr) noexcept {\n  brojac_deleteniz++;\n  free(ptr);\n}"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "-123.333\n-1368.11 164173\n-12.1 1452 145.2\nNew pozvan 2 puta puta, a alocirano ukupno 72 bajta."
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 10",
+            "id": 10
+        }
+    ]
+}

@@ -1,0 +1,168 @@
+{
+    "id": 0,
+    "name": "Tehnike programiranja, Zadaća 3, Zadatak 5",
+    "version": "3",
+    "languages": [
+        "C++"
+    ],
+    "tools": {
+        "compile": {
+            "require": "g++",
+            "features": [
+                "optimize",
+                "warn",
+                "pedantic",
+                "C++14"
+            ]
+        },
+        "compile[debug]": {
+            "require": "g++",
+            "features": [
+                "debug",
+                "C++14",
+                "asan"
+            ]
+        },
+        "execute": {
+            "require": "asan"
+        },
+        "debug": [],
+        "profile[asan]": {
+            "require": "asan",
+            "input_file": "stderr.txt",
+            "fast": true
+        }
+    },
+    "prepare": [
+        "compile"
+    ],
+    "tests": [
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "top_of_file",
+                            "code": "//---------------------------------------------------------------------------------------------------------------\n// Tehnike programiranja - Akademska 2023/2024 godina\n// Zadaća 3 - Zadatak 5\n// Odgovorni viši asistent: Haris Čapelj - hcapelj1@etf.unsa.ba\n// Za sva tehnička pitanja vezana za autotestove za zadatak 5, obratite se na navedeni mail.\n//---------------------------------------------------------------------------------------------------------------"
+                        },
+                        {
+                            "position": "main",
+                            "code": "// AT 1: Test main-a (primjer iz postavke)\n    {\n        _main();\n    }"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "Unesite broj distrikta u gradu: Unesite redni broj distrikta u kojem se nalazi restoran: Trazeni korak: 2"
+                        ],
+                        "environment": {
+                            "stdin": "10\n4\n"
+                        }
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 1",
+            "id": 1
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "top_of_file",
+                            "code": "//---------------------------------------------------------------------------------------------------------------\n// Tehnike programiranja - Akademska 2023/2024 godina\n// Zadaća 3 - Zadatak 5\n// Odgovorni viši asistent: Haris Čapelj - hcapelj1@etf.unsa.ba\n// Za sva tehnička pitanja vezana za autotestove za zadatak 5, obratite se na navedeni mail.\n//---------------------------------------------------------------------------------------------------------------"
+                        },
+                        {
+                            "position": "main",
+                            "code": "// AT 2: Test main-a (primjer iz postavke - brojevi pomnozeni sa -1)\n    {\n        _main();\n    }"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "Unesite broj distrikta u gradu: Unesite redni broj distrikta u kojem se nalazi restoran: Trazeni korak: 3"
+                        ],
+                        "environment": {
+                            "stdin": "10\n2\n"
+                        }
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 2",
+            "id": 2
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "top_of_file",
+                            "code": "//---------------------------------------------------------------------------------------------------------------\n// Tehnike programiranja - Akademska 2023/2024 godina\n// Zadaća 3 - Zadatak 5\n// Odgovorni viši asistent: Haris Čapelj - hcapelj1@etf.unsa.ba\n// Za sva tehnička pitanja vezana za autotestove za zadatak 5, obratite se na navedeni mail.\n//---------------------------------------------------------------------------------------------------------------"
+                        },
+                        {
+                            "position": "top_of_file",
+                            "code": "#include <typeinfo>"
+                        },
+                        {
+                            "position": "main",
+                            "code": "// AT 17: Test da li struct Blok ima ocekivane elemente\n    // Napomena: Autotest je eliminatoran, ako on padne, gube se svi AT za ovaj zadatak!\n    {\n        Distrikt b;\n        std::cout << sizeof(b) << \" \" << typeid(b.sljedeci).name() << std::endl;\n    }\n"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "8 P8Distrikt",
+                            "16 P8Distrikt"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 3",
+            "id": 3
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "top_of_file",
+                            "code": "//---------------------------------------------------------------------------------------------------------------\n// Tehnike programiranja - Akademska 2023/2024 godina\n// Zadaća 3 - Zadatak 5\n// Odgovorni viši asistent: Haris Čapelj - hcapelj1@etf.unsa.ba\n// Za sva tehnička pitanja vezana za autotestove za zadatak 5, obratite se na navedeni mail.\n//---------------------------------------------------------------------------------------------------------------"
+                        },
+                        {
+                            "position": "top_of_file",
+                            "code": "#include <iostream>\n#include <list>\nnamespace std\n{\ntemplate<typename Tip>\nclass MojaLista : public list<Tip>\n{\npublic:\n    MojaLista() : list<Tip>()\n    {\n        std::cout << \"Pozvana moja lista\" << std::endl;\n    }\n};\n\n}\n#define list MojaLista"
+                        },
+                        {
+                            "position": "main",
+                            "code": "// AT 18: Test da li se koristi std::list klasa - ne smije se koristiti!\n    // Napomena: Autotest je eliminatoran, ako on padne, gube se svi AT za ovaj zadatak!\n    {\n        auto v = Razbrajanje(10, 4);\n\n        std::cout<<\"Kraj!\"<<std::endl;\n    }"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "Kraj!"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 4",
+            "id": 4
+        }
+    ]
+}

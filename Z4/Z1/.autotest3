@@ -1,0 +1,717 @@
+{
+    "id": 0,
+    "name": "Tehnike programiranja, Zadaća 4, Zadatak 1",
+    "version": "3",
+    "languages": [
+        "C++"
+    ],
+    "tools": {
+        "compile": {
+            "require": "g++",
+            "features": [
+                "optimize",
+                "warn",
+                "pedantic",
+                "C++14"
+            ]
+        },
+        "compile[debug]": {
+            "require": "g++",
+            "features": [
+                "debug",
+                "C++14",
+                "asan"
+            ]
+        },
+        "execute": {
+            "require": "asan"
+        },
+        "debug": [],
+        "profile[asan]": {
+            "require": "asan",
+            "input_file": "stderr.txt",
+            "fast": true
+        }
+    },
+    "prepare": [
+        "compile"
+    ],
+    "tests": [
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "main",
+                            "code": "{//AT1: test maina \n//ovo je i zvanicni format dijaloga s korisnikom\n//u main funkciji za prvi zadatak\n//za sva pitanja se javiti na kerim.hodzic@etf.unsa.ba\n\n\n    _main();\n}"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "environment": {
+                            "stdin": "4\n0 0\n5 10\n1 3\n5 1\n1 1\n3 5\n5 5\n7 7\n1 -2"
+                        },
+                        "expect": [
+                            "Unesite n: Unesite 1. tjeme pravougaonika 1: Unesite 2. tjeme pravougaonika 1: Unesite 1. tjeme pravougaonika 2: Unesite 2. tjeme pravougaonika 2: Unesite 1. tjeme pravougaonika 3: Unesite 2. tjeme pravougaonika 3: Unesite 1. tjeme pravougaonika 4: Unesite 2. tjeme pravougaonika 4: Unesite podatke za transliranje (dx dy): Pravougaonici, nakon transformacija:\n{{-1.5,5.5},{8.5,0.5}}\n{{3,2},{5,-2}}\n{{1,2},{5,0}}\n{{6,5},{8,3}}\nPravougaonik s najvecom povrsinom: {{-1.5,5.5},{8.5,0.5}}"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 1",
+            "id": 1
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "main",
+                            "code": "\t\n{//AT2: Kreiranje pravougaonika, tacke i .Ispisi metoda\n        auto NL = [] (const char *c = \"\") {std::cout << c << std::endl;}; //pomocna fun, NewLine\n        //kreiranje pravougaonika\n        Pravougaonik p1 {{0, 0}, {5, 6}}, p2 ({1, 1}, {2, 11});\n        Tacka t1 {1, 3}, t2 {5, 0};\n        //ispisi metoda\n        p1.Ispisi(); NL(\" //p1\");\n        p2.Ispisi(); NL(\" //p2\");\n        Pravougaonik (t1, t2).Ispisi(); NL(\" //TMP\");\n    }"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "{{0,6},{5,0}} //p1\n{{1,11},{2,1}} //p2\n{{1,3},{5,0}} //TMP"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 2",
+            "id": 2
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "main",
+                            "code": " {//AT3: Daj (Obim, Povrsinu, Horizontalnu, Vertikalnu)\n        Pravougaonik p ({0, 20}, {10, 0});\n        std::cout << \"Pravougaonik: \"; p.Ispisi(); std::cout << std::endl;\n        std::cout << \"Obim: \" << p.DajObim() << std::endl;\n        std::cout << \"Povrsina: \" << p.DajPovrsinu() << std::endl;\n        std::cout << \"Horizontalna: \" << p.DajHorizontalnu() << std::endl;\n        std::cout << \"Vertikalna: \" << p.DajVertikalnu();\n    }//Pravougaonik: {{0,20},{10,0}}\\nObim: 60\\nPovrsina: 200\\nHorizontalna: 10\\nVertikalna: 20"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "Pravougaonik: {{0,20},{10,0}}\nObim: 60\nPovrsina: 200\nHorizontalna: 10\nVertikalna: 20"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 3",
+            "id": 3
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "main",
+                            "code": "\t\n{//AT4: DajCentar, Transliraj, Postavi\n        auto NL = [] (const char *c = \"\") {std::cout << c << std::endl;}; //pomocna fun, NewLine\n        auto x = Pravougaonik ({10, 0}, {0, 10}).DajCentar();\n        Pravougaonik p ({1, 1}, {-1, -1});\n        std::cout << \"x = (\" << x.first << \", \" << x.second << \")\" << std::endl;\n        p.Ispisi(); NL (\" //p, prije transliranja\");\n        Tacka c9 = p.DajCentar();\n        std::cout << \"c9 = (\" << c9.first << \", \" << c9.second << \")\" << std::endl;\n        p.Transliraj(1, 1);\n        p.Ispisi(); NL (\" //p, nakon transliranja\");\n        Tacka c2 = p.DajCentar();\n        std::cout << \"c2 = (\" << c2.first << \", \" << c2.second << \")\" << std::endl;\n        p.Postavi(GoreDesno, {4, 2});\n        p.Ispisi(); NL (\" //p, nakon postavljanja (prosirivanje, horizontalno, za 2)\");\n    }"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "x = (5, 5)\n{{-1,1},{1,-1}} //p, prije transliranja\nc9 = (0, 0)\n{{0,2},{2,0}} //p, nakon transliranja\nc2 = (1, 1)\n{{0,2},{4,0}} //p, nakon postavljanja (prosirivanje, horizontalno, za 2)\t"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 4",
+            "id": 4
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "main",
+                            "code": "{//AT5: DajCentar, DaLiSePoklapaju, DaLiSuSlicni\n        auto x = Pravougaonik ({0, 10}, {10, 0}).DajCentar();\n        std::cout << \"x = (\" << x.first << \", \" << x.second << \")\" << std::boolalpha << std::endl;\n        Pravougaonik p1 {{1, 5}, {5, 1}}, p2 ({1, 1}, {7, 5}), p3 ({7, 1}, {1, 5});\n        std::cout << \"DaLiSePoklapaju (p2, p3): \" << DaLiSePoklapaju(p2, p3) << std::endl;\n        std::cout << \"DaLiSePoklapaju (p1, p1): \" << DaLiSePoklapaju(p1, p1) << std::endl;\n        std::cout << \"DaLiSePoklapaju (p1, p2): \" << DaLiSePoklapaju(p1, p2) << std::endl;\n        std::cout << \"DaLiSuSlicni (p1, p1): \" << DaLiSuSlicni(p1, p1) << std::endl;\n        std::cout << \"DaLiSuSlicni (p1, p2): \" << DaLiSuSlicni(p1, p2);\n    }"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "x = (5, 5)\nDaLiSePoklapaju (p2, p3): true\nDaLiSePoklapaju (p1, p1): true\nDaLiSePoklapaju (p1, p2): false\nDaLiSuSlicni (p1, p1): true\nDaLiSuSlicni (p1, p2): false"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 5",
+            "id": 5
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "main",
+                            "code": "   {//AT6: DaLiSuSlicni, test 1\n        Pravougaonik p{{0, 10}, {5, 0}}, q {{0, 100}, {50, 0}};\n        Pravougaonik r{{1, 7}, {5, 4}};\n        Pravougaonik s{{6, 10}, {5, 6}}, t {{6, 10}, {6, 6}};\n        std::cout << std::boolalpha\n                  << \"DaLiSuSlicni (p, q): \" << DaLiSuSlicni(p, q) << std::endl\n                  << \"DaLiSuSlicni (r, r): \" << DaLiSuSlicni(r, r) << std::endl\n                  << \"DaLiSuSlicni (s, t): \" << DaLiSuSlicni(s, t) << std::endl\n                  << \"DaLiSuSlicni (t, s): \" << DaLiSuSlicni(t, s) << std::endl\n                  << \"DaLiSuSlicni (r, s): \" << DaLiSuSlicni(r, s) << std::endl\n                  << \"DaLiSuSlicni (r, p): \" << DaLiSuSlicni(r, p) << std::endl\n                  << \"DaLiSuSlicni (p, s): \" << DaLiSuSlicni(p, s) << std::endl\n                  << \"DaLiSuSlicni (q, p): \" << DaLiSuSlicni(q, p) << std::endl\n                  << \"DaLiSuSlicni (p, r): \" << DaLiSuSlicni(p, r);\n    }"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "DaLiSuSlicni (p, q): true\nDaLiSuSlicni (r, r): true\nDaLiSuSlicni (s, t): false\nDaLiSuSlicni (t, s): false\nDaLiSuSlicni (r, s): false\nDaLiSuSlicni (r, p): false\nDaLiSuSlicni (p, s): false\nDaLiSuSlicni (q, p): true\nDaLiSuSlicni (p, r): false"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 6",
+            "id": 6
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "main",
+                            "code": " {//AT7: DaLiSePoklapaju\n        Pravougaonik p {{-1, -1}, {-1, 1}}, q({0, 0}, {0, 0}); //q: tacka\n        Pravougaonik r ({0, 10}, {7, 3}), s ({7, 3}, {0, 10});\n        Pravougaonik w ({1, 1}, {5, 3}), t {{100, 100}, {103, 105}};\n        Tacka t1{0, 0}, t2{10, 0};\n        Pravougaonik z{{1, 1}, {1, 11}}, u{t1, t2}; //duz, horizontalna i vertikalna\n        std::cout << std::boolalpha\n            << \"DaLiSePoklapaju (p, q): \" << DaLiSePoklapaju(p, q) << std::endl\n            << \"DaLiSePoklapaju (q, p): \" << DaLiSePoklapaju(q, p) << std::endl\n            << \"DaLiSePoklapaju (p, s): \" << DaLiSePoklapaju(p, s) << std::endl\n            << \"DaLiSePoklapaju (p, p): \" << DaLiSePoklapaju(p, p) << std::endl\n            << \"DaLiSePoklapaju (q, q): \" << DaLiSePoklapaju(q, q) << std::endl\n            << \"DaLiSePoklapaju (w, t): \" << DaLiSePoklapaju(w, t) << std::endl\n            << \"DaLiSePoklapaju (t, w): \" << DaLiSePoklapaju(t, w) << std::endl\n            << \"DaLiSePoklapaju (w, t): \" << DaLiSePoklapaju(w, t) << std::endl\n            << \"DaLiSePoklapaju (r, s): \" << DaLiSePoklapaju(r, s) << std::endl\n            << \"DaLiSePoklapaju (s, r): \" << DaLiSePoklapaju(s, r) << std::endl\n            << \"DaLiSePoklapaju (w, s): \" << DaLiSePoklapaju(w, s) << std::endl\n            << \"DaLiSePoklapaju (z, u): \" << DaLiSePoklapaju(z, u) << std::endl\n            << \"DaLiSePoklapaju (u, z): \" << DaLiSePoklapaju(u, z) << std::endl\n            << \"DaLiSePoklapaju (u, u): \" << DaLiSePoklapaju(u, u) << std::endl\n            << \"DaLiSePoklapaju (z, x): \" << DaLiSePoklapaju(z, {{1, 1}, {1, 12}}) << std::endl\n            << \"DaLiSePoklapaju (z, y): \" << DaLiSePoklapaju(z, {{1, 1}, {11, 1}});\n}"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "DaLiSePoklapaju (p, q): false\nDaLiSePoklapaju (q, p): false\nDaLiSePoklapaju (p, s): false\nDaLiSePoklapaju (p, p): true\nDaLiSePoklapaju (q, q): true\nDaLiSePoklapaju (w, t): false\nDaLiSePoklapaju (t, w): false\nDaLiSePoklapaju (w, t): false\nDaLiSePoklapaju (r, s): true\nDaLiSePoklapaju (s, r): true\nDaLiSePoklapaju (w, s): false\nDaLiSePoklapaju (z, u): false\nDaLiSePoklapaju (u, z): false\nDaLiSePoklapaju (u, u): true\nDaLiSePoklapaju (z, x): false\nDaLiSePoklapaju (z, y): false"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 7",
+            "id": 7
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "main",
+                            "code": "\t\n  {//AT8: DaLiSuPodudarni\n        Pravougaonik p {{-1, -1}, {-1, 1}}, q({0, 0}, {0, 0}); //q: tacka\n        Pravougaonik r ({0, 10}, {7, 3}), s ({7, 3}, {0, 10});\n        Pravougaonik w ({1, 1}, {5, 3}), t {{100, 100}, {103, 105}};\n        Tacka t1{0, 0}, t2{10, 0};\n        Pravougaonik z{{1, 1}, {1, 11}}, u{t1, t2}; //duz, horizontalna i vertikalna\n        std::cout << std::boolalpha\n            << \"DaLiSuPodudarni (p, q): \" << DaLiSuPodudarni(p, q) << std::endl\n            << \"DaLiSuPodudarni (q, p): \" << DaLiSuPodudarni(q, p) << std::endl\n            << \"DaLiSuPodudarni (p, s): \" << DaLiSuPodudarni(p, s) << std::endl\n            << \"DaLiSuPodudarni (p, p): \" << DaLiSuPodudarni(p, p) << std::endl\n            << \"DaLiSuPodudarni (q, q): \" << DaLiSuPodudarni(q, q) << std::endl\n            << \"DaLiSuPodudarni (w, t): \" << DaLiSuPodudarni(w, t) << std::endl\n            << \"DaLiSuPodudarni (t, w): \" << DaLiSuPodudarni(t, w) << std::endl\n            << \"DaLiSuPodudarni (w, t): \" << DaLiSuPodudarni(w, t) << std::endl\n            << \"DaLiSuPodudarni (r, s): \" << DaLiSuPodudarni(r, s) << std::endl\n            << \"DaLiSuPodudarni (s, r): \" << DaLiSuPodudarni(s, r) << std::endl\n            << \"DaLiSuPodudarni (z, u): \" << DaLiSuPodudarni(z, u) << std::endl\n            << \"DaLiSuPodudarni (u, z): \" << DaLiSuPodudarni(u, z) << std::endl\n            << \"DaLiSuPodudarni (u, u): \" << DaLiSuPodudarni(u, u) << std::endl\n            << \"DaLiSuPodudarni (z, x): \" << DaLiSuPodudarni(z, {{1, 1}, {1, 12}}) << std::endl\n            << \"DaLiSuPodudarni (z, y): \" << DaLiSuPodudarni(z, {{1, 1}, {11, 1}});\n    }"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "DaLiSuPodudarni (p, q): false\nDaLiSuPodudarni (q, p): false\nDaLiSuPodudarni (p, s): false\nDaLiSuPodudarni (p, p): true\nDaLiSuPodudarni (q, q): true\nDaLiSuPodudarni (w, t): false\nDaLiSuPodudarni (t, w): false\nDaLiSuPodudarni (w, t): false\nDaLiSuPodudarni (r, s): true\nDaLiSuPodudarni (s, r): true\nDaLiSuPodudarni (z, u): true\nDaLiSuPodudarni (u, z): true\nDaLiSuPodudarni (u, u): true\nDaLiSuPodudarni (z, x): false\nDaLiSuPodudarni (z, y): true"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 8",
+            "id": 8
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "main",
+                            "code": "\t\n{//AT9: Daj* Obim, Povrsinu, Horizontalnu, Vertikalnu, Centar\n     //                      kada je pravougaonik tacka/linija\n        Pravougaonik p ({1, 1}, {1, 1}), q {{0, 0}, {0, 0}};\n        Pravougaonik s {{0, 0}, {10, 0}}, t {{0, 0}, {0, 10}};\n        Pravougaonik big {{1000, -10000}, {-1000, 10000}};\n        const char * const imena[] = {\"p\", \"q\", \"s\", \"t\", \"big\"};\n        Pravougaonik *niz[] = {&p, &q, &s, &t, &big};\n        std::cout << std::fixed;\n        for (int a = 0; a < 5; ++a)\n            {\n                const char * const ime = imena[a];\n                const Pravougaonik * const prav = niz[a];\n                const Tacka T = prav->DajCentar();\n                std::cout << ime << \": \"; prav->Ispisi(); std::cout << std::endl;\n                std::cout << ime << \".DajObim() = \" << prav->DajObim() << std::endl\n                          << ime << \".DajPovrsinu() = \" << prav->DajPovrsinu() << std::endl\n                          << ime << \".DajHorizontalnu() = \" << prav->DajHorizontalnu() << std::endl\n                          << ime << \".DajVertikalnu() = \" << prav->DajVertikalnu() << std::endl\n                          << ime << \".DajCentar() = (\" << T.first << \", \" << T.second << \")\" << std::endl << std::endl;\n            }\n\n    }"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "p: {{1.000000,1.000000},{1.000000,1.000000}}\np.DajObim() = 0.000000\np.DajPovrsinu() = 0.000000\np.DajHorizontalnu() = 0.000000\np.DajVertikalnu() = 0.000000\np.DajCentar() = (1.000000, 1.000000)\n\nq: {{0.000000,0.000000},{0.000000,0.000000}}\nq.DajObim() = 0.000000\nq.DajPovrsinu() = 0.000000\nq.DajHorizontalnu() = 0.000000\nq.DajVertikalnu() = 0.000000\nq.DajCentar() = (0.000000, 0.000000)\n\ns: {{0.000000,0.000000},{10.000000,0.000000}}\ns.DajObim() = 20.000000\ns.DajPovrsinu() = 0.000000\ns.DajHorizontalnu() = 10.000000\ns.DajVertikalnu() = 0.000000\ns.DajCentar() = (5.000000, 0.000000)\n\nt: {{0.000000,10.000000},{0.000000,0.000000}}\nt.DajObim() = 20.000000\nt.DajPovrsinu() = 0.000000\nt.DajHorizontalnu() = 0.000000\nt.DajVertikalnu() = 10.000000\nt.DajCentar() = (0.000000, 5.000000)\n\nbig: {{-1000.000000,10000.000000},{1000.000000,-10000.000000}}\nbig.DajObim() = 44000.000000\nbig.DajPovrsinu() = 40000000.000000\nbig.DajHorizontalnu() = 2000.000000\nbig.DajVertikalnu() = 20000.000000\nbig.DajCentar() = (0.000000, 0.000000)\n\n"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 9",
+            "id": 9
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "main",
+                            "code": "\t\n{//AT10: \"constness test\", da li su sve potrebne metode inspektori\n     //                  pored toga, testira Centriraj metodu, kao i DajTjeme\n        auto IspisiTacku = [](const Tacka &t) {std::cout << \"(\" << t.first << \", \" << t.second << \")\";};\n        Pravougaonik p {{5, 14}, {700, 100}};\n        std::cout << \"p.Ispisi(): \"; p.Ispisi();\n        std::cout << std::endl << \"p.DajCentar() = \"; IspisiTacku (p.DajCentar()); std::cout << \" [prije centriranja]\" << std::endl;\n        p.Centriraj({111, 111});\n        std::cout << \"p.Ispisi(): \"; p.Ispisi();\n        std::cout << std::endl << \"p.DajCentar() = \"; IspisiTacku (p.DajCentar()); std::cout << \" [nakon centriranja]\" << std::endl;\n        p.Centriraj ({0, 0}); //ponovo centrirajmo\n        [] (const Pravougaonik &p)\n            {\n             std::cout << std::endl << \"Iz funkcije koja prihvata referencu na CONST pravougaonik:\" << std::endl\n                << \"p.DajObim() = \" << p.DajObim() << std::endl\n                << \"p.DajPovrsinu() = \" << p.DajPovrsinu() << std::endl\n                << \"p.DajHorizontalnu() = \" << p.DajHorizontalnu() << std::endl\n                << \"p.DajVertikalnu() = \" << p.DajVertikalnu() << std::endl\n                << \"p.DajCentar() = (\" << p.DajCentar().first << \", \" << p.DajCentar().second << \")\" << std::endl\n                << \"p.Ispisi(): \"; p.Ispisi(); std::cout << std::endl << std::endl;\n            }(p);\n        const Pravougaonik &cp = p; //referenca na const p\n        std::cout << \"const Pravougaonik &cp = p\" << std::endl << \"cp.Ispisi: \";\n        cp.Ispisi(); //nad 'cp' se smiju (mogu) pozivati samo inspektori (const metode)\n        std::cout << std::endl\n                  << \"cp.DajTjeme(GoreLijevo): \"; IspisiTacku (cp.DajTjeme (GoreLijevo)); std::cout << std::endl\n                  << \"cp.DajTjeme(GoreDesno): \"; IspisiTacku (cp.DajTjeme (GoreDesno)); std::cout << std::endl\n                  << \"cp.DajTjeme(DoljeLijevo): \"; IspisiTacku (cp.DajTjeme (DoljeLijevo)); std::cout << std::endl\n                  << \"cp.DajTjeme(DoljeDesno): \"; IspisiTacku (cp.DajTjeme (DoljeDesno)); std::cout << std::endl;\n        //sada, da testiramo, da li je enum u pravom REDOSLIJEDU\n        //0: GoreLijevo, 1: GoreDesno, 2: DoljeLijevo, 3: DoljeDesno\n        p.Centriraj ({7, 7}); //centrirajmo 'p', odrazit ce se na 'cp'\n        //ispisimo Tjemena, ali proslijedimo brojeve:\n        std::cout << std::endl << \"Ispis sa Pozicija (1) i tako dalje: \" << std::endl\n                  << \"cp.DajTjeme(1): \"; IspisiTacku (cp.DajTjeme (Pozicija (1))); std::cout << std::endl\n                  << \"cp.DajTjeme(3): \"; IspisiTacku (cp.DajTjeme (Pozicija (3))); std::cout << std::endl\n                  << \"cp.DajTjeme(0): \"; IspisiTacku (cp.DajTjeme (Pozicija (0))); std::cout << std::endl\n                  << \"cp.DajTjeme(2): \"; IspisiTacku (cp.DajTjeme (Pozicija (2))); std::cout << std::endl\n                  << \"cp.DajCentar() = \"; IspisiTacku (cp.DajCentar());\n    }"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "p.Ispisi(): {{5,100},{700,14}}\np.DajCentar() = (352.5, 57) [prije centriranja]\np.Ispisi(): {{-236.5,154},{458.5,68}}\np.DajCentar() = (111, 111) [nakon centriranja]\n\nIz funkcije koja prihvata referencu na CONST pravougaonik:\np.DajObim() = 1562\np.DajPovrsinu() = 59770\np.DajHorizontalnu() = 695\np.DajVertikalnu() = 86\np.DajCentar() = (0, 0)\np.Ispisi(): {{-347.5,43},{347.5,-43}}\n\nconst Pravougaonik &cp = p\ncp.Ispisi: {{-347.5,43},{347.5,-43}}\ncp.DajTjeme(GoreLijevo): (-347.5, 43)\ncp.DajTjeme(GoreDesno): (347.5, 43)\ncp.DajTjeme(DoljeLijevo): (-347.5, -43)\ncp.DajTjeme(DoljeDesno): (347.5, -43)\n\nIspis sa Pozicija (1) i tako dalje:\ncp.DajTjeme(1): (354.5, 50)\ncp.DajTjeme(3): (354.5, -36)\ncp.DajTjeme(0): (-340.5, 50)\ncp.DajTjeme(2): (-340.5, -36)\ncp.DajCentar() = (7, 7)"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 10",
+            "id": 10
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "main",
+                            "code": " {//AT11: DaLiSuSlicni, test 2\n        Pravougaonik p{{0, 10}, {5, 0}}, q {{100, 0}, {0, 50}}; //slicni su i ako su drugacije rotirani\n        Pravougaonik r{{1, 1}, {1, 1}}; //tacka, mogucnost dijljenja s nulom!\n        Pravougaonik w{{1, 1}, {1, 11}}, z{{0, 0}, {10, 0}}; //duz, horizontalna i vertikalna\n        Pravougaonik s{{6, 10}, {5, 6}}, t {{6, 10}, {6, 5}}; //samo rotirani\n        std::cout << std::boolalpha\n          << \"DaLiSuSlicni (p, q): \" << DaLiSuSlicni(p, q) << std::endl\n          << \"DaLiSuSlicni (r, r): \" << DaLiSuSlicni(r, r) << std::endl\n          << \"DaLiSuSlicni (s, t): \" << DaLiSuSlicni(s, t) << std::endl\n          << \"DaLiSuSlicni (t, s): \" << DaLiSuSlicni(t, s) << std::endl\n          << \"DaLiSuSlicni (r, s): \" << DaLiSuSlicni(r, s) << std::endl\n          << \"DaLiSuSlicni (r, p): \" << DaLiSuSlicni(r, p) << std::endl\n          << \"DaLiSuSlicni (p, s): \" << DaLiSuSlicni(p, s) << std::endl\n          << \"DaLiSuSlicni (q, p): \" << DaLiSuSlicni(q, p) << std::endl\n          << \"DaLiSuSlicni (p, r): \" << DaLiSuSlicni(p, r) << std::endl\n          << \"DaLiSuSlicni (w, w): \" << DaLiSuSlicni(w, w) << std::endl\n          << \"DaLiSuSlicni (z, w): \" << DaLiSuSlicni(z, w) << std::endl\n          << \"DaLiSuSlicni (w, z): \" << DaLiSuSlicni(w, z) << std::endl\n          << \"DaLiSuSlicni (w, x): \" << DaLiSuSlicni(w, {{1, 1}, {1, 1000}}); //dvije vert duzi razlicitih duzina\n    }"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "DaLiSuSlicni (p, q): true\nDaLiSuSlicni (r, r): true\nDaLiSuSlicni (s, t): false\nDaLiSuSlicni (t, s): false\nDaLiSuSlicni (r, s): true\nDaLiSuSlicni (r, p): true\nDaLiSuSlicni (p, s): false\nDaLiSuSlicni (q, p): true\nDaLiSuSlicni (p, r): true\nDaLiSuSlicni (w, w): true\nDaLiSuSlicni (z, w): true\nDaLiSuSlicni (w, z): true\nDaLiSuSlicni (w, x): true"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 11",
+            "id": 11
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "main",
+                            "code": "\t\n{//AT12 : Rotiraj, test 1\nPravougaonik p{{10, 10}, {0, 0}};\n        p.Ispisi();\n        p.Rotiraj ({0, 0}, Nalijevo);\n        p.Ispisi();\n        p.Rotiraj ({0, 0}, Nalijevo);\n        p.Ispisi();\n        p.Rotiraj ({0, 0}, Nalijevo);\n        p.Ispisi();\n        p.Rotiraj ({0, 0}, Nalijevo);\n        p.Ispisi();\n        std::cout <<std::endl;\n        p.Ispisi();\n        p.Rotiraj ({100, 100}, Nadesno);\n        p.Ispisi();\n        p.Rotiraj ({100, 100}, Nadesno);\n        p.Ispisi();\n        p.Rotiraj ({100, 100}, Nadesno);\n        p.Ispisi();\n        p.Rotiraj ({100, 100}, Nadesno);\n        p.Ispisi();\n    }"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "{{0,10},{10,0}}{{-10,10},{0,0}}{{-10,0},{0,-10}}{{0,0},{10,-10}}{{0,10},{10,0}}\n{{0,10},{10,0}}{{0,200},{10,190}}{{190,200},{200,190}}{{190,10},{200,0}}{{0,10},{10,0}}"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 12",
+            "id": 12
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "main",
+                            "code": "\t\n{//AT13: Rotiraj, test 2, malo rotacija, translacija, centriranja i vracanja na isto...\n       Pravougaonik p {{.53, 77}, {.77, 31.13}};\n        p.Ispisi();\n        p.Rotiraj ({1.123, 12.3}, Nalijevo);\n        p.Rotiraj ({1123, .123}, Nadesno);\n        auto centar = p.DajCentar();\n        p.Centriraj ({123, 17});\n        p.Rotiraj ({.5, 500.1}, Nadesno);\n        p.Ispisi();\n        p.Transliraj (100, -20.5);\n        p.Rotiraj ({5, 5.1}, Nadesno);\n        p.Ispisi();\n        p.Rotiraj ({5, 5.1}, Nalijevo);\n        p.Transliraj (-100, 20.5);\n        p.Ispisi();\n        p.Rotiraj ({.5, 500.1}, Nalijevo);\n        p.Centriraj (centar);\n        p.Rotiraj ({1123, .123}, Nalijevo);\n        p.Rotiraj ({1.123, 12.3}, Nadesno);\n        p.Ispisi();\n\n    }"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "{{0.53,77},{0.77,31.13}}{{-505.535,377.72},{-459.665,377.48}}{{356.88,415.635},{357.12,369.765}}{{-505.535,377.72},{-459.665,377.48}}{{0.53,77},{0.77,31.13}}"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 13",
+            "id": 13
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "main",
+                            "code": "{//AT14: Rotiraj, test 3, rotiranje tacke i duzi\n        auto NL = [] (const char *c = \"\") {std::cout << c << std::endl;}; //pomocna fun, NewLine\n        Pravougaonik p {{1, 1}, {1, 1}};\n        Pravougaonik s {{0, 10}, {10, 10}}, r{{10, 0}, {0, 0}}, t({0, 10}, {0, 0});\n        p.Ispisi(); NL(\" - p\");\n        s.Ispisi(); NL(\" - s\");\n        r.Ispisi(); NL(\" - r\");\n        t.Ispisi(); NL(\" - t\");\n        NL();\n        p.Rotiraj (p.DajCentar(), Nalijevo);\n        s.Rotiraj (p.DajCentar(), Nadesno);\n        p.Ispisi(); NL(\" - p\");\n        s.Ispisi(); NL(\" - s\");\n        NL();\n        s.Rotiraj (t.DajCentar(), Nalijevo);\n        t.Rotiraj ({.5, 17}, Nalijevo);\n        r.Rotiraj ({17, .5}, Nadesno);\n        r.Ispisi(); NL(\" - r\");\n        s.Ispisi(); NL(\" - s\");\n        t.Ispisi(); NL(\" - t\");\n    }"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "{{1,1},{1,1}} - p\n{{0,10},{10,10}} - s\n{{0,0},{10,0}} - r\n{{0,10},{0,0}} - t\n\n{{1,1},{1,1}} - p\n{{10,2},{10,-8}} - s\n\n{{16.5,17.5},{16.5,7.5}} - r\n{{3,15},{13,15}} - s\n{{7.5,16.5},{17.5,16.5}} - t\n"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 14",
+            "id": 14
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "main",
+                            "code": "{//AT15: koordinate su realni brojevi, tacke isto...\n        Tacka t{20.5, 7.7};\n        Pravougaonik p ({12.1, .1}, t);\n        std::cout << std::fixed;\n        p.Ispisi(); std::cout << std::endl << std::endl;\n        {\n            auto X = p.DajCentar(), A = p.DajTjeme(GoreLijevo), B = p.DajTjeme(GoreDesno),\n                 C = p.DajTjeme(DoljeLijevo), D = p.DajTjeme(DoljeDesno);\n            auto O = p.DajObim(), P = p.DajPovrsinu(), H = p.DajVertikalnu(), W = p.DajHorizontalnu();\n            std::cout << \"X = (\" << X.first << \", \" << X.second << \")\" << std::endl\n                      << \"A = (\" << A.first << \", \" << A.second << \")\" << std::endl\n                      << \"B = (\" << B.first << \", \" << B.second << \")\" << std::endl\n                      << \"C = (\" << C.first << \", \" << C.second << \")\" << std::endl\n                      << \"D = (\" << D.first << \", \" << D.second << \")\" << std::endl << std::endl;\n            std::cout << \"O = \" << O << \", P = \" << P << \", H = \" << H << \", W = \" << W;\n        }\n        std::cout << std::endl << \"--------------\" << std::endl << \"Rotiranje, transliranje...\"\n                  << std::endl << \"--------------\" << std::endl;\n        p.Rotiraj({12, 5.5}, Nalijevo);\n        p.Ispisi(); std::cout << std::endl;\n        p.Transliraj(0, 0);\n        p.Ispisi(); std::cout << std::endl;\n        p.Centriraj({-10.5, 14.67});\n        p.Ispisi(); std::cout << std::endl;\n        p.Transliraj(10.5, -14.67);\n        p.Ispisi(); std::cout << std::endl << std::endl;\n        {\n            auto X = p.DajCentar(), A = p.DajTjeme(GoreLijevo), B = p.DajTjeme(GoreDesno),\n                 C = p.DajTjeme(DoljeLijevo), D = p.DajTjeme(DoljeDesno);\n            auto O = p.DajObim(), P = p.DajPovrsinu(), H = p.DajVertikalnu(), W = p.DajHorizontalnu();\n            std::cout << \"X = (\" << X.first << \", \" << X.second << \")\" << std::endl\n                      << \"A = (\" << A.first << \", \" << A.second << \")\" << std::endl\n                      << \"B = (\" << B.first << \", \" << B.second << \")\" << std::endl\n                      << \"C = (\" << C.first << \", \" << C.second << \")\" << std::endl\n                      << \"D = (\" << D.first << \", \" << D.second << \")\" << std::endl << std::endl;\n            std::cout << \"O = \" << O << \", P = \" << P << \", H = \" << H << \", W = \" << W;\n        }\n    }"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "{{12.100000,7.700000},{20.500000,0.100000}}\n\nX = (16.300000, 3.900000)\nA = (12.100000, 7.700000)\nB = (20.500000, 7.700000)\nC = (12.100000, 0.100000)\nD = (20.500000, 0.100000)\n\nO = 32.000000, P = 63.840000, H = 7.600000, W = 8.400000\n--------------\nRotiranje, transliranje...\n--------------\n{{9.800000,14.000000},{17.400000,5.600000}}\n{{9.800000,14.000000},{17.400000,5.600000}}\n{{-14.300000,18.870000},{-6.700000,10.470000}}\n{{-3.800000,4.200000},{3.800000,-4.200000}}\n\nX = (0.000000, 0.000000)\nA = (-3.800000, 4.200000)\nB = (3.800000, 4.200000)\nC = (-3.800000, -4.200000)\nD = (3.800000, -4.200000)\n\nO = 32.000000, P = 63.840000, H = 8.400000, W = 7.600000",
+                            "{{12.100000,7.700000},{20.500000,0.100000}}\n\nX = (16.300000, 3.900000)\nA = (12.100000, 7.700000)\nB = (20.500000, 7.700000)\nC = (12.100000, 0.100000)\nD = (20.500000, 0.100000)\n\nO = 32.000000, P = 63.840000, H = 7.600000, W = 8.400000\n--------------\nRotiranje, transliranje...\n--------------\n{{9.800000,14.000000},{17.400000,5.600000}}\n{{9.800000,14.000000},{17.400000,5.600000}}\n{{-14.300000,18.870000},{-6.700000,10.470000}}\n{{-3.800000,4.200000},{3.800000,-4.200000}}\n\nX = (-0.000000, -0.000000)\nA = (-3.800000, 4.200000)\nB = (3.800000, 4.200000)\nC = (-3.800000, -4.200000)\nD = (3.800000, -4.200000)\n\nO = 32.000000, P = 63.840000, H = 8.400000, W = 7.600000"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 15",
+            "id": 15
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "main",
+                            "code": "{//AT16 da li su friend funkcije implementirane van klase?\n     //pise u predavanjima da se friend funkcije trebaju implementirati van klase\n     //a naveden je i konkretan primjer kada je friend funkcija kao \"duh\" (tj. kompajler\n     //prijavljuje gresku da ne postoji) ako je implementirana unutar klase.\n     //ovaj autotest testira upravo takav scenario, ako ne kompajlira, funkcije nisu impl. van klase\n     std::cout << std::boolalpha\n               << \"DaLiSePoklapaju (tmp1, tmp2): \" << DaLiSePoklapaju({{1, 1}, {5, 4}}, {{1, 4}, {5, 1}}) << std::endl\n               << \"DaLiSuSlicni (tmp3, tmp4): \" << DaLiSuSlicni({{1, 12}, {5, 4}}, {{10, 120}, {50, 10}}) << std::endl\n               << \"DaLiSuPodudarni (tmp5, tmp6): \" << DaLiSuPodudarni({{1, 1}, {5, 4}}, {{2, 2}, {6, 5}});\n\n\n\n    }"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "DaLiSePoklapaju (tmp1, tmp2): true\nDaLiSuSlicni (tmp3, tmp4): false\nDaLiSuPodudarni (tmp5, tmp6): true"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 16",
+            "id": 16
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "main",
+                            "code": "{//AT17  jedan autotest koji testira da li se realni brojevi\n     //porede sa == ili !=.\n     //vec je ogroman broj puta receno da se realne varijable ne smiju\n     //porediti na jednakost obicnim operatorima porednjenja (== i !=)\n     //nego je potrebno uzeti toleranciju (apsolutna ili, jos bolje, relativna)\n     //\n        Pravougaonik p{{3.14159265359, 1.61803398875}, {1.14159265359, 1.2360679775}};\n        std::cout << std::boolalpha\n           << \"DaLiSePoklapaju (p, p): \" << DaLiSePoklapaju(p, p) << std::endl\n           << \"DaLiSuSlicni (p, p): \" << DaLiSuSlicni(p, p) << std::endl\n           << \"DaLiSuPodudarni (p, p): \" << DaLiSuPodudarni(p, p) << std::endl << std::endl;\n        Pravougaonik r (p); //kopija\n        p.Rotiraj ({1.61803398875, 1.14159265359}, Nadesno);\n        std::cout\n           << \"DaLiSePoklapaju (p, p): \" << DaLiSePoklapaju(p, p) << std::endl\n           << \"DaLiSuSlicni (p, p): \" << DaLiSuSlicni(p, p) << std::endl\n           << \"DaLiSuPodudarni (p, p): \" << DaLiSuPodudarni(p, p) << std::endl << std::endl;\n        std::cout\n           << \"DaLiSePoklapaju (p, r): \" << DaLiSePoklapaju(p, r) << std::endl\n           << \"DaLiSePoklapaju (r, p): \" << DaLiSePoklapaju(r, p) << std::endl\n           << \"DaLiSuSlicni (p, r): \" << DaLiSuSlicni(p, r) << std::endl\n           << \"DaLiSuSlicni (r, p): \" << DaLiSuSlicni(r, p) << std::endl\n           << \"DaLiSuPodudarni (p, r): \" << DaLiSuPodudarni(p, r) << std::endl\n           << \"DaLiSuPodudarni (r, p): \" << DaLiSuPodudarni(r, p) << std::endl << std::endl;\n        Pravougaonik h (p);\n        p.Postavi ({1000E+4, 0.3}, {.03, 100E+30});\n        std::cout\n           << \"DaLiSePoklapaju (p, p): \" << DaLiSePoklapaju(p, p) << std::endl\n           << \"DaLiSuSlicni (p, p): \" << DaLiSuSlicni(p, p) << std::endl\n           << \"DaLiSuPodudarni (p, p): \" << DaLiSuPodudarni(p, p) << std::endl << std::endl;\n        p.Centriraj ({0.000066, -10E+25});\n        p.Rotiraj ({10E+10, -2E+30}, Nalijevo);\n        p.Rotiraj ({10E+10, -2E+30}, Nadesno);\n        p.Transliraj (-0.000066, 10E+25);\n        std::cout\n           << \"DaLiSePoklapaju (p, p): \" << DaLiSePoklapaju(p, p) << std::endl\n           << \"DaLiSuSlicni (p, p): \" << DaLiSuSlicni(p, p) << std::endl\n           << \"DaLiSuPodudarni (p, p): \" << DaLiSuPodudarni(p, p) << std::endl << std::endl;\n        std::cout << \"r.Povrsina(): \" << r.DajPovrsinu() << \" <==> h.Povrsina(): \" << h.DajPovrsinu();\n    }"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "DaLiSePoklapaju (p, p): true\nDaLiSuSlicni (p, p): true\nDaLiSuPodudarni (p, p): true\n\nDaLiSePoklapaju (p, p): true\nDaLiSuSlicni (p, p): true\nDaLiSuPodudarni (p, p): true\n\nDaLiSePoklapaju (p, r): false\nDaLiSePoklapaju (r, p): false\nDaLiSuSlicni (p, r): true\nDaLiSuSlicni (r, p): true\nDaLiSuPodudarni (p, r): true\nDaLiSuPodudarni (r, p): true\n\nDaLiSePoklapaju (p, p): true\nDaLiSuSlicni (p, p): true\nDaLiSuPodudarni (p, p): true\n\nDaLiSePoklapaju (p, p): true\nDaLiSuSlicni (p, p): true\nDaLiSuPodudarni (p, p): true\n\nr.Povrsina(): 0.763932 <==> h.Povrsina(): 0.763932"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 17",
+            "id": 17
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "main",
+                            "code": " {//AT18 Postavi (p, t), pravougaonik \"prelazi preko sebe\", test 1\n            Pravougaonik p ({0, 10}, {7, 0}), kopija (p);\n        p.Ispisi();\n        p.Postavi(GoreLijevo, {-7, 20}); //u ogledalu, po X i po Y (GL postaje DD)\n        p.Ispisi();\n        p = kopija;\n        p.Postavi(GoreLijevo, {7, 20}); //u ogledalu, po X (GR postaje DD)\n        p.Ispisi();\n        p = kopija;\n        p.Postavi(GoreLijevo, {-7, 0}); //u ogledalu, po Y (GL postaje GR)\n        p.Ispisi();\n    }"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "{{0,10},{7,0}}{{-7,20},{7,0}}{{7,20},{7,0}}{{-7,0},{7,0}}"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 18",
+            "id": 18
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "main",
+                            "code": " {//AT19  Postavi (p, t), pravougaonik \"prelazi preko sebe\", test 2\n       \n        Pravougaonik p ({12, 15}, {1, 2});\n        p.Ispisi();\n        p.Postavi(GoreLijevo, {-7, 20});\n        p.Ispisi();\n        p.Postavi(DoljeDesno, {7, 20});\n        p.Ispisi();\n        p.Postavi(DoljeLijevo, {-7, 0});\n        p.Ispisi();\n        p.Postavi(GoreDesno, {-7, -21});\n        p.Ispisi();\n    }"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "{{1,15},{12,2}}{{-7,20},{12,2}}{{-7,20},{7,20}}{{-7,20},{7,0}}{{-7,0},{-7,-21}}"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 19",
+            "id": 19
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "main",
+                            "code": "\t\n{//AT20 Presek, test 1 (nema presjeka sa svih strana) i trivijalni presjek\n        Pravougaonik c ({-10, 10}, {10, -10}),\n                     l ({-15, 10}, {-11, 10}), //c P l: NE (lijevo od c)\n                     r ({15, 10}, {11, 10}), //r P c: NE (desno od c)\n                     t ({-10, 11}, {10, 15}), //t P c: NE (iznad c)\n                     b ({-10, -11}, {10, -15}), //b P c: NE (ispod c)\n                     x ({-10, -11}, {-10, -15}), //x P c: NE\n                     y ({10, 11}, {10, 15}), //y P c: NE\n                     w ({-10, 11}, {-10, 15}), //w P c: NE\n                     q ({-10, 11}, {-10, 15}), //q P c: NE\n                     z ({-10, 11}, {-10, 15}); //z P c: NE\n        auto TestirajNema = [] (const Pravougaonik &a, const Pravougaonik &b, const char *c = \"\")\n            {\n                try {Pravougaonik::Presjek(a, b); std::cout << \"Ovo se ne smije ispisati! [\" << c << \"]\" << std::endl; return false;}\n                catch (const std::domain_error &d) {std::cout << \"OK [Nema \" << c << \"]: '\" << d.what() << \"'\" << std::endl; return true;}\n                catch (...) {std::cout << \"Ni ovo se ne smije ispisati![\" << c << \"]\" << std::endl; return false;}\n            };\n        auto TestirajIma = [] (const Pravougaonik &a, const Pravougaonik &b, Pravougaonik &P, const char *c = \"\")\n            {\n                try {P = Pravougaonik::Presjek(a, b); std::cout << \"OK! (Ima) [\" << c << \"]\" << std::endl; return true;}\n                catch (const std::domain_error &d) {std::cout << \"Ovo se ne smije ispisati! [\" << c << \"]: \" << d.what() << std::endl; return false;}\n                catch (...) {std::cout << \"Ni ovo se ne smije ispisati![\" << c << \"]\" << std::endl; return false;}\n            };\n        Pravougaonik P {{0, 0}, {0, 0}};\n        std::cout << std::boolalpha << \"Presjek:\" << std::endl;\n        std::cout << TestirajNema (c, l, \"(c, l)\") << std::endl;\n        std::cout << TestirajNema (l, c, \"(l, c)\") << std::endl;\n        std::cout << TestirajNema (c, r, \"(c, r)\") << std::endl;\n        std::cout << TestirajNema (r, c, \"(r, c)\") << std::endl;\n        std::cout << TestirajNema (c, t, \"(c, t)\") << std::endl;\n        std::cout << TestirajNema (t, c, \"(t, c)\") << std::endl;\n        std::cout << TestirajNema (c, b, \"(c, b)\") << std::endl;\n        std::cout << TestirajNema (b, c, \"(b, c)\") << std::endl;\n        std::cout << TestirajNema (c, x, \"(c, x)\") << std::endl;\n        std::cout << TestirajNema (x, c, \"(x, c)\") << std::endl;\n        std::cout << TestirajNema (c, y, \"(c, y)\") << std::endl;\n        std::cout << TestirajNema (y, c, \"(y, c)\") << std::endl;\n        std::cout << TestirajNema (c, w, \"(c, w)\") << std::endl;\n        std::cout << TestirajNema (w, c, \"(w, c)\") << std::endl;\n        std::cout << TestirajNema (c, q, \"(c, q)\") << std::endl;\n        std::cout << TestirajNema (q, c, \"(q, c)\") << std::endl;\n        std::cout << TestirajNema (c, z, \"(c, z)\") << std::endl;\n        std::cout << TestirajNema (z, c, \"(z, c)\") << std::endl;\n\n        std::cout << TestirajIma (c, c, P, \"(c, c)\") << std::endl;\n        std::cout << \"P = \"; P.Ispisi(); std::cout << std::endl;\n        std::cout << TestirajIma (c, {{0, 0}, {10, 12}}, P, \"(c, tmp)\") << std::endl;\n        std::cout << \"P = \"; P.Ispisi(); std::cout << std::endl; //presjek je (0, 10), (10, 0)\n    }"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "Presjek:\nOK [Nema (c, l)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (l, c)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (c, r)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (r, c)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (c, t)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (t, c)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (c, b)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (b, c)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (c, x)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (x, c)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (c, y)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (y, c)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (c, w)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (w, c)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (c, q)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (q, c)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (c, z)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (z, c)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK! (Ima) [(c, c)]\ntrue\nP = {{-10,10},{10,-10}}\nOK! (Ima) [(c, tmp)]\ntrue\nP = {{0,10},{10,0}}"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 20",
+            "id": 20
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "main",
+                            "code": "{//AT21  Presjek, test 2, nema presjeka sa lijeve strane i trivijalni presjek\n        auto TestirajNema = [] (const Pravougaonik &a, const Pravougaonik &b, const char *c = \"\")\n            {\n                try {Pravougaonik::Presjek(a, b); std::cout << \"Ovo se ne smije ispisati! [\" << c << \"]\" << std::endl; return false;}\n                catch (const std::domain_error &d) {std::cout << \"OK [Nema \" << c << \"]: '\" << d.what() << \"'\" << std::endl; return true;}\n                catch (...) {std::cout << \"Ni ovo se ne smije ispisati![\" << c << \"]\" << std::endl; return false;}\n            };\n        auto TestirajIma = [] (const Pravougaonik &a, const Pravougaonik &b, Pravougaonik &P, const char *c = \"\")\n            {\n                try {P = Pravougaonik::Presjek(a, b); std::cout << \"OK! (Ima) [\" << c << \"]\" << std::endl; return true;}\n                catch (const std::domain_error &d) {std::cout << \"Ovo se ne smije ispisati! [\" << c << \"]: \" << d.what() << std::endl; return false;}\n                catch (...) {std::cout << \"Ni ovo se ne smije ispisati![\" << c << \"]\" << std::endl; return false;}\n            };\n        Pravougaonik c ({5, 5}, {10, 10}),\n             a ({1, 1}, {2, 2}),\n             b ({1, 1}, {4, 4}),\n             d ({1, 1}, {10, 4}),\n             e ({1, 1}, {4, 10}),\n             f ({-15, 10}, {-11, 10}),\n             g ({0, 0}, {4.5, 18}),\n             h ({0, 5}, {4.5, 18}),\n             i ({0, 11}, {4.5, 18});\n        std::cout << std::boolalpha << \"Presjek:\" << std::endl;\n        std::cout << TestirajNema (c, a, \"(c, a)\") << std::endl;\n        std::cout << TestirajNema (a, c, \"(a, c)\") << std::endl;\n        std::cout << TestirajNema (c, b, \"(c, b)\") << std::endl;\n        std::cout << TestirajNema (b, c, \"(b, c)\") << std::endl;\n        std::cout << TestirajNema (c, d, \"(c, d)\") << std::endl;\n        std::cout << TestirajNema (f, c, \"(d, c)\") << std::endl;\n        std::cout << TestirajNema (c, e, \"(c, e)\") << std::endl;\n        std::cout << TestirajNema (e, c, \"(e, c)\") << std::endl;\n        std::cout << TestirajNema (c, f, \"(c, f)\") << std::endl;\n        std::cout << TestirajNema (f, c, \"(f, c)\") << std::endl;\n        std::cout << TestirajNema (c, g, \"(c, g)\") << std::endl;\n        std::cout << TestirajNema (g, c, \"(g, c)\") << std::endl;\n        std::cout << TestirajNema (c, h, \"(c, h)\") << std::endl;\n        std::cout << TestirajNema (h, c, \"(h, c)\") << std::endl;\n        std::cout << TestirajNema (c, i, \"(c, i)\") << std::endl;\n        std::cout << TestirajNema (i, c, \"(i, c)\") << std::endl;\n\n        Pravougaonik P {{0, 0}, {0, 0}};\n        std::cout << TestirajIma (c, c, P, \"(c, c)\") << std::endl;\n        std::cout << \"P = \"; P.Ispisi(); std::cout << std::endl;\n        std::cout << TestirajIma (b, g, P, \"(b, g)\") << std::endl;\n        std::cout << \"P = \"; P.Ispisi(); std::cout << std::endl;\n        std::cout << TestirajIma (g, b, P, \"(g, b)\") << std::endl;\n        std::cout << \"P = \"; P.Ispisi();\n    }"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "Presjek:\nOK [Nema (c, a)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (a, c)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (c, b)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (b, c)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (c, d)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (d, c)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (c, e)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (e, c)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (c, f)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (f, c)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (c, g)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (g, c)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (c, h)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (h, c)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (c, i)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (i, c)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK! (Ima) [(c, c)]\ntrue\nP = {{5,10},{10,5}}\nOK! (Ima) [(b, g)]\ntrue\nP = {{1,4},{4,1}}\nOK! (Ima) [(g, b)]\ntrue\nP = {{1,4},{4,1}}"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 21",
+            "id": 21
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "main",
+                            "code": " {//AT22: Presjek, test 4, nema presjeka sa donje strane i trivijalni presjek\n        auto TestirajNema = [] (const Pravougaonik &a, const Pravougaonik &b, const char *c = \"\")\n            {\n                try {Pravougaonik::Presjek(a, b); std::cout << \"Ovo se ne smije ispisati! [\" << c << \"]\" << std::endl; return false;}\n                catch (const std::domain_error &d) {std::cout << \"OK [Nema \" << c << \"]: '\" << d.what() << \"'\" << std::endl; return true;}\n                catch (...) {std::cout << \"Ni ovo se ne smije ispisati![\" << c << \"]\" << std::endl; return false;}\n            };\n        auto TestirajIma = [] (const Pravougaonik &a, const Pravougaonik &b, Pravougaonik &P, const char *c = \"\")\n            {\n                try {P = Pravougaonik::Presjek(a, b); std::cout << \"OK! (Ima) [\" << c << \"]\" << std::endl; return true;}\n                catch (const std::domain_error &d) {std::cout << \"Ovo se ne smije ispisati! [\" << c << \"]: \" << d.what() << std::endl; return false;}\n                catch (...) {std::cout << \"Ni ovo se ne smije ispisati![\" << c << \"]\" << std::endl; return false;}\n            };\n        Pravougaonik c ({5, 5}, {10, 10}),\n             a ({6, 1}, {6, 2}),\n             b ({6, 1}, {6, 4}),\n             d ({1, 1}, {2, 4}),\n             e ({0, 0}, {200, 4}),\n             f ({6, 4.5}, {10, 4}),\n             g ({6, 2}, {8, 4}),\n             h ({15, 2}, {18, 4}),\n             i ({8, 2}, {18, 4});\n\n        std::cout << std::boolalpha << \"Presjek:\" << std::endl;\n        std::cout << TestirajNema (c, a, \"(c, a)\") << std::endl;\n        std::cout << TestirajNema (a, c, \"(a, c)\") << std::endl;\n        std::cout << TestirajNema (c, b, \"(c, b)\") << std::endl;\n        std::cout << TestirajNema (b, c, \"(b, c)\") << std::endl;\n        std::cout << TestirajNema (c, d, \"(c, d)\") << std::endl;\n        std::cout << TestirajNema (f, c, \"(d, c)\") << std::endl;\n        std::cout << TestirajNema (c, e, \"(c, e)\") << std::endl;\n        std::cout << TestirajNema (e, c, \"(e, c)\") << std::endl;\n        std::cout << TestirajNema (c, f, \"(c, f)\") << std::endl;\n        std::cout << TestirajNema (f, c, \"(f, c)\") << std::endl;\n        std::cout << TestirajNema (c, g, \"(c, g)\") << std::endl;\n        std::cout << TestirajNema (g, c, \"(g, c)\") << std::endl;\n        std::cout << TestirajNema (c, h, \"(c, h)\") << std::endl;\n        std::cout << TestirajNema (h, c, \"(h, c)\") << std::endl;\n        std::cout << TestirajNema (c, i, \"(c, i)\") << std::endl;\n        std::cout << TestirajNema (i, c, \"(i, c)\") << std::endl;\n\n        Pravougaonik P {{0, 0}, {0, 0}};\n        std::cout << TestirajIma (c, c, P, \"(c, c)\") << std::endl;\n        std::cout << \"P = \"; P.Ispisi(); std::cout << std::endl;\n        std::cout << TestirajIma (b, g, P, \"(b, g)\") << std::endl;\n        std::cout << \"P = \"; P.Ispisi(); std::cout << std::endl;\n        std::cout << TestirajIma (g, b, P, \"(g, b)\") << std::endl;\n        std::cout << \"P = \"; P.Ispisi();\n    }"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "Presjek:\nOK [Nema (c, a)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (a, c)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (c, b)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (b, c)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (c, d)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (d, c)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (c, e)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (e, c)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (c, f)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (f, c)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (c, g)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (g, c)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (c, h)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (h, c)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (c, i)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (i, c)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK! (Ima) [(c, c)]\ntrue\nP = {{5,10},{10,5}}\nOK! (Ima) [(b, g)]\ntrue\nP = {{6,4},{6,2}}\nOK! (Ima) [(g, b)]\ntrue\nP = {{6,4},{6,2}}"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 22",
+            "id": 22
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "main",
+                            "code": " {//AT23 : Presjek, test 3, nema presjeka sa desne strane i trivijalni presjek\n        auto TestirajNema = [] (const Pravougaonik &a, const Pravougaonik &b, const char *c = \"\")\n            {\n                try {Pravougaonik::Presjek(a, b); std::cout << \"Ovo se ne smije ispisati! [\" << c << \"]\" << std::endl; return false;}\n                catch (const std::domain_error &d) {std::cout << \"OK [Nema \" << c << \"]: '\" << d.what() << \"'\" << std::endl; return true;}\n                catch (...) {std::cout << \"Ni ovo se ne smije ispisati![\" << c << \"]\" << std::endl; return false;}\n            };\n        auto TestirajIma = [] (const Pravougaonik &a, const Pravougaonik &b, Pravougaonik &P, const char *c = \"\")\n            {\n                try {P = Pravougaonik::Presjek(a, b); std::cout << \"OK! (Ima) [\" << c << \"]\" << std::endl; return true;}\n                catch (const std::domain_error &d) {std::cout << \"Ovo se ne smije ispisati! [\" << c << \"]: \" << d.what() << std::endl; return false;}\n                catch (...) {std::cout << \"Ni ovo se ne smije ispisati![\" << c << \"]\" << std::endl; return false;}\n            };\n        Pravougaonik c ({5, 5}, {10, 10}),\n             a ({22, 5}, {22, 10}),\n             b ({11, 4}, {12, 12}),\n             d ({11, 5}, {15, 0}),\n             e ({11, 5}, {15, 2}),\n             f ({15, 10}, {17, 10}),\n             g ({11, 10}, {15, 18}),\n             h ({11, 11}, {15, 18}),\n             i ({11, 0}, {15, 18});\n        std::cout << std::boolalpha << \"Presjek:\" << std::endl;\n        std::cout << TestirajNema (c, a, \"(c, a)\") << std::endl;\n        std::cout << TestirajNema (a, c, \"(a, c)\") << std::endl;\n        std::cout << TestirajNema (c, b, \"(c, b)\") << std::endl;\n        std::cout << TestirajNema (b, c, \"(b, c)\") << std::endl;\n        std::cout << TestirajNema (c, d, \"(c, d)\") << std::endl;\n        std::cout << TestirajNema (f, c, \"(d, c)\") << std::endl;\n        std::cout << TestirajNema (c, e, \"(c, e)\") << std::endl;\n        std::cout << TestirajNema (e, c, \"(e, c)\") << std::endl;\n        std::cout << TestirajNema (c, f, \"(c, f)\") << std::endl;\n        std::cout << TestirajNema (f, c, \"(f, c)\") << std::endl;\n        std::cout << TestirajNema (c, g, \"(c, g)\") << std::endl;\n        std::cout << TestirajNema (g, c, \"(g, c)\") << std::endl;\n        std::cout << TestirajNema (c, h, \"(c, h)\") << std::endl;\n        std::cout << TestirajNema (h, c, \"(h, c)\") << std::endl;\n        std::cout << TestirajNema (c, i, \"(c, i)\") << std::endl;\n        std::cout << TestirajNema (i, c, \"(i, c)\") << std::endl;\n\n        Pravougaonik P {{0, 0}, {0, 0}};\n        std::cout << TestirajIma (c, c, P, \"(c, c)\") << std::endl;\n        std::cout << \"P = \"; P.Ispisi(); std::cout << std::endl;\n        std::cout << TestirajIma (b, g, P, \"(b, g)\") << std::endl;\n        std::cout << \"P = \"; P.Ispisi(); std::cout << std::endl;\n        std::cout << TestirajIma (g, b, P, \"(g, b)\") << std::endl;\n        std::cout << \"P = \"; P.Ispisi();\n    }"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "Presjek:\nOK [Nema (c, a)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (a, c)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (c, b)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (b, c)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (c, d)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (d, c)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (c, e)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (e, c)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (c, f)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (f, c)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (c, g)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (g, c)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (c, h)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (h, c)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (c, i)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (i, c)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK! (Ima) [(c, c)]\ntrue\nP = {{5,10},{10,5}}\nOK! (Ima) [(b, g)]\ntrue\nP = {{11,12},{12,10}}\nOK! (Ima) [(g, b)]\ntrue\nP = {{11,12},{12,10}}"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 23",
+            "id": 23
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "main",
+                            "code": "{//AT24 : Presjek, test 5, nema presjeka sa gornje strane i trivijalni presjek\n        auto TestirajNema = [] (const Pravougaonik &a, const Pravougaonik &b, const char *c = \"\")\n            {\n                try {Pravougaonik::Presjek(a, b); std::cout << \"Ovo se ne smije ispisati! [\" << c << \"]\" << std::endl; return false;}\n                catch (const std::domain_error &d) {std::cout << \"OK [Nema \" << c << \"]: '\" << d.what() << \"'\" << std::endl; return true;}\n                catch (...) {std::cout << \"Ni ovo se ne smije ispisati![\" << c << \"]\" << std::endl; return false;}\n            };\n        auto TestirajIma = [] (const Pravougaonik &a, const Pravougaonik &b, Pravougaonik &P, const char *c = \"\")\n            {\n                try {P = Pravougaonik::Presjek(a, b); std::cout << \"OK! (Ima) [\" << c << \"]\" << std::endl; return true;}\n                catch (const std::domain_error &d) {std::cout << \"Ovo se ne smije ispisati! [\" << c << \"]: \" << d.what() << std::endl; return false;}\n                catch (...) {std::cout << \"Ni ovo se ne smije ispisati![\" << c << \"]\" << std::endl; return false;}\n            };\n        Pravougaonik c ({5, 5}, {10, 10}),\n             a ({6, 14}, {6, 20}),\n             b ({6, 11}, {6, 11}),\n             d ({0, 11}, {1, 12}),\n             e ({3, 11}, {7, 18}),\n             f ({3, 11}, {23, 50}),\n             g ({15, 11}, {20, 14}),\n             h ({7, 10.5}, {8, 11}),\n             i ({-8, 200}, {180, 12});\n\n        std::cout << std::boolalpha << \"Presjek:\" << std::endl;\n        std::cout << TestirajNema (c, a, \"(c, a)\") << std::endl;\n        std::cout << TestirajNema (a, c, \"(a, c)\") << std::endl;\n        std::cout << TestirajNema (c, b, \"(c, b)\") << std::endl;\n        std::cout << TestirajNema (b, c, \"(b, c)\") << std::endl;\n        std::cout << TestirajNema (c, d, \"(c, d)\") << std::endl;\n        std::cout << TestirajNema (f, c, \"(d, c)\") << std::endl;\n        std::cout << TestirajNema (c, e, \"(c, e)\") << std::endl;\n        std::cout << TestirajNema (e, c, \"(e, c)\") << std::endl;\n        std::cout << TestirajNema (c, f, \"(c, f)\") << std::endl;\n        std::cout << TestirajNema (f, c, \"(f, c)\") << std::endl;\n        std::cout << TestirajNema (c, g, \"(c, g)\") << std::endl;\n        std::cout << TestirajNema (g, c, \"(g, c)\") << std::endl;\n        std::cout << TestirajNema (c, h, \"(c, h)\") << std::endl;\n        std::cout << TestirajNema (h, c, \"(h, c)\") << std::endl;\n        std::cout << TestirajNema (c, i, \"(c, i)\") << std::endl;\n        std::cout << TestirajNema (i, c, \"(i, c)\") << std::endl;\n\n        Pravougaonik P {{0, 0}, {0, 0}};\n        std::cout << TestirajIma (c, c, P, \"(c, c)\") << std::endl;\n        std::cout << \"P = \"; P.Ispisi(); std::cout << std::endl;\n        std::cout << TestirajIma (b, f, P, \"(b, f)\") << std::endl;\n        std::cout << \"P = \"; P.Ispisi(); std::cout << std::endl;\n        std::cout << TestirajIma (f, h, P, \"(f, h)\") << std::endl;\n        std::cout << \"P = \"; P.Ispisi();\n    }"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "Presjek:\nOK [Nema (c, a)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (a, c)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (c, b)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (b, c)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (c, d)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (d, c)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (c, e)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (e, c)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (c, f)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (f, c)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (c, g)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (g, c)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (c, h)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (h, c)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (c, i)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (i, c)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK! (Ima) [(c, c)]\ntrue\nP = {{5,10},{10,5}}\nOK! (Ima) [(b, f)]\ntrue\nP = {{6,11},{6,11}}\nOK! (Ima) [(f, h)]\ntrue\nP = {{7,11},{8,11}}"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 24",
+            "id": 24
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "main",
+                            "code": "\t\n{//AT25: Presjek, test 6, presjeci su linije i trivijalni test bez presjeka\n        Pravougaonik p {{-10, -10}, {10, 10}},\n                     a ({-100, -10}, {8, -11}),\n                     b ({-100, -10}, {-7, -18}),\n                     c ({-100, -10}, {100, -100}), //a, b i c imaju horizontalnu liniju presjeka sa P (donja)\n                     d ({-100, 10}, {-10, 15}),\n                     e ({-100, 10}, {8, 18}),\n                     f ({-100, 10}, {100, 10}), //d, b i c imaju horizontalnu liniju presjeka sa P (gornja)\n                     g ({-15, 3}, {-10, 6}),\n                     h ({-15, 0}, {-10, 10}),\n                     i ({-15, -30}, {-10, 60}), //g, h, i imaju vertikalnu liniju pressjeka sa P (lijeva)\n                     j ({10, 3}, {15, 6}),\n                     k ({10, 0}, {15, 10}),\n                     l ({10, -30}, {17, 60}); //j, k, l imaju vertikalnu liniju pressjeka sa P (desna)\n        auto TestirajNema = [] (const Pravougaonik &a, const Pravougaonik &b, const char *c = \"\")\n            {\n                try {Pravougaonik::Presjek(a, b); std::cout << \"Ovo se ne smije ispisati! [\" << c << \"]\" << std::endl; return false;}\n                catch (const std::domain_error &d) {std::cout << \"OK [Nema \" << c << \"]: '\" << d.what() << \"'\" << std::endl; return true;}\n                catch (...) {std::cout << \"Ni ovo se ne smije ispisati![\" << c << \"]\" << std::endl; return false;}\n            };\n        auto TestirajIma = [] (const Pravougaonik &a, const Pravougaonik &b, Pravougaonik &P, const char *c = \"\")\n            {\n                try {P = Pravougaonik::Presjek(a, b); std::cout << \"OK! (Ima) [\" << c << \"]\" << std::endl; return true;}\n                catch (const std::domain_error &d) {std::cout << \"Ovo se ne smije ispisati! [\" << c << \"]: \" << d.what() << std::endl; return false;}\n                catch (...) {std::cout << \"Ni ovo se ne smije ispisati![\" << c << \"]\" << std::endl; return false;}\n            };\n        auto Ispisi = [] (const Pravougaonik &x)\n            {\n                std::cout << \"[Horizontalna: \" << x.DajHorizontalnu()\n                          << \", Vertikalna: \" << x.DajVertikalnu() << \"] \";\n                x.Ispisi(); std::cout << std::endl;\n            };\n        Pravougaonik P {{0, 0}, {0, 0}};\n        TestirajIma (p, a, P, \"(p, a)\"); Ispisi (P);\n        TestirajIma (a, p, P, \"(a, p)\"); Ispisi (P);\n        TestirajIma (p, b, P, \"(p, b)\"); Ispisi (P);\n        TestirajIma (p, c, P, \"(p, c)\"); Ispisi (P);\n\n        std::cout << std::endl;\n        TestirajIma (p, d, P, \"(p, d)\"); Ispisi (P);\n        TestirajIma (e, p, P, \"(e, p)\"); Ispisi (P);\n        TestirajIma (p, e, P, \"(p, e)\"); Ispisi (P);\n        TestirajIma (f, p, P, \"(f, p)\"); Ispisi (P);\n        std::cout << std::endl;\n        TestirajIma (p, g, P, \"(p, g)\"); Ispisi (P);\n        TestirajIma (p, h, P, \"(p, h)\"); Ispisi (P);\n        TestirajIma (i, p, P, \"(i, p)\"); Ispisi (P);\n        std::cout << std::endl;\n        TestirajIma (p, j, P, \"(p, j)\"); Ispisi (P);\n        TestirajIma (k, p, P, \"(k, p)\"); Ispisi (P);\n        TestirajIma (p, l, P, \"(p, l)\"); Ispisi (P);\n        std::cout << std::endl;\n        TestirajNema (a, l, \"(a, l)\");\n    }"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "OK! (Ima) [(p, a)]\n[Horizontalna: 18, Vertikalna: 0] {{-10,-10},{8,-10}}\nOK! (Ima) [(a, p)]\n[Horizontalna: 18, Vertikalna: 0] {{-10,-10},{8,-10}}\nOK! (Ima) [(p, b)]\n[Horizontalna: 3, Vertikalna: 0] {{-10,-10},{-7,-10}}\nOK! (Ima) [(p, c)]\n[Horizontalna: 20, Vertikalna: 0] {{-10,-10},{10,-10}}\n\nOK! (Ima) [(p, d)]\n[Horizontalna: 0, Vertikalna: 0] {{-10,10},{-10,10}}\nOK! (Ima) [(e, p)]\n[Horizontalna: 18, Vertikalna: 0] {{-10,10},{8,10}}\nOK! (Ima) [(p, e)]\n[Horizontalna: 18, Vertikalna: 0] {{-10,10},{8,10}}\nOK! (Ima) [(f, p)]\n[Horizontalna: 20, Vertikalna: 0] {{-10,10},{10,10}}\n\nOK! (Ima) [(p, g)]\n[Horizontalna: 0, Vertikalna: 3] {{-10,6},{-10,3}}\nOK! (Ima) [(p, h)]\n[Horizontalna: 0, Vertikalna: 10] {{-10,10},{-10,0}}\nOK! (Ima) [(i, p)]\n[Horizontalna: 0, Vertikalna: 20] {{-10,10},{-10,-10}}\n\nOK! (Ima) [(p, j)]\n[Horizontalna: 0, Vertikalna: 3] {{10,6},{10,3}}\nOK! (Ima) [(k, p)]\n[Horizontalna: 0, Vertikalna: 10] {{10,10},{10,0}}\nOK! (Ima) [(p, l)]\n[Horizontalna: 0, Vertikalna: 20] {{10,10},{10,-10}}\n\nOK [Nema (a, l)]: 'Pravougaonici se ne presjecaju'\n"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 25",
+            "id": 25
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "main",
+                            "code": " {//AT26: Presjek, test 7, isto kao AT25, ali su svi presjeci unutar \"p\" pravougaonika\n        Pravougaonik p {{-200, -30}, {100, 65}},\n                     a ({-100, -10}, {8, -11}),\n                     b ({-100, -10}, {-7, -18}),\n                     c ({-100, -10}, {100, -100}), //a, b i c imaju horizontalnu liniju presjeka sa P (donja)\n                     d ({-100, 10}, {-10, 15}),\n                     e ({-100, 10}, {8, 18}),\n                     f ({-100, 10}, {100, 20}), //d, b i c imaju horizontalnu liniju presjeka sa P (gornja)\n                     g ({-15, 3}, {-10, 6}),\n                     h ({-15, 0}, {-10, 10}),\n                     i ({-15, -30}, {-10, 60}), //g, h, i imaju vertikalnu liniju pressjeka sa P (lijeva)\n                     j ({10, 3}, {15, 6}),\n                     k ({10, 0}, {15, 10}),\n                     l ({10, -30}, {17, 60}); //j, k, l imaju vertikalnu liniju pressjeka sa P (desna)\n        auto TestirajNema = [] (const Pravougaonik &a, const Pravougaonik &b, const char *c = \"\")\n            {\n                try {Pravougaonik::Presjek(a, b); std::cout << \"Ovo se ne smije ispisati! [\" << c << \"]\" << std::endl; return false;}\n                catch (const std::domain_error &d) {std::cout << \"OK [Nema \" << c << \"]: '\" << d.what() << \"'\" << std::endl; return true;}\n                catch (...) {std::cout << \"Ni ovo se ne smije ispisati![\" << c << \"]\" << std::endl; return false;}\n            };\n        auto TestirajIma = [] (const Pravougaonik &a, const Pravougaonik &b, Pravougaonik &P, const char *c = \"\")\n            {\n                try {P = Pravougaonik::Presjek(a, b); std::cout << \"OK! (Ima) [\" << c << \"]\" << std::endl; return true;}\n                catch (const std::domain_error &d) {std::cout << \"Ovo se ne smije ispisati! [\" << c << \"]: \" << d.what() << std::endl; return false;}\n                catch (...) {std::cout << \"Ni ovo se ne smije ispisati![\" << c << \"]\" << std::endl; return false;}\n            };\n        auto Ispisi = [] (const Pravougaonik &x)\n            {\n                std::cout << \"[Horizontalna: \" << x.DajHorizontalnu()\n                          << \", Vertikalna: \" << x.DajVertikalnu() << \"] \";\n                x.Ispisi(); std::cout << std::endl;\n            };\n        Pravougaonik P {{0, 0}, {0, 0}};\n        TestirajIma (p, a, P, \"(p, a)\"); Ispisi (P);\n        TestirajIma (a, p, P, \"(a, p)\"); Ispisi (P);\n        TestirajIma (p, b, P, \"(p, b)\"); Ispisi (P);\n        TestirajIma (p, c, P, \"(p, c)\"); Ispisi (P);\n\n        std::cout << std::endl;\n        TestirajIma (p, d, P, \"(p, d)\"); Ispisi (P);\n        TestirajIma (e, p, P, \"(e, p)\"); Ispisi (P);\n        TestirajIma (p, e, P, \"(p, e)\"); Ispisi (P);\n        TestirajIma (f, p, P, \"(f, p)\"); Ispisi (P);\n        std::cout << std::endl;\n        TestirajIma (p, g, P, \"(p, g)\"); Ispisi (P);\n        TestirajIma (p, h, P, \"(p, h)\"); Ispisi (P);\n        TestirajIma (i, p, P, \"(i, p)\"); Ispisi (P);\n        std::cout << std::endl;\n        TestirajIma (p, j, P, \"(p, j)\"); Ispisi (P);\n        TestirajIma (k, p, P, \"(k, p)\"); Ispisi (P);\n        TestirajIma (p, l, P, \"(p, l)\"); Ispisi (P);\n        std::cout << std::endl;\n        TestirajNema (a, l, \"(a, l)\");\n        TestirajNema (a, k, \"(a, k)\");\n        TestirajNema (f, b, \"(f, b)\");\n    }"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "OK! (Ima) [(p, a)]\n[Horizontalna: 108, Vertikalna: 1] {{-100,-10},{8,-11}}\nOK! (Ima) [(a, p)]\n[Horizontalna: 108, Vertikalna: 1] {{-100,-10},{8,-11}}\nOK! (Ima) [(p, b)]\n[Horizontalna: 93, Vertikalna: 8] {{-100,-10},{-7,-18}}\nOK! (Ima) [(p, c)]\n[Horizontalna: 200, Vertikalna: 20] {{-100,-10},{100,-30}}\n\nOK! (Ima) [(p, d)]\n[Horizontalna: 90, Vertikalna: 5] {{-100,15},{-10,10}}\nOK! (Ima) [(e, p)]\n[Horizontalna: 108, Vertikalna: 8] {{-100,18},{8,10}}\nOK! (Ima) [(p, e)]\n[Horizontalna: 108, Vertikalna: 8] {{-100,18},{8,10}}\nOK! (Ima) [(f, p)]\n[Horizontalna: 200, Vertikalna: 10] {{-100,20},{100,10}}\n\nOK! (Ima) [(p, g)]\n[Horizontalna: 5, Vertikalna: 3] {{-15,6},{-10,3}}\nOK! (Ima) [(p, h)]\n[Horizontalna: 5, Vertikalna: 10] {{-15,10},{-10,0}}\nOK! (Ima) [(i, p)]\n[Horizontalna: 5, Vertikalna: 90] {{-15,60},{-10,-30}}\n\nOK! (Ima) [(p, j)]\n[Horizontalna: 5, Vertikalna: 3] {{10,6},{15,3}}\nOK! (Ima) [(k, p)]\n[Horizontalna: 5, Vertikalna: 10] {{10,10},{15,0}}\nOK! (Ima) [(p, l)]\n[Horizontalna: 7, Vertikalna: 90] {{10,60},{17,-30}}\n\nOK [Nema (a, l)]: 'Pravougaonici se ne presjecaju'\nOK [Nema (a, k)]: 'Pravougaonici se ne presjecaju'\nOK [Nema (f, b)]: 'Pravougaonici se ne presjecaju'\n"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 26",
+            "id": 26
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "main",
+                            "code": "\t\n{//AT27: Presjek, test X\n        Pravougaonik p ({0, 0}, {100, 100});\n        p.Postavi (GoreDesno, {5, 5}); //sad je (0, 0), (5, 5) [DL, GD]\n        p.Ispisi(); std::cout << std::endl;\n        p.Postavi (DoljeLijevo, {-5, -5}); //sad je (-5, -5), (5, 5)\n        p.Ispisi(); std::cout << std::endl;\n        auto c = p.DajCentar(); //sad mu je centar na (0, 0)\n        std::cout << \"Centar: (\" << c.first << \", \" << c.second << \")\" << std::endl;\n        p.Postavi (DoljeDesno, {10, 0}); //sad je (-5, 5), (10, 0); [GL, DD]\n        p.Ispisi(); std::cout << std::endl;\n        auto r = p; //kopija\n        r.Rotiraj ({0, 5}, Nadesno);\n        r.Ispisi(); std::cout << std::endl;\n        auto P = Pravougaonik::Presjek(p, r); //presjek je kvadrat {(-5, 5), (0, 0)} [GL, DD]\n        P.Ispisi(); std::cout << std::endl << std::endl;\n        Pravougaonik k ({1, 1}, {7, 5}), q (k);\n        k.Rotiraj(k.DajTjeme(DoljeDesno), Nadesno); //rotirajmo jednom (uspravan)\n        k.Rotiraj(k.DajTjeme(DoljeLijevo), Nadesno); //rotirajmo jednom (horizontalan)\n        k.Transliraj(0, k.DajVertikalnu()); //pomjerimo ga \"gore\"\n        //sada je 'k' u ogledalu u odnosu na 'q' (osa ogledaja im je zajednicna vertikalna stranica\n        //lijeva od 'k' odnosno desna od 'q')\n        //presjek ova dva pravougaonika je, ocito, ta zajednicka stranica (odnosno degenerirani pravougaonik)\n        //sa tjemenima GL: (7, 5), GD: (7, 5), DL: (7, 1), DD: (7, 1), W = 0, H = 4\n        k.Ispisi(); std::cout << std::endl;\n        q.Ispisi(); std::cout << std::endl;\n        P = Pravougaonik::Presjek(k, q);\n        P.Ispisi(); std::cout << std::endl << \"W: \" << P.DajHorizontalnu() << \", H: \" << P.DajVertikalnu();\n    }"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "{{0,5},{5,0}}\n{{-5,5},{5,-5}}\nCentar: (0, 0)\n{{-5,5},{10,0}}\n{{-5,10},{0,-5}}\n{{-5,5},{0,0}}\n\n{{7,5},{13,1}}\n{{1,5},{7,1}}\n{{7,5},{7,1}}\nW: 0, H: 4"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 27",
+            "id": 27
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "main",
+                            "code": "\t\n {//AT28 (skriveni): Presjek, test 9, presjek su tacke i linije\n        const int D = 10, N = 9;\n        Pravougaonik p ({0, 0}, {D, D});\n        Pravougaonik n[] = {p, p, p, p, p, p, p, p, {{5, 5}, {5, 5}}};\n        const Tacka t[] = {\n                {-D, -D}, {D, D}, {-D, D}, {D, -D},\n                {-D, 0}, {D, 0}, {0, D}, {0, -D}, {0, 0}\n            };\n        for (int x = 0; x < N; ++x)\n            n[x].Transliraj(t[x].first, t[x].second);\n        //translirajmo ih da presjek bude samo jedna tacka (prva 4 elementa)\n        //pa onda translirajmo da presjek bude linija (preostala 4 elementa)\n        Pravougaonik presjeci [] = {p, p, p, p, p, p, p, p, p};\n        for (int x = 0; x < N; ++x)\n            {\n                auto X = Pravougaonik::Presjek(p, n[x]); //testirajmo ::Presjek\n                auto DD = X.DajTjeme (DoljeDesno), GL = X.DajTjeme (GoreLijevo); //kao i .DajTjeme\n                presjeci[x].Postavi(DD, GL); //kao i .Postavi metodu\n            }\n        for (const auto &y : presjeci)\n            {\n                y.Ispisi();\n                std::cout << std::endl << \"W = \" << y.DajHorizontalnu()\n                          << \", H = \" << y.DajVertikalnu() << \", Povrsina = \"\n                          << y.DajPovrsinu() << \", Obim: \" << y.DajObim()\n                          << std::endl << std::endl;\n            }\n    }"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "{{0,0},{0,0}}\nW = 0, H = 0, Povrsina = 0, Obim: 0\n\n{{10,10},{10,10}}\nW = 0, H = 0, Povrsina = 0, Obim: 0\n\n{{0,10},{0,10}}\nW = 0, H = 0, Povrsina = 0, Obim: 0\n\n{{10,0},{10,0}}\nW = 0, H = 0, Povrsina = 0, Obim: 0\n\n{{0,10},{0,0}}\nW = 0, H = 10, Povrsina = 0, Obim: 20\n\n{{10,10},{10,0}}\nW = 0, H = 10, Povrsina = 0, Obim: 20\n\n{{0,10},{10,10}}\nW = 10, H = 0, Povrsina = 0, Obim: 20\n\n{{0,0},{10,0}}\nW = 10, H = 0, Povrsina = 0, Obim: 20\n\n{{5,5},{5,5}}\nW = 0, H = 0, Povrsina = 0, Obim: 0\n\n"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 28",
+            "id": 28
+        }
+    ]
+}

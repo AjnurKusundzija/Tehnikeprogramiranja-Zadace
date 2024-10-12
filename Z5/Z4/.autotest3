@@ -1,0 +1,270 @@
+{
+    "id": 0,
+    "name": "Tehnike programiranja, Zadaća 5, Zadatak 4",
+    "version": "3",
+    "languages": [
+        "C++"
+    ],
+    "tools": {
+        "compile": {
+            "require": "g++",
+            "features": [
+                "optimize",
+                "warn",
+                "pedantic",
+                "C++14"
+            ]
+        },
+        "compile[debug]": {
+            "require": "g++",
+            "features": [
+                "debug",
+                "C++14",
+                "asan"
+            ]
+        },
+        "execute": {
+            "require": "asan"
+        },
+        "debug": [],
+        "profile[asan]": {
+            "require": "asan",
+            "input_file": "stderr.txt",
+            "fast": true
+        }
+    },
+    "prepare": [
+        "compile"
+    ],
+    "tests": [
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "top_of_file",
+                            "code": "//---------------------------------------------------------------------------------------------------------------\n// Tehnike programiranja - Akademska 2023/2024 godina\n// Zadaca 5 - Zadatak 4\n// Odgovorni asistent: Tarik Pozderac - tpozderac1@etf.unsa.ba\n// Za sva tehnicka pitanja vezana za autotestove za zadatak 4, obratite se na navedeni mail.\n//---------------------------------------------------------------------------------------------------------------\n"
+                        },
+                        {
+                            "position": "main",
+                            "code": "// AT 1: Test iz postavke zadatka\n    {\n        try\n        {\n\n            PolimorfniSpremnik s1(Bure(5,\"Benzin\", 930, 70));\n            PolimorfniSpremnik s2, s3, s4;\n            s2 = Sanduk(3, \"Tepsije\", {0.5, 0.8, 0.6, 0.5});\n            s3 = Vreca(0.1, \"Patak\", 15.5);\n            std::cout << s1.DajTezinu() << std::endl;\n            std::cout << s2.DajUkupnuTezinu() << std::endl;\n            s3.Ispisi();\n            s1 = s2;\n            s1.Ispisi();\n            s4.DajTezinu();\n        }\n        catch(std::logic_error le)\n        {\n            std::cout << le.what();\n        }\n    }"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "5\n5.4\nVrsta spremnika: Vreca\nSadrzaj: Patak\nVlastita tezina: 0.1 (kg)\nTezina pohranjene materije: 15.5 (kg)\nUkupna tezina: 15.6 (kg)\nVrsta spremnika: Sanduk\nSadrzaj: Tepsije\nTezine predmeta: 0.5 0.8 0.6 0.5 (kg)\nVlastita tezina: 3 (kg)\nUkupna tezina: 5.4 (kg)\nNespecificiran spremnik"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 1",
+            "id": 1
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "top_of_file",
+                            "code": "//---------------------------------------------------------------------------------------------------------------\n// Tehnike programiranja - Akademska 2023/2024 godina\n// Zadaca 5 - Zadatak 4\n// Odgovorni asistent: Tarik Pozderac - tpozderac1@etf.unsa.ba\n// Za sva tehnicka pitanja vezana za autotestove za zadatak 4, obratite se na navedeni mail.\n//---------------------------------------------------------------------------------------------------------------\n"
+                        },
+                        {
+                            "position": "main",
+                            "code": "// AT 2: Test da li bacen izuzetak ako je nespecificiran spremnik\n    {\n        try\n        {\n            PolimorfniSpremnik s1;\n            std::cout << s1.DajTezinu() << std::endl;\n        }\n        catch(std::logic_error le)\n        {\n            std::cout << le.what();\n        }\n    }"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "Nespecificiran spremnik"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 2",
+            "id": 2
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "top_of_file",
+                            "code": "//---------------------------------------------------------------------------------------------------------------\n// Tehnike programiranja - Akademska 2023/2024 godina\n// Zadaca 5 - Zadatak 4\n// Odgovorni asistent: Tarik Pozderac - tpozderac1@etf.unsa.ba\n// Za sva tehnicka pitanja vezana za autotestove za zadatak 4, obratite se na navedeni mail.\n//---------------------------------------------------------------------------------------------------------------\n"
+                        },
+                        {
+                            "position": "main",
+                            "code": "// AT 3: Test konstruktora i operatora dodjele sa metodama Ispisi\n    {\n        PolimorfniSpremnik s1(Bure(20,\"Red Bull\", 800, 150));\n        PolimorfniSpremnik s2;\n        s2 = Vreca(0.5, \"Zito\", 50);\n        s1.Ispisi();\n        s2.Ispisi();\n\n    }"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "Vrsta spremnika: Bure\nSadrzaj: Red Bull\nVlastita tezina: 20 (kg)\nSpecificna tezina tecnosti: 800 (kg/m^3)\nZapremina tecnosti: 150 (l)\nUkupna tezina: 140 (kg)\nVrsta spremnika: Vreca\nSadrzaj: Zito\nVlastita tezina: 0.5 (kg)\nTezina pohranjene materije: 50 (kg)\nUkupna tezina: 50.5 (kg)\n"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 3",
+            "id": 3
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "top_of_file",
+                            "code": "//---------------------------------------------------------------------------------------------------------------\n// Tehnike programiranja - Akademska 2023/2024 godina\n// Zadaca 5 - Zadatak 4\n// Odgovorni asistent: Tarik Pozderac - tpozderac1@etf.unsa.ba\n// Za sva tehnicka pitanja vezana za autotestove za zadatak 4, obratite se na navedeni mail.\n//---------------------------------------------------------------------------------------------------------------\n"
+                        },
+                        {
+                            "position": "main",
+                            "code": "// AT 4: Test konstruktora i operatora dodjele sa metodama Ispisi\n    {\n        PolimorfniSpremnik s1(Bure(20,\"Red Bull\", 800, 150));\n        PolimorfniSpremnik s2(s1);\n        PolimorfniSpremnik s3;\n        s3=s2;\n        s3.Ispisi();\n    }"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "Vrsta spremnika: Bure\nSadrzaj: Red Bull\nVlastita tezina: 20 (kg)\nSpecificna tezina tecnosti: 800 (kg/m^3)\nZapremina tecnosti: 150 (l)\nUkupna tezina: 140 (kg)\n"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 4",
+            "id": 4
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "top_of_file",
+                            "code": "//---------------------------------------------------------------------------------------------------------------\n// Tehnike programiranja - Akademska 2023/2024 godina\n// Zadaca 5 - Zadatak 4\n// Odgovorni asistent: Tarik Pozderac - tpozderac1@etf.unsa.ba\n// Za sva tehnicka pitanja vezana za autotestove za zadatak 4, obratite se na navedeni mail.\n//---------------------------------------------------------------------------------------------------------------\n"
+                        },
+                        {
+                            "position": "main",
+                            "code": "// AT 5: Test izuzetaka na nespecificiran spremnik\n    {\n        try\n        {\n            PolimorfniSpremnik s1;\n            std::cout << s1.DajUkupnuTezinu() << std::endl;\n        }\n        catch(std::logic_error le)\n        {\n            std::cout << le.what();\n        }\n\n        std::cout << std::endl << std::endl;\n\n        try\n        {\n            PolimorfniSpremnik s1;\n            s1.Ispisi();\n        }\n        catch(std::logic_error le)\n        {\n            std::cout << le.what();\n        }\n    }"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "Nespecificiran spremnik\n\nNespecificiran spremnik"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 5",
+            "id": 5
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "top_of_file",
+                            "code": "//---------------------------------------------------------------------------------------------------------------\n// Tehnike programiranja - Akademska 2023/2024 godina\n// Zadaca 5 - Zadatak 4\n// Odgovorni asistent: Tarik Pozderac - tpozderac1@etf.unsa.ba\n// Za sva tehnicka pitanja vezana za autotestove za zadatak 4, obratite se na navedeni mail.\n//---------------------------------------------------------------------------------------------------------------\n"
+                        },
+                        {
+                            "position": "main",
+                            "code": "// AT 6: Test metoda nakon ispravne dodjele\n    {\n        PolimorfniSpremnik s1(Sanduk(3, \"Svicevi :D\", {5, 2, 3, 1, 7, 8}));\n        std::cout << s1.DajTezinu()  << std::endl << s1.DajUkupnuTezinu() << std::endl;\n        s1.Ispisi();\n    }"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "3\n29\nVrsta spremnika: Sanduk\nSadrzaj: Svicevi :D\nTezine predmeta: 5 2 3 1 7 8 (kg)\nVlastita tezina: 3 (kg)\nUkupna tezina: 29 (kg)\n"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 6",
+            "id": 6
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "top_of_file",
+                            "code": "//---------------------------------------------------------------------------------------------------------------\n// Tehnike programiranja - Akademska 2023/2024 godina\n// Zadaca 5 - Zadatak 4\n// Odgovorni asistent: Tarik Pozderac - tpozderac1@etf.unsa.ba\n// Za sva tehnicka pitanja vezana za autotestove za zadatak 4, obratite se na navedeni mail.\n//---------------------------------------------------------------------------------------------------------------\n"
+                        },
+                        {
+                            "position": "main",
+                            "code": "// AT 7: Test velicina klasa\n    {\n        std::cout << sizeof(Spremnik) << std::endl;\n        std::cout << sizeof(Sanduk) << std::endl;\n        std::cout << sizeof(Vreca) << std::endl;\n        std::cout << sizeof(Bure) << std::endl;\n        std::cout << sizeof(PolimorfniSpremnik) << std::endl;\n    }"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "40\n56\n48\n56\n4\n",
+                            "48\n72\n56\n64\n8"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 7",
+            "id": 7
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "top_of_file",
+                            "code": "//---------------------------------------------------------------------------------------------------------------\n// Tehnike programiranja - Akademska 2023/2024 godina\n// Zadaca 5 - Zadatak 4\n// Odgovorni asistent: Tarik Pozderac - tpozderac1@etf.unsa.ba\n// Za sva tehnicka pitanja vezana za autotestove za zadatak 4, obratite se na navedeni mail.\n//---------------------------------------------------------------------------------------------------------------\n"
+                        },
+                        {
+                            "position": "main",
+                            "code": "// AT 8: Test ispravnosti polimorfnog omotaca\n    {\n        PolimorfniSpremnik s = Ruksak();\n        s.DajUkupnuTezinu();\n        s.Ispisi();\n    }"
+                        },
+                        {
+                            "position": "above_main",
+                            "code": "class Ruksak : public Spremnik\n{\n    public:\n    Ruksak() : Spremnik(1,\"2\")\n    {\n        std::cout << \"Kreiran ruksak - konstruktor bez parametara!\" << std::endl;\n    }\n    double DajUkupnuTezinu() const override\n    {\n        std::cout << \"Pozvana ukupna tezina.\" << std::endl;\n    }\n    void Ispisi() const override\n    {\n        std::cout << \"Pozvano ispisivanje.\" << std::endl;\n    }\n    Ruksak *DajKopiju() const override\n    {\n        std::cout << \"Pozvana kopija.\" << std::endl;\n\n        return new Ruksak(*this);\n    }\n};"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "Kreiran ruksak - konstruktor bez parametara!\nPozvana kopija.\nPozvana ukupna tezina.\nPozvano ispisivanje.\n"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 8",
+            "id": 8
+        }
+    ]
+}

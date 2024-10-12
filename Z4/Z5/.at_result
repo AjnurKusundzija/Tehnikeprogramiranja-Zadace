@@ -1,0 +1,117 @@
+{
+    "buildhost_description": {
+        "id": "etf.c9sec2",
+        "os": "Linux 5.4.0-159-generic x86_64\nUbuntu 20.04.6 LTS\n"
+    },
+    "tools": {
+        "compile": "9.4.0",
+        "compile[debug]": "9.4.0",
+        "debug": "9.2",
+        "profile[asan]": "9.4.0"
+    },
+    "status": 4,
+    "test_results": {
+        "1": {
+            "success": true,
+            "status": 1,
+            "tools": {
+                "patch": {
+                    "success": true
+                },
+                "compile[debug]": {
+                    "status": 1,
+                    "duration": 1,
+                    "output": "",
+                    "exit_code": 0,
+                    "success": true,
+                    "parsed_output": []
+                },
+                "execute": {
+                    "status": 1,
+                    "duration": 0,
+                    "output": "136 7Student\n80 6Laptop\n96 14Administracija",
+                    "exit_code": 0,
+                    "success": true
+                },
+                "debug": {
+                    "success": true
+                },
+                "profile[asan]": {
+                    "output": "",
+                    "status": 1,
+                    "success": true,
+                    "parsed_output": []
+                }
+            }
+        },
+        "2": {
+            "success": true,
+            "status": 1,
+            "tools": {
+                "patch": {
+                    "success": true
+                },
+                "compile[debug]": {
+                    "status": 1,
+                    "duration": 1,
+                    "output": "",
+                    "exit_code": 0,
+                    "success": true,
+                    "parsed_output": []
+                },
+                "execute": {
+                    "status": 1,
+                    "duration": 1,
+                    "output": "Odaberite jednu od sljedecih opcija:\n1 - RegistrirajNovogStudenta\n2 - RegistrirajNoviLaptop\n3 - IzlistajStudente\n4 - IzlistajLaptope\n5 - NadjiSlobodniLaptop\n6 - ZaduziLaptop\n7 - RazduziLaptop\n8 - PrikaziZaduzenja\nK - Kraj programa\nUnesite broj indeksa:\nUnesite godinu studija (formata A/X, gdje je A godina studija, a X prima vrijednosti B,M,D, zavisno od studija):\nUnesite ime i prezime studenta:\nUnesite adresu studenta:\nUnesite broj telefona (formata x/x-x):\nIzuzetak: Neispravni parametri!\nOdaberite jednu od sljedecih opcija:\n1 - RegistrirajNovogStudenta\n2 - RegistrirajNoviLaptop\n3 - IzlistajStudente\n4 - IzlistajLaptope\n5 - NadjiSlobodniLaptop\n6 - ZaduziLaptop\n7 - RazduziLaptop\n8 - PrikaziZaduzenja\nK - Kraj programa",
+                    "exit_code": 0,
+                    "success": true
+                },
+                "debug": {
+                    "success": true
+                },
+                "profile[asan]": {
+                    "output": "",
+                    "status": 1,
+                    "success": true,
+                    "parsed_output": []
+                }
+            }
+        },
+        "3": {
+            "success": true,
+            "status": 1,
+            "tools": {
+                "patch": {
+                    "success": true
+                },
+                "compile[debug]": {
+                    "status": 1,
+                    "duration": 1,
+                    "output": "",
+                    "exit_code": 0,
+                    "success": true,
+                    "parsed_output": []
+                },
+                "execute": {
+                    "status": 1,
+                    "duration": 0,
+                    "output": "Odaberite jednu od sljedecih opcija:\n1 - RegistrirajNovogStudenta\n2 - RegistrirajNoviLaptop\n3 - IzlistajStudente\n4 - IzlistajLaptope\n5 - NadjiSlobodniLaptop\n6 - ZaduziLaptop\n7 - RazduziLaptop\n8 - PrikaziZaduzenja\nK - Kraj programa\nUnesite evidencijski broj laptopa\nUnesite naziv laptopa\nUnesite karakteristike laptopa:\nLaptop uspjesno registrovan!\nOdaberite jednu od sljedecih opcija:\n1 - RegistrirajNovogStudenta\n2 - RegistrirajNoviLaptop\n3 - IzlistajStudente\n4 - IzlistajLaptope\n5 - NadjiSlobodniLaptop\n6 - ZaduziLaptop\n7 - RazduziLaptop\n8 - PrikaziZaduzenja\nK - Kraj programa\nEvidencijski broj: 928912\nNaziv: Laptop za TP\nKarakteristike: Pola laptop - Pola workspace\nOdaberite jednu od sljedecih opcija:\n1 - RegistrirajNovogStudenta\n2 - RegistrirajNoviLaptop\n3 - IzlistajStudente\n4 - IzlistajLaptope\n5 - NadjiSlobodniLaptop\n6 - ZaduziLaptop\n7 - RazduziLaptop\n8 - PrikaziZaduzenja\nK - Kraj programa",
+                    "exit_code": 0,
+                    "success": true
+                },
+                "debug": {
+                    "success": true
+                },
+                "profile[asan]": {
+                    "output": "",
+                    "status": 1,
+                    "success": true,
+                    "parsed_output": []
+                }
+            }
+        }
+    },
+    "time": 1717624345,
+    "program_id": 39637,
+    "task_id": "72370"
+}

@@ -1,0 +1,230 @@
+{
+    "id": 0,
+    "name": "Tehnike programiranja, Zadaća 2, Zadatak 3",
+    "version": "3",
+    "languages": [
+        "C++"
+    ],
+    "tools": {
+        "compile": {
+            "require": "g++",
+            "features": [
+                "optimize",
+                "warn",
+                "pedantic",
+                "C++14"
+            ]
+        },
+        "compile[debug]": {
+            "require": "g++",
+            "features": [
+                "debug",
+                "C++14",
+                "asan"
+            ]
+        },
+        "execute": {
+            "require": "asan"
+        },
+        "debug": [],
+        "profile[asan]": {
+            "require": "asan",
+            "input_file": "stderr.txt",
+            "fast": true
+        }
+    },
+    "prepare": [
+        "compile"
+    ],
+    "tests": [
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "top_of_file",
+                            "code": "//---------------------------------------------------------------------------------------------------------------\n// Tehnike programiranja - Akademska 2023/2024 godina\n// Zadaca 2 - Zadatak 3\n// Odgovorni asistent: Majda Čurtić-Hodžić - mcurtic1@etf.unsa.ba\n// Za sva tehnicka pitanja vezana za autotestove za zadatak 3, obratite se na navedeni mail.\n//---------------------------------------------------------------------------------------------------------------"
+                        },
+                        {
+                            "position": "main",
+                            "code": "_main();"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "environment": {
+                            "stdin": "12\n5 2 7 4 2 6 1 7 3 4 2 5\n11\n2 9 0 6 0 4 8 3 2 5 7\n"
+                        },
+                        "expect": [
+                            "Unesite broj elemenata niza (max. 100): Unesite elemente niza: Unesite broj elemenata deka: Unesite elemente deka: Njihova unija glasi: 5 2 7 4 6 1 3 9 0 8"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 1",
+            "id": 1
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "top_of_file",
+                            "code": "//---------------------------------------------------------------------------------------------------------------\n// Tehnike programiranja - Akademska 2023/2024 godina\n// Zadaca 2 - Zadatak 3\n// Odgovorni asistent: Majda Čurtić-Hodžić - mcurtic1@etf.unsa.ba\n// Za sva tehnicka pitanja vezana za autotestove za zadatak 3, obratite se na navedeni mail.\n//---------------------------------------------------------------------------------------------------------------"
+                        },
+                        {
+                            "position": "main",
+                            "code": "_main();"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "environment": {
+                            "stdin": "0\n5\n-1 -2 -3 -4 -5\n"
+                        },
+                        "expect": [
+                            "Unesite broj elemenata niza (max. 100): Unesite elemente niza: Unesite broj elemenata deka: Unesite elemente deka: Njihova unija glasi: -1 -2 -3 -4 -5"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 2",
+            "id": 2
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "top_of_file",
+                            "code": "//---------------------------------------------------------------------------------------------------------------\n// Tehnike programiranja - Akademska 2023/2024 godina\n// Zadaca 2 - Zadatak 3\n// Odgovorni asistent: Majda Čurtić-Hodžić - mcurtic1@etf.unsa.ba\n// Za sva tehnicka pitanja vezana za autotestove za zadatak 3, obratite se na navedeni mail.\n//---------------------------------------------------------------------------------------------------------------"
+                        },
+                        {
+                            "position": "main",
+                            "code": "_main();"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "environment": {
+                            "stdin": "0\n0\n"
+                        },
+                        "expect": [
+                            "Unesite broj elemenata niza (max. 100): Unesite elemente niza: Unesite broj elemenata deka: Unesite elemente deka: Njihova unija glasi: "
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 3",
+            "id": 3
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "top_of_file",
+                            "code": "//---------------------------------------------------------------------------------------------------------------\n// Tehnike programiranja - Akademska 2023/2024 godina\n// Zadaca 2 - Zadatak 3\n// Odgovorni asistent: Majda Čurtić-Hodžić - mcurtic1@etf.unsa.ba\n// Za sva tehnicka pitanja vezana za autotestove za zadatak 3, obratite se na navedeni mail.\n//---------------------------------------------------------------------------------------------------------------"
+                        },
+                        {
+                            "position": "top_of_file",
+                            "code": "#include <list>\n#include <algorithm>\n"
+                        },
+                        {
+                            "position": "main",
+                            "code": "std::list<char> list_chars = {'T', 'a', 'k', 'o'};\nchar array_chars[] = {'T', 'a', 'k', 'o', ' ', 'j', 'e', '!'};\nstd::deque<char> unija(8);\n\nauto pocetak=unija.begin();\nauto kraj = UnijaBlokova(list_chars.begin(), list_chars.end(), std::begin(array_chars), std::end(array_chars), pocetak);\n\nstd::for_each(pocetak, kraj, [](const char &c){ std::cout<<c;});\nstd::cout<<std::endl;"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "Tako je!\n"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 4",
+            "id": 4
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "top_of_file",
+                            "code": "//---------------------------------------------------------------------------------------------------------------\n// Tehnike programiranja - Akademska 2023/2024 godina\n// Zadaca 2 - Zadatak 3\n// Odgovorni asistent: Majda Čurtić-Hodžić - mcurtic1@etf.unsa.ba\n// Za sva tehnicka pitanja vezana za autotestove za zadatak 3, obratite se na navedeni mail.\n//---------------------------------------------------------------------------------------------------------------"
+                        },
+                        {
+                            "position": "top_of_file",
+                            "code": "#include <array>\n#include <string>\n#include <algorithm>\n"
+                        },
+                        {
+                            "position": "main",
+                            "code": "std::array<std::string, 5> blok1 = {\"Sve\", \"Ima\", \"Svoj\", \"Pocetak\"};\nstd::string blok2[] = {\"A\", \"I\", \"Pocetak\", \"Ima\", \"kraj\", \".\"};\n\nstd::deque<std::string> unija(11);\nauto pocetak=unija.begin();\nauto kraj = UnijaBlokova(blok1.begin(), blok1.end(), std::begin(blok2), std::end(blok2), pocetak);\n\nstd::cout << \"Utjesna poruka je: \";\nstd::for_each(pocetak, kraj, [](const std::string &c){ std::cout<<c;});\nstd::cout << std::endl;"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "Utjesna poruka je: SveImaSvojPocetakAIkraj.\n"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 5",
+            "id": 5
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "top_of_file",
+                            "code": "//---------------------------------------------------------------------------------------------------------------\n// Tehnike programiranja - Akademska 2023/2024 godina\n// Zadaca 2 - Zadatak 3\n// Odgovorni asistent: Majda Čurtić-Hodžić - mcurtic1@etf.unsa.ba\n// Za sva tehnicka pitanja vezana za autotestove za zadatak 3, obratite se na navedeni mail.\n//---------------------------------------------------------------------------------------------------------------"
+                        },
+                        {
+                            "position": "top_of_file",
+                            "code": "#include <algorithm>\n"
+                        },
+                        {
+                            "position": "main",
+                            "code": "std::vector<double> vec = {1.0, 2.0, 3.00001, 4.0};\nfloat niz[] = {3.0f, 4.0f, 5.0f};\n\nint unija[10];\nauto n = UnijaBlokova(vec.begin(), vec.end(), niz, niz + sizeof(niz) / sizeof(float), unija);\n\n// Ispis rezultata\nstd::cout << \"Unija elemenata je: \" ;\nstd::for_each(unija, n, [](const auto &c){ std::cout<<c;});\nstd::cout << std::endl;"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "Unija elemenata je: 12345\n"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 6",
+            "id": 6
+        }
+    ]
+}

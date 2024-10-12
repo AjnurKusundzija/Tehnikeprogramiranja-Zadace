@@ -1,0 +1,270 @@
+{
+    "buildhost_description": {
+        "id": "etf.c9sec2",
+        "os": "Linux 5.4.0-159-generic x86_64\nUbuntu 20.04.6 LTS\n"
+    },
+    "tools": {
+        "compile": "9.4.0",
+        "compile[debug]": "9.4.0",
+        "debug": "9.2",
+        "profile[asan]": "9.4.0"
+    },
+    "status": 4,
+    "test_results": {
+        "1": {
+            "success": true,
+            "status": 1,
+            "tools": {
+                "patch": {
+                    "success": true
+                },
+                "compile[debug]": {
+                    "status": 1,
+                    "duration": 0,
+                    "output": "main.cpp: In function ‘int _main()’:\nmain.cpp:289:1: warning: control reaches end of non-void function [-Wreturn-type]\n  289 | }\n      | ^",
+                    "exit_code": 0,
+                    "success": true,
+                    "parsed_output": [
+                        {
+                            "type": "warning",
+                            "file": "main.cpp",
+                            "line": 283,
+                            "col": "1",
+                            "message": "control reaches end of non-void function",
+                            "code": "}"
+                        }
+                    ]
+                },
+                "execute": {
+                    "status": 1,
+                    "duration": 0,
+                    "output": "Unesite broj gradjana:\nUnesite podatke za 1. gradjanina:\nIme i prezime: Datum rodjenja: Sifra regije: Pol ( 1-Musko, 2-Zensko ): Unesite podatke za 2. gradjanina:\nIme i prezime: Datum rodjenja: Sifra regije: Pol ( 1-Musko, 2-Zensko ): Unesite podatke za 3. gradjanina:\nIme i prezime: Datum rodjenja: Sifra regije: Pol ( 1-Musko, 2-Zensko ): Gradjani sortirani po starosti:\nRambo Sulejmanovic 13.5.1956 JMBG: 1305956170000\nZan Klod Sejdic 13.5.1962 JMBG: 1305962170004\nMila Milic 12.5.1973 JMBG: 1205973285003",
+                    "exit_code": 0,
+                    "success": true
+                },
+                "debug": {
+                    "success": true
+                },
+                "profile[asan]": {
+                    "output": "",
+                    "status": 1,
+                    "success": true,
+                    "parsed_output": []
+                }
+            }
+        },
+        "2": {
+            "success": true,
+            "status": 1,
+            "tools": {
+                "patch": {
+                    "success": true
+                },
+                "compile[debug]": {
+                    "status": 1,
+                    "duration": 1,
+                    "output": "main.cpp: In function ‘int _main()’:\nmain.cpp:289:1: warning: control reaches end of non-void function [-Wreturn-type]\n  289 | }\n      | ^",
+                    "exit_code": 0,
+                    "success": true,
+                    "parsed_output": [
+                        {
+                            "type": "warning",
+                            "file": "main.cpp",
+                            "line": 283,
+                            "col": "1",
+                            "message": "control reaches end of non-void function",
+                            "code": "}"
+                        }
+                    ]
+                },
+                "execute": {
+                    "status": 1,
+                    "duration": 0,
+                    "output": "Unesite broj gradjana:\nUnesite podatke za 1. gradjanina:\nIme i prezime: Datum rodjenja: Sifra regije: Pol ( 1-Musko, 2-Zensko ): Neispravni podaci. Molimo ponovite unos.\n\nUnesite podatke za 1. gradjanina:\nIme i prezime: Datum rodjenja: Sifra regije: Pol ( 1-Musko, 2-Zensko ): Neispravni podaci. Molimo ponovite unos.\n\nUnesite podatke za 1. gradjanina:\nIme i prezime: Datum rodjenja: Sifra regije: Pol ( 1-Musko, 2-Zensko ): Neispravni podaci. Molimo ponovite unos.\n\nUnesite podatke za 1. gradjanina:\nIme i prezime: Datum rodjenja: Sifra regije: Pol ( 1-Musko, 2-Zensko ): Neispravni podaci. Molimo ponovite unos.\n\nUnesite podatke za 1. gradjanina:\nIme i prezime: Datum rodjenja: Sifra regije: Pol ( 1-Musko, 2-Zensko ): Gradjani sortirani po starosti:\nNeko Nekic 29.2.2000 JMBG: 2902000170004",
+                    "exit_code": 0,
+                    "success": true
+                },
+                "debug": {
+                    "success": true
+                },
+                "profile[asan]": {
+                    "output": "",
+                    "status": 1,
+                    "success": true,
+                    "parsed_output": []
+                }
+            }
+        },
+        "3": {
+            "success": true,
+            "status": 1,
+            "tools": {
+                "patch": {
+                    "success": true
+                },
+                "compile[debug]": {
+                    "status": 1,
+                    "duration": 1,
+                    "output": "main.cpp: In function ‘int _main()’:\nmain.cpp:289:1: warning: control reaches end of non-void function [-Wreturn-type]\n  289 | }\n      | ^",
+                    "exit_code": 0,
+                    "success": true,
+                    "parsed_output": [
+                        {
+                            "type": "warning",
+                            "file": "main.cpp",
+                            "line": 283,
+                            "col": "1",
+                            "message": "control reaches end of non-void function",
+                            "code": "}"
+                        }
+                    ]
+                },
+                "execute": {
+                    "status": 1,
+                    "duration": 0,
+                    "output": "Unesite broj gradjana:\nGradjani sortirani po starosti:",
+                    "exit_code": 0,
+                    "success": true
+                },
+                "debug": {
+                    "success": true
+                },
+                "profile[asan]": {
+                    "output": "",
+                    "status": 1,
+                    "success": true,
+                    "parsed_output": []
+                }
+            }
+        },
+        "4": {
+            "success": true,
+            "status": 1,
+            "tools": {
+                "patch": {
+                    "success": true
+                },
+                "compile[debug]": {
+                    "status": 1,
+                    "duration": 1,
+                    "output": "main.cpp: In function ‘int _main()’:\nmain.cpp:289:1: warning: control reaches end of non-void function [-Wreturn-type]\n  289 | }\n      | ^",
+                    "exit_code": 0,
+                    "success": true,
+                    "parsed_output": [
+                        {
+                            "type": "warning",
+                            "file": "main.cpp",
+                            "line": 283,
+                            "col": "1",
+                            "message": "control reaches end of non-void function",
+                            "code": "}"
+                        }
+                    ]
+                },
+                "execute": {
+                    "status": 1,
+                    "duration": 0,
+                    "output": "Aki Akic 6.3.1923 JMBG: 0603923003262\nAka Akic 31.5.2004 JMBG: 3105004788025\nLaki Lakic 29.12.1946 JMBG: 2912946473517\nLakana Lakic 7.1.1928 JMBG: 0701928698511\nEko Ekic 14.7.2004 JMBG: 1407004984451",
+                    "exit_code": 0,
+                    "success": true
+                },
+                "debug": {
+                    "success": true
+                },
+                "profile[asan]": {
+                    "output": "",
+                    "status": 1,
+                    "success": true,
+                    "parsed_output": []
+                }
+            }
+        },
+        "5": {
+            "success": true,
+            "status": 1,
+            "tools": {
+                "patch": {
+                    "success": true
+                },
+                "compile[debug]": {
+                    "status": 1,
+                    "duration": 1,
+                    "output": "main.cpp: In function ‘int _main()’:\nmain.cpp:289:1: warning: control reaches end of non-void function [-Wreturn-type]\n  289 | }\n      | ^",
+                    "exit_code": 0,
+                    "success": true,
+                    "parsed_output": [
+                        {
+                            "type": "warning",
+                            "file": "main.cpp",
+                            "line": 283,
+                            "col": "1",
+                            "message": "control reaches end of non-void function",
+                            "code": "}"
+                        }
+                    ]
+                },
+                "execute": {
+                    "status": 1,
+                    "duration": 0,
+                    "output": "Vec postoji gradjanin sa istim JMBG",
+                    "exit_code": 0,
+                    "success": true
+                },
+                "debug": {
+                    "success": true
+                },
+                "profile[asan]": {
+                    "output": "",
+                    "status": 1,
+                    "success": true,
+                    "parsed_output": []
+                }
+            }
+        },
+        "6": {
+            "success": true,
+            "status": 1,
+            "tools": {
+                "patch": {
+                    "success": true
+                },
+                "compile[debug]": {
+                    "status": 1,
+                    "duration": 1,
+                    "output": "main.cpp: In function ‘int _main()’:\nmain.cpp:289:1: warning: control reaches end of non-void function [-Wreturn-type]\n  289 | }\n      | ^",
+                    "exit_code": 0,
+                    "success": true,
+                    "parsed_output": [
+                        {
+                            "type": "warning",
+                            "file": "main.cpp",
+                            "line": 283,
+                            "col": "1",
+                            "message": "control reaches end of non-void function",
+                            "code": "}"
+                        }
+                    ]
+                },
+                "execute": {
+                    "status": 1,
+                    "duration": 0,
+                    "output": "JMBG nije validan",
+                    "exit_code": 0,
+                    "success": true
+                },
+                "debug": {
+                    "success": true
+                },
+                "profile[asan]": {
+                    "output": "",
+                    "status": 1,
+                    "success": true,
+                    "parsed_output": []
+                }
+            }
+        }
+    },
+    "time": 1717838323,
+    "program_id": 4562,
+    "task_id": "1192"
+}

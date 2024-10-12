@@ -1,0 +1,136 @@
+{
+    "id": 0,
+    "name": "Tehnike programiranja, Zadaća 4, Zadatak 5",
+    "version": "3",
+    "languages": [
+        "C++"
+    ],
+    "tools": {
+        "compile": {
+            "require": "g++",
+            "features": [
+                "optimize",
+                "warn",
+                "pedantic",
+                "C++14"
+            ]
+        },
+        "compile[debug]": {
+            "require": "g++",
+            "features": [
+                "debug",
+                "C++14",
+                "asan"
+            ]
+        },
+        "execute": {
+            "require": "asan"
+        },
+        "debug": [],
+        "profile[asan]": {
+            "require": "asan",
+            "input_file": "stderr.txt",
+            "fast": true
+        }
+    },
+    "prepare": [
+        "compile"
+    ],
+    "tests": [
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "top_of_file",
+                            "code": "//---------------------------------------------------------------------------------------------------------------\n// Tehnike programiranja - Akademska 2023/2024 godina\n// Zadaća 4 - Zadatak 5\n// Odgovorni viši asistent: Haris Čapelj - hcapelj1@etf.unsa.ba\n// Za sva tehnička pitanja vezana za autotestove za zadatak 5, obratite se na navedeni mail.\n//---------------------------------------------------------------------------------------------------------------"
+                        },
+                        {
+                            "position": "main",
+                            "code": "// AT 2: Test velicina klasa - Eliminatoran!\n    {\n        std::cout << sizeof(Student) << \" \" << typeid(Student).name() << std::endl;\n        std::cout << sizeof(Laptop) << \" \" << typeid(Laptop).name() << std::endl;\n        std::cout << sizeof(Administracija) << \" \" << typeid(Administracija).name() << std::endl;\n    }"
+                        },
+                        {
+                            "position": "above_main",
+                            "code": "//"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "100 7Student\n56 6Laptop\n48 14Administracija",
+                            "136 7Student\n80 6Laptop\n96 14Administracija"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 1",
+            "id": 1
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "top_of_file",
+                            "code": "//---------------------------------------------------------------------------------------------------------------\n// Tehnike programiranja - Akademska 2023/2024 godina\n// Zadaća 4 - Zadatak 5\n// Odgovorni viši asistent: Haris Čapelj - hcapelj1@etf.unsa.ba\n// Za sva tehnička pitanja vezana za autotestove za zadatak 5, obratite se na navedeni mail.\n//---------------------------------------------------------------------------------------------------------------"
+                        },
+                        {
+                            "position": "main",
+                            "code": "// AT 6: Test main dijela programa (dodefinisano - pratiti AT)\n    {\n        _main();\n    }"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "environment": {
+                            "stdin": "1\n12345\n2/M\nMarljivi Student\nUlica marljivih studenata bb\n061 616 307\nK"
+                        },
+                        "expect": [
+                            "Odaberite jednu od sljedecih opcija: \n1 - RegistrirajNovogStudenta\n2 - RegistrirajNoviLaptop\n3 - IzlistajStudente\n4 - IzlistajLaptope\n5 - NadjiSlobodniLaptop\n6 - ZaduziLaptop\n7 - RazduziLaptop\n8 - PrikaziZaduzenja\nK - Kraj programa\nUnesite broj indeksa: \nUnesite godinu studija (formata A/X, gdje je A godina studija, a X prima vrijednosti B,M,D, zavisno od studija): \nUnesite ime i prezime studenta: \nUnesite adresu studenta: \nUnesite broj telefona (formata x/x-x): \nIzuzetak: Neispravni parametri!\nOdaberite jednu od sljedecih opcija: \n1 - RegistrirajNovogStudenta\n2 - RegistrirajNoviLaptop\n3 - IzlistajStudente\n4 - IzlistajLaptope\n5 - NadjiSlobodniLaptop\n6 - ZaduziLaptop\n7 - RazduziLaptop\n8 - PrikaziZaduzenja\nK - Kraj programa"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 2",
+            "id": 2
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "top_of_file",
+                            "code": "//---------------------------------------------------------------------------------------------------------------\n// Tehnike programiranja - Akademska 2023/2024 godina\n// Zadaća 4 - Zadatak 5\n// Odgovorni viši asistent: Haris Čapelj - hcapelj1@etf.unsa.ba\n// Za sva tehnička pitanja vezana za autotestove za zadatak 5, obratite se na navedeni mail.\n//---------------------------------------------------------------------------------------------------------------"
+                        },
+                        {
+                            "position": "main",
+                            "code": "// AT 7: Test main dijela programa - 2 (dodefinisano - pratiti AT)\n    {\n        _main();\n    }"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "environment": {
+                            "stdin": "2\n928912\nLaptop za TP\nPola laptop - Pola workspace\n4\nK"
+                        },
+                        "expect": [
+                            "Odaberite jednu od sljedecih opcija: \n1 - RegistrirajNovogStudenta\n2 - RegistrirajNoviLaptop\n3 - IzlistajStudente\n4 - IzlistajLaptope\n5 - NadjiSlobodniLaptop\n6 - ZaduziLaptop\n7 - RazduziLaptop\n8 - PrikaziZaduzenja\nK - Kraj programa\nUnesite evidencijski broj laptopa \nUnesite naziv laptopa \nUnesite karakteristike laptopa: \nLaptop uspjesno registrovan!\nOdaberite jednu od sljedecih opcija: \n1 - RegistrirajNovogStudenta\n2 - RegistrirajNoviLaptop\n3 - IzlistajStudente\n4 - IzlistajLaptope\n5 - NadjiSlobodniLaptop\n6 - ZaduziLaptop\n7 - RazduziLaptop\n8 - PrikaziZaduzenja\nK - Kraj programa\nEvidencijski broj: 928912\nNaziv: Laptop za TP\nKarakteristike: Pola laptop - Pola workspace\n\n\nOdaberite jednu od sljedecih opcija: \n1 - RegistrirajNovogStudenta\n2 - RegistrirajNoviLaptop\n3 - IzlistajStudente\n4 - IzlistajLaptope\n5 - NadjiSlobodniLaptop\n6 - ZaduziLaptop\n7 - RazduziLaptop\n8 - PrikaziZaduzenja\nK - Kraj programa"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 3",
+            "id": 3
+        }
+    ]
+}

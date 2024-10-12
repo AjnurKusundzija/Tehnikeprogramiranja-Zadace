@@ -1,0 +1,84 @@
+{
+    "buildhost_description": {
+        "id": "etf.c9prim2",
+        "os": "Linux 5.15.0-82-generic x86_64\nUbuntu 20.04.6 LTS\n"
+    },
+    "tools": {
+        "compile": "9.4.0",
+        "compile[debug]": "9.4.0",
+        "debug": "9.2",
+        "profile[asan]": "9.4.0"
+    },
+    "status": 4,
+    "test_results": {
+        "1": {
+            "success": true,
+            "status": 1,
+            "tools": {
+                "patch": {
+                    "success": true
+                },
+                "compile[debug]": {
+                    "status": 1,
+                    "duration": 1,
+                    "output": "",
+                    "exit_code": 0,
+                    "success": true,
+                    "parsed_output": []
+                },
+                "execute": {
+                    "status": 1,
+                    "duration": 0,
+                    "output": "Unesite maksimalni broj pregleda: 1. Registriraj Pregled\n2. Daj Broj Pregleda\n3. Daj Broj Pregleda Na Datum\n4. Daj Najraniji Pregled\n5. Obrisi Najraniji Pregled\n6. Obrisi Preglede Pacijenta\n7. Ispisi Preglede Na Datum\n8. Ispisi Sve Preglede\n9. Isprazni Kolekciju\n10. Izlaz\nUnesite izbor: Unesite ime pacijenta: Unesite datum i vrijeme pregleda (dan mjesec godina sati minute): 1. Registriraj Pregled\n2. Daj Broj Pregleda\n3. Daj Broj Pregleda Na Datum\n4. Daj Najraniji Pregled\n5. Obrisi Najraniji Pregled\n6. Obrisi Preglede Pacijenta\n7. Ispisi Preglede Na Datum\n8. Ispisi Sve Preglede\n9. Isprazni Kolekciju\n10. Izlaz\nUnesite izbor: Unesite ime pacijenta: Unesite datum i vrijeme pregleda (dan mjesec godina sati minute): 1. Registriraj Pregled\n2. Daj Broj Pregleda\n3. Daj Broj Pregleda Na Datum\n4. Daj Najraniji Pregled\n5. Obrisi Najraniji Pregled\n6. Obrisi Preglede Pacijenta\n7. Ispisi Preglede Na Datum\n8. Ispisi Sve Preglede\n9. Isprazni Kolekciju\n10. Izlaz\nUnesite izbor: Ukupan broj pregleda: 2\n1. Registriraj Pregled\n2. Daj Broj Pregleda\n3. Daj Broj Pregleda Na Datum\n4. Daj Najraniji Pregled\n5. Obrisi Najraniji Pregled\n6. Obrisi Preglede Pacijenta\n7. Ispisi Preglede Na Datum\n8. Ispisi Sve Preglede\n9. Isprazni Kolekciju\n10. Izlaz\nUnesite izbor: Unesite ime pacijenta: Unesite datum i vrijeme pregleda (dan mjesec godina sati minute): Dostignut maksimalni broj pregleda\n1. Registriraj Pregled\n2. Daj Broj Pregleda\n3. Daj Broj Pregleda Na Datum\n4. Daj Najraniji Pregled\n5. Obrisi Najraniji Pregled\n6. Obrisi Preglede Pacijenta\n7. Ispisi Preglede Na Datum\n8. Ispisi Sve Preglede\n9. Isprazni Kolekciju\n10. Izlaz\nUnesite izbor: Unesite datum (dan mjesec godina): Broj pregleda na datum: 1\n1. Registriraj Pregled\n2. Daj Broj Pregleda\n3. Daj Broj Pregleda Na Datum\n4. Daj Najraniji Pregled\n5. Obrisi Najraniji Pregled\n6. Obrisi Preglede Pacijenta\n7. Ispisi Preglede Na Datum\n8. Ispisi Sve Preglede\n9. Isprazni Kolekciju\n10. Izlaz\nUnesite izbor: Unesite datum: Huso Husić                    20/5/2024 15:00\n1. Registriraj Pregled\n2. Daj Broj Pregleda\n3. Daj Broj Pregleda Na Datum\n4. Daj Najraniji Pregled\n5. Obrisi Najraniji Pregled\n6. Obrisi Preglede Pacijenta\n7. Ispisi Preglede Na Datum\n8. Ispisi Sve Preglede\n9. Isprazni Kolekciju\n10. Izlaz\nUnesite izbor: Svi pregledi:\nNeko Nekić                    15/5/2024 11:15\nHuso Husić                    20/5/2024 15:00\n1. Registriraj Pregled\n2. Daj Broj Pregleda\n3. Daj Broj Pregleda Na Datum\n4. Daj Najraniji Pregled\n5. Obrisi Najraniji Pregled\n6. Obrisi Preglede Pacijenta\n7. Ispisi Preglede Na Datum\n8. Ispisi Sve Preglede\n9. Isprazni Kolekciju\n10. Izlaz\nUnesite izbor: Kolekcija ispraznjena.\n1. Registriraj Pregled\n2. Daj Broj Pregleda\n3. Daj Broj Pregleda Na Datum\n4. Daj Najraniji Pregled\n5. Obrisi Najraniji Pregled\n6. Obrisi Preglede Pacijenta\n7. Ispisi Preglede Na Datum\n8. Ispisi Sve Preglede\n9. Isprazni Kolekciju\n10. Izlaz\nUnesite izbor: Unesite ime pacijenta: Unesite datum i vrijeme pregleda (dan mjesec godina sati minute): 1. Registriraj Pregled\n2. Daj Broj Pregleda\n3. Daj Broj Pregleda Na Datum\n4. Daj Najraniji Pregled\n5. Obrisi Najraniji Pregled\n6. Obrisi Preglede Pacijenta\n7. Ispisi Preglede Na Datum\n8. Ispisi Sve Preglede\n9. Isprazni Kolekciju\n10. Izlaz\nUnesite izbor: Unesite ime pacijenta: Unesite datum i vrijeme pregleda (dan mjesec godina sati minute): 1. Registriraj Pregled\n2. Daj Broj Pregleda\n3. Daj Broj Pregleda Na Datum\n4. Daj Najraniji Pregled\n5. Obrisi Najraniji Pregled\n6. Obrisi Preglede Pacijenta\n7. Ispisi Preglede Na Datum\n8. Ispisi Sve Preglede\n9. Isprazni Kolekciju\n10. Izlaz\nUnesite izbor: Unesite ime pacijenta: Pregledi za pacijenta Huso Husić su obrisani.\n1. Registriraj Pregled\n2. Daj Broj Pregleda\n3. Daj Broj Pregleda Na Datum\n4. Daj Najraniji Pregled\n5. Obrisi Najraniji Pregled\n6. Obrisi Preglede Pacijenta\n7. Ispisi Preglede Na Datum\n8. Ispisi Sve Preglede\n9. Isprazni Kolekciju\n10. Izlaz\nUnesite izbor: Najraniji pregled je obrisan.\n1. Registriraj Pregled\n2. Daj Broj Pregleda\n3. Daj Broj Pregleda Na Datum\n4. Daj Najraniji Pregled\n5. Obrisi Najraniji Pregled\n6. Obrisi Preglede Pacijenta\n7. Ispisi Preglede Na Datum\n8. Ispisi Sve Preglede\n9. Isprazni Kolekciju\n10. Izlaz\nUnesite izbor: Ukupan broj pregleda: 0\n1. Registriraj Pregled\n2. Daj Broj Pregleda\n3. Daj Broj Pregleda Na Datum\n4. Daj Najraniji Pregled\n5. Obrisi Najraniji Pregled\n6. Obrisi Preglede Pacijenta\n7. Ispisi Preglede Na Datum\n8. Ispisi Sve Preglede\n9. Isprazni Kolekciju\n10. Izlaz\nUnesite izbor: Kraj programa.",
+                    "exit_code": 0,
+                    "success": true
+                },
+                "debug": {
+                    "success": true
+                },
+                "profile[asan]": {
+                    "output": "",
+                    "status": 1,
+                    "success": true,
+                    "parsed_output": []
+                }
+            }
+        },
+        "11": {
+            "success": true,
+            "status": 1,
+            "tools": {
+                "patch": {
+                    "success": true
+                },
+                "compile[debug]": {
+                    "status": 1,
+                    "duration": 2,
+                    "output": "",
+                    "exit_code": 0,
+                    "success": true,
+                    "parsed_output": []
+                },
+                "execute": {
+                    "status": 1,
+                    "duration": 0,
+                    "output": "15/4/2021\n23:59\n\nNeispravan datum\n\nNeispravno vrijeme\nNeko Nekić                    15/4/2021 23:59\nDostignut maksimalni broj pregleda\nNema registriranih pregleda\nPrazna kolekcija",
+                    "exit_code": 0,
+                    "success": true
+                },
+                "debug": {
+                    "success": true
+                },
+                "profile[asan]": {
+                    "output": "",
+                    "status": 1,
+                    "success": true,
+                    "parsed_output": []
+                }
+            }
+        }
+    },
+    "time": 1717262730,
+    "program_id": 54631,
+    "task_id": "78980"
+}

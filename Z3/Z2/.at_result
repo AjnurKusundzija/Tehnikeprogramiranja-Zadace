@@ -1,0 +1,183 @@
+{
+    "buildhost_description": {
+        "id": "etf.c9prim2",
+        "os": "Linux 5.15.0-82-generic x86_64\nUbuntu 20.04.6 LTS\n"
+    },
+    "tools": {
+        "compile": "9.4.0",
+        "compile[debug]": "9.4.0",
+        "debug": "9.2",
+        "profile[asan]": "9.4.0"
+    },
+    "status": 4,
+    "test_results": {
+        "1": {
+            "success": true,
+            "status": 1,
+            "tools": {
+                "patch": {
+                    "success": true
+                },
+                "compile[debug]": {
+                    "status": 1,
+                    "duration": 2,
+                    "output": "",
+                    "exit_code": 0,
+                    "success": true,
+                    "parsed_output": []
+                },
+                "execute": {
+                    "status": 1,
+                    "duration": 0,
+                    "output": "\nUnesite naziv poglavlja:\n\nUnesite sadrzaj stranice 1:\nUnesite sadrzaj stranice 2:\nUnesite naziv poglavlja:\n\nKreirani indeks pojmova:\nABC: I/1/1, I/1/15, I/1/19\nDHI: I/1/23, I/1/36\nHRKW: I/1/31\nQWE: I/1/5, I/1/27\nSTSDA: I/1/9\n\n\nUnesite rijec:\n\nRijec nadjena na pozicijama: I/1/1 I/1/15 I/1/19\n\nUnesite rijec:\n\nRijec nadjena na pozicijama: I/1/31\n\nUnesite rijec:\n\nRijec nije nadjena!\nUnesite rijec:\nNeispravna rijec!\n\nUnesite rijec:\n\nDovidjenja!",
+                    "exit_code": 0,
+                    "success": true
+                },
+                "debug": {
+                    "success": true
+                },
+                "profile[asan]": {
+                    "output": "",
+                    "status": 1,
+                    "success": true,
+                    "parsed_output": []
+                }
+            }
+        },
+        "2": {
+            "success": true,
+            "status": 1,
+            "tools": {
+                "patch": {
+                    "success": true
+                },
+                "compile[debug]": {
+                    "status": 1,
+                    "duration": 2,
+                    "output": "",
+                    "exit_code": 0,
+                    "success": true,
+                    "parsed_output": []
+                },
+                "execute": {
+                    "status": 1,
+                    "duration": 0,
+                    "output": "\nUnesite naziv poglavlja:\n\nUnesite sadrzaj stranice 1:\nUnesite naziv poglavlja:\n\nUnesite sadrzaj stranice 1:\nUnesite sadrzaj stranice 2:\nUnesite naziv poglavlja:\n\nKreirani indeks pojmova:\n123: II/1/9\nAB: II/1/6\nPQR: II/1/1\nQWE: II/1/14\nTT2: II/1/19\n\n\nUnesite rijec:\n\nDovidjenja!",
+                    "exit_code": 0,
+                    "success": true
+                },
+                "debug": {
+                    "success": true
+                },
+                "profile[asan]": {
+                    "output": "",
+                    "status": 1,
+                    "success": true,
+                    "parsed_output": []
+                }
+            }
+        },
+        "3": {
+            "success": true,
+            "status": 1,
+            "tools": {
+                "patch": {
+                    "success": true
+                },
+                "compile[debug]": {
+                    "status": 1,
+                    "duration": 2,
+                    "output": "",
+                    "exit_code": 0,
+                    "success": true,
+                    "parsed_output": []
+                },
+                "execute": {
+                    "status": 1,
+                    "duration": 0,
+                    "output": "\nUnesite naziv poglavlja:\n\nKreirani indeks pojmova:\n\n\nUnesite rijec:\nNeispravna rijec!\n\nUnesite rijec:\nNeispravna rijec!\n\nUnesite rijec:\n\nRijec nije nadjena!\nUnesite rijec:\nNeispravna rijec!\n\nUnesite rijec:\n\nRijec nije nadjena!\nUnesite rijec:\n\nDovidjenja!",
+                    "exit_code": 0,
+                    "success": true
+                },
+                "debug": {
+                    "success": true
+                },
+                "profile[asan]": {
+                    "output": "",
+                    "status": 1,
+                    "success": true,
+                    "parsed_output": []
+                }
+            }
+        },
+        "4": {
+            "success": true,
+            "status": 1,
+            "tools": {
+                "patch": {
+                    "success": true
+                },
+                "compile[debug]": {
+                    "status": 1,
+                    "duration": 2,
+                    "output": "",
+                    "exit_code": 0,
+                    "success": true,
+                    "parsed_output": []
+                },
+                "execute": {
+                    "status": 1,
+                    "duration": 0,
+                    "output": "IZUZETAK: Neispravna rijec!",
+                    "exit_code": 0,
+                    "success": true
+                },
+                "debug": {
+                    "success": true
+                },
+                "profile[asan]": {
+                    "output": "",
+                    "status": 1,
+                    "success": true,
+                    "parsed_output": []
+                }
+            }
+        },
+        "5": {
+            "success": true,
+            "status": 1,
+            "tools": {
+                "patch": {
+                    "success": true
+                },
+                "compile[debug]": {
+                    "status": 1,
+                    "duration": 2,
+                    "output": "",
+                    "exit_code": 0,
+                    "success": true,
+                    "parsed_output": []
+                },
+                "execute": {
+                    "status": 1,
+                    "duration": 0,
+                    "output": "Rijec se pojavljuje 2x u knjizi.\nRijec se pojavljuje 2x u knjizi.\nIZUZETAK: Neispravna rijec!",
+                    "exit_code": 0,
+                    "success": true
+                },
+                "debug": {
+                    "success": true
+                },
+                "profile[asan]": {
+                    "output": "",
+                    "status": 1,
+                    "success": true,
+                    "parsed_output": []
+                }
+            }
+        }
+    },
+    "time": 1715637933,
+    "program_id": 49042,
+    "task_id": "61702"
+}

@@ -1,0 +1,942 @@
+{
+    "buildhost_description": {
+        "id": "etf.c9prim2",
+        "os": "Linux 5.15.0-82-generic x86_64\nUbuntu 20.04.6 LTS\n"
+    },
+    "tools": {
+        "compile": "9.4.0",
+        "compile[debug]": "9.4.0",
+        "debug": "9.2",
+        "profile[asan]": "9.4.0"
+    },
+    "status": 4,
+    "test_results": {
+        "1": {
+            "success": true,
+            "status": 1,
+            "tools": {
+                "patch": {
+                    "success": true
+                },
+                "compile[debug]": {
+                    "status": 1,
+                    "duration": 0,
+                    "output": "",
+                    "exit_code": 0,
+                    "success": true,
+                    "parsed_output": []
+                },
+                "execute": {
+                    "status": 1,
+                    "duration": 0,
+                    "output": "Unesite n: Unesite 1. tjeme pravougaonika 1: Unesite 2. tjeme pravougaonika 1: Unesite 1. tjeme pravougaonika 2: Unesite 2. tjeme pravougaonika 2: Unesite 1. tjeme pravougaonika 3: Unesite 2. tjeme pravougaonika 3: Unesite 1. tjeme pravougaonika 4: Unesite 2. tjeme pravougaonika 4: Unesite podatke za transliranje (dx dy): Pravougaonici, nakon transformacija:\n{{-1.5,5.5},{8.5,0.5}}\n{{3,2},{5,-2}}\n{{1,2},{5,0}}\n{{6,5},{8,3}}\nPravougaonik s najvecom povrsinom: {{-1.5,5.5},{8.5,0.5}}",
+                    "exit_code": 0,
+                    "success": true
+                },
+                "debug": {
+                    "success": true
+                },
+                "profile[asan]": {
+                    "output": "",
+                    "status": 1,
+                    "success": true,
+                    "parsed_output": []
+                }
+            }
+        },
+        "2": {
+            "success": true,
+            "status": 1,
+            "tools": {
+                "patch": {
+                    "success": true
+                },
+                "compile[debug]": {
+                    "status": 1,
+                    "duration": 1,
+                    "output": "",
+                    "exit_code": 0,
+                    "success": true,
+                    "parsed_output": []
+                },
+                "execute": {
+                    "status": 1,
+                    "duration": 0,
+                    "output": "{{0,6},{5,0}} //p1\n{{1,11},{2,1}} //p2\n{{1,3},{5,0}} //TMP",
+                    "exit_code": 0,
+                    "success": true
+                },
+                "debug": {
+                    "success": true
+                },
+                "profile[asan]": {
+                    "output": "",
+                    "status": 1,
+                    "success": true,
+                    "parsed_output": []
+                }
+            }
+        },
+        "3": {
+            "success": true,
+            "status": 1,
+            "tools": {
+                "patch": {
+                    "success": true
+                },
+                "compile[debug]": {
+                    "status": 1,
+                    "duration": 1,
+                    "output": "",
+                    "exit_code": 0,
+                    "success": true,
+                    "parsed_output": []
+                },
+                "execute": {
+                    "status": 1,
+                    "duration": 0,
+                    "output": "Pravougaonik: {{0,20},{10,0}}\nObim: 60\nPovrsina: 200\nHorizontalna: 10\nVertikalna: 20",
+                    "exit_code": 0,
+                    "success": true
+                },
+                "debug": {
+                    "success": true
+                },
+                "profile[asan]": {
+                    "output": "",
+                    "status": 1,
+                    "success": true,
+                    "parsed_output": []
+                }
+            }
+        },
+        "4": {
+            "success": true,
+            "status": 1,
+            "tools": {
+                "patch": {
+                    "success": true
+                },
+                "compile[debug]": {
+                    "status": 1,
+                    "duration": 1,
+                    "output": "",
+                    "exit_code": 0,
+                    "success": true,
+                    "parsed_output": []
+                },
+                "execute": {
+                    "status": 1,
+                    "duration": 0,
+                    "output": "x = (5, 5)\n{{-1,1},{1,-1}} //p, prije transliranja\nc9 = (0, 0)\n{{0,2},{2,0}} //p, nakon transliranja\nc2 = (1, 1)\n{{0,2},{4,0}} //p, nakon postavljanja (prosirivanje, horizontalno, za 2)",
+                    "exit_code": 0,
+                    "success": true
+                },
+                "debug": {
+                    "success": true
+                },
+                "profile[asan]": {
+                    "output": "",
+                    "status": 1,
+                    "success": true,
+                    "parsed_output": []
+                }
+            }
+        },
+        "5": {
+            "success": true,
+            "status": 1,
+            "tools": {
+                "patch": {
+                    "success": true
+                },
+                "compile[debug]": {
+                    "status": 1,
+                    "duration": 1,
+                    "output": "",
+                    "exit_code": 0,
+                    "success": true,
+                    "parsed_output": []
+                },
+                "execute": {
+                    "status": 1,
+                    "duration": 0,
+                    "output": "x = (5, 5)\nDaLiSePoklapaju (p2, p3): true\nDaLiSePoklapaju (p1, p1): true\nDaLiSePoklapaju (p1, p2): false\nDaLiSuSlicni (p1, p1): true\nDaLiSuSlicni (p1, p2): false",
+                    "exit_code": 0,
+                    "success": true
+                },
+                "debug": {
+                    "success": true
+                },
+                "profile[asan]": {
+                    "output": "",
+                    "status": 1,
+                    "success": true,
+                    "parsed_output": []
+                }
+            }
+        },
+        "6": {
+            "success": true,
+            "status": 1,
+            "tools": {
+                "patch": {
+                    "success": true
+                },
+                "compile[debug]": {
+                    "status": 1,
+                    "duration": 1,
+                    "output": "",
+                    "exit_code": 0,
+                    "success": true,
+                    "parsed_output": []
+                },
+                "execute": {
+                    "status": 1,
+                    "duration": 0,
+                    "output": "DaLiSuSlicni (p, q): true\nDaLiSuSlicni (r, r): true\nDaLiSuSlicni (s, t): false\nDaLiSuSlicni (t, s): false\nDaLiSuSlicni (r, s): false\nDaLiSuSlicni (r, p): false\nDaLiSuSlicni (p, s): false\nDaLiSuSlicni (q, p): true\nDaLiSuSlicni (p, r): false",
+                    "exit_code": 0,
+                    "success": true
+                },
+                "debug": {
+                    "success": true
+                },
+                "profile[asan]": {
+                    "output": "",
+                    "status": 1,
+                    "success": true,
+                    "parsed_output": []
+                }
+            }
+        },
+        "7": {
+            "success": true,
+            "status": 1,
+            "tools": {
+                "patch": {
+                    "success": true
+                },
+                "compile[debug]": {
+                    "status": 1,
+                    "duration": 1,
+                    "output": "",
+                    "exit_code": 0,
+                    "success": true,
+                    "parsed_output": []
+                },
+                "execute": {
+                    "status": 1,
+                    "duration": 0,
+                    "output": "DaLiSePoklapaju (p, q): false\nDaLiSePoklapaju (q, p): false\nDaLiSePoklapaju (p, s): false\nDaLiSePoklapaju (p, p): true\nDaLiSePoklapaju (q, q): true\nDaLiSePoklapaju (w, t): false\nDaLiSePoklapaju (t, w): false\nDaLiSePoklapaju (w, t): false\nDaLiSePoklapaju (r, s): true\nDaLiSePoklapaju (s, r): true\nDaLiSePoklapaju (w, s): false\nDaLiSePoklapaju (z, u): false\nDaLiSePoklapaju (u, z): false\nDaLiSePoklapaju (u, u): true\nDaLiSePoklapaju (z, x): false\nDaLiSePoklapaju (z, y): false",
+                    "exit_code": 0,
+                    "success": true
+                },
+                "debug": {
+                    "success": true
+                },
+                "profile[asan]": {
+                    "output": "",
+                    "status": 1,
+                    "success": true,
+                    "parsed_output": []
+                }
+            }
+        },
+        "8": {
+            "success": true,
+            "status": 1,
+            "tools": {
+                "patch": {
+                    "success": true
+                },
+                "compile[debug]": {
+                    "status": 1,
+                    "duration": 1,
+                    "output": "",
+                    "exit_code": 0,
+                    "success": true,
+                    "parsed_output": []
+                },
+                "execute": {
+                    "status": 1,
+                    "duration": 0,
+                    "output": "DaLiSuPodudarni (p, q): false\nDaLiSuPodudarni (q, p): false\nDaLiSuPodudarni (p, s): false\nDaLiSuPodudarni (p, p): true\nDaLiSuPodudarni (q, q): true\nDaLiSuPodudarni (w, t): false\nDaLiSuPodudarni (t, w): false\nDaLiSuPodudarni (w, t): false\nDaLiSuPodudarni (r, s): true\nDaLiSuPodudarni (s, r): true\nDaLiSuPodudarni (z, u): true\nDaLiSuPodudarni (u, z): true\nDaLiSuPodudarni (u, u): true\nDaLiSuPodudarni (z, x): false\nDaLiSuPodudarni (z, y): true",
+                    "exit_code": 0,
+                    "success": true
+                },
+                "debug": {
+                    "success": true
+                },
+                "profile[asan]": {
+                    "output": "",
+                    "status": 1,
+                    "success": true,
+                    "parsed_output": []
+                }
+            }
+        },
+        "9": {
+            "success": true,
+            "status": 1,
+            "tools": {
+                "patch": {
+                    "success": true
+                },
+                "compile[debug]": {
+                    "status": 1,
+                    "duration": 0,
+                    "output": "",
+                    "exit_code": 0,
+                    "success": true,
+                    "parsed_output": []
+                },
+                "execute": {
+                    "status": 1,
+                    "duration": 0,
+                    "output": "p: {{1.000000,1.000000},{1.000000,1.000000}}\np.DajObim() = 0.000000\np.DajPovrsinu() = 0.000000\np.DajHorizontalnu() = 0.000000\np.DajVertikalnu() = 0.000000\np.DajCentar() = (1.000000, 1.000000)\n\nq: {{0.000000,0.000000},{0.000000,0.000000}}\nq.DajObim() = 0.000000\nq.DajPovrsinu() = 0.000000\nq.DajHorizontalnu() = 0.000000\nq.DajVertikalnu() = 0.000000\nq.DajCentar() = (0.000000, 0.000000)\n\ns: {{0.000000,0.000000},{10.000000,0.000000}}\ns.DajObim() = 20.000000\ns.DajPovrsinu() = 0.000000\ns.DajHorizontalnu() = 10.000000\ns.DajVertikalnu() = 0.000000\ns.DajCentar() = (5.000000, 0.000000)\n\nt: {{0.000000,10.000000},{0.000000,0.000000}}\nt.DajObim() = 20.000000\nt.DajPovrsinu() = 0.000000\nt.DajHorizontalnu() = 0.000000\nt.DajVertikalnu() = 10.000000\nt.DajCentar() = (0.000000, 5.000000)\n\nbig: {{-1000.000000,10000.000000},{1000.000000,-10000.000000}}\nbig.DajObim() = 44000.000000\nbig.DajPovrsinu() = 40000000.000000\nbig.DajHorizontalnu() = 2000.000000\nbig.DajVertikalnu() = 20000.000000\nbig.DajCentar() = (0.000000, 0.000000)\n",
+                    "exit_code": 0,
+                    "success": true
+                },
+                "debug": {
+                    "success": true
+                },
+                "profile[asan]": {
+                    "output": "",
+                    "status": 1,
+                    "success": true,
+                    "parsed_output": []
+                }
+            }
+        },
+        "10": {
+            "success": true,
+            "status": 1,
+            "tools": {
+                "patch": {
+                    "success": true
+                },
+                "compile[debug]": {
+                    "status": 1,
+                    "duration": 1,
+                    "output": "",
+                    "exit_code": 0,
+                    "success": true,
+                    "parsed_output": []
+                },
+                "execute": {
+                    "status": 1,
+                    "duration": 0,
+                    "output": "p.Ispisi(): {{5,100},{700,14}}\np.DajCentar() = (352.5, 57) [prije centriranja]\np.Ispisi(): {{-236.5,154},{458.5,68}}\np.DajCentar() = (111, 111) [nakon centriranja]\n\nIz funkcije koja prihvata referencu na CONST pravougaonik:\np.DajObim() = 1562\np.DajPovrsinu() = 59770\np.DajHorizontalnu() = 695\np.DajVertikalnu() = 86\np.DajCentar() = (0, 0)\np.Ispisi(): {{-347.5,43},{347.5,-43}}\n\nconst Pravougaonik &cp = p\ncp.Ispisi: {{-347.5,43},{347.5,-43}}\ncp.DajTjeme(GoreLijevo): (-347.5, 43)\ncp.DajTjeme(GoreDesno): (347.5, 43)\ncp.DajTjeme(DoljeLijevo): (-347.5, -43)\ncp.DajTjeme(DoljeDesno): (347.5, -43)\n\nIspis sa Pozicija (1) i tako dalje:\ncp.DajTjeme(1): (354.5, 50)\ncp.DajTjeme(3): (354.5, -36)\ncp.DajTjeme(0): (-340.5, 50)\ncp.DajTjeme(2): (-340.5, -36)\ncp.DajCentar() = (7, 7)",
+                    "exit_code": 0,
+                    "success": true
+                },
+                "debug": {
+                    "success": true
+                },
+                "profile[asan]": {
+                    "output": "",
+                    "status": 1,
+                    "success": true,
+                    "parsed_output": []
+                }
+            }
+        },
+        "11": {
+            "success": true,
+            "status": 1,
+            "tools": {
+                "patch": {
+                    "success": true
+                },
+                "compile[debug]": {
+                    "status": 1,
+                    "duration": 1,
+                    "output": "",
+                    "exit_code": 0,
+                    "success": true,
+                    "parsed_output": []
+                },
+                "execute": {
+                    "status": 1,
+                    "duration": 0,
+                    "output": "DaLiSuSlicni (p, q): true\nDaLiSuSlicni (r, r): true\nDaLiSuSlicni (s, t): false\nDaLiSuSlicni (t, s): false\nDaLiSuSlicni (r, s): true\nDaLiSuSlicni (r, p): true\nDaLiSuSlicni (p, s): false\nDaLiSuSlicni (q, p): true\nDaLiSuSlicni (p, r): true\nDaLiSuSlicni (w, w): true\nDaLiSuSlicni (z, w): true\nDaLiSuSlicni (w, z): true\nDaLiSuSlicni (w, x): true",
+                    "exit_code": 0,
+                    "success": true
+                },
+                "debug": {
+                    "success": true
+                },
+                "profile[asan]": {
+                    "output": "",
+                    "status": 1,
+                    "success": true,
+                    "parsed_output": []
+                }
+            }
+        },
+        "12": {
+            "success": true,
+            "status": 1,
+            "tools": {
+                "patch": {
+                    "success": true
+                },
+                "compile[debug]": {
+                    "status": 1,
+                    "duration": 1,
+                    "output": "",
+                    "exit_code": 0,
+                    "success": true,
+                    "parsed_output": []
+                },
+                "execute": {
+                    "status": 1,
+                    "duration": 0,
+                    "output": "{{0,10},{10,0}}{{-10,10},{0,0}}{{-10,0},{0,-10}}{{0,0},{10,-10}}{{0,10},{10,0}}\n{{0,10},{10,0}}{{0,200},{10,190}}{{190,200},{200,190}}{{190,10},{200,0}}{{0,10},{10,0}}",
+                    "exit_code": 0,
+                    "success": true
+                },
+                "debug": {
+                    "success": true
+                },
+                "profile[asan]": {
+                    "output": "",
+                    "status": 1,
+                    "success": true,
+                    "parsed_output": []
+                }
+            }
+        },
+        "13": {
+            "success": true,
+            "status": 1,
+            "tools": {
+                "patch": {
+                    "success": true
+                },
+                "compile[debug]": {
+                    "status": 1,
+                    "duration": 1,
+                    "output": "",
+                    "exit_code": 0,
+                    "success": true,
+                    "parsed_output": []
+                },
+                "execute": {
+                    "status": 1,
+                    "duration": 0,
+                    "output": "{{0.53,77},{0.77,31.13}}{{-505.535,377.72},{-459.665,377.48}}{{356.88,415.635},{357.12,369.765}}{{-505.535,377.72},{-459.665,377.48}}{{0.53,77},{0.77,31.13}}",
+                    "exit_code": 0,
+                    "success": true
+                },
+                "debug": {
+                    "success": true
+                },
+                "profile[asan]": {
+                    "output": "",
+                    "status": 1,
+                    "success": true,
+                    "parsed_output": []
+                }
+            }
+        },
+        "14": {
+            "success": true,
+            "status": 1,
+            "tools": {
+                "patch": {
+                    "success": true
+                },
+                "compile[debug]": {
+                    "status": 1,
+                    "duration": 1,
+                    "output": "",
+                    "exit_code": 0,
+                    "success": true,
+                    "parsed_output": []
+                },
+                "execute": {
+                    "status": 1,
+                    "duration": 0,
+                    "output": "{{1,1},{1,1}} - p\n{{0,10},{10,10}} - s\n{{0,0},{10,0}} - r\n{{0,10},{0,0}} - t\n\n{{1,1},{1,1}} - p\n{{10,2},{10,-8}} - s\n\n{{16.5,17.5},{16.5,7.5}} - r\n{{3,15},{13,15}} - s\n{{7.5,16.5},{17.5,16.5}} - t",
+                    "exit_code": 0,
+                    "success": true
+                },
+                "debug": {
+                    "success": true
+                },
+                "profile[asan]": {
+                    "output": "",
+                    "status": 1,
+                    "success": true,
+                    "parsed_output": []
+                }
+            }
+        },
+        "15": {
+            "success": true,
+            "status": 1,
+            "tools": {
+                "patch": {
+                    "success": true
+                },
+                "compile[debug]": {
+                    "status": 1,
+                    "duration": 1,
+                    "output": "",
+                    "exit_code": 0,
+                    "success": true,
+                    "parsed_output": []
+                },
+                "execute": {
+                    "status": 1,
+                    "duration": 0,
+                    "output": "{{12.100000,7.700000},{20.500000,0.100000}}\n\nX = (16.300000, 3.900000)\nA = (12.100000, 7.700000)\nB = (20.500000, 7.700000)\nC = (12.100000, 0.100000)\nD = (20.500000, 0.100000)\n\nO = 32.000000, P = 63.840000, H = 7.600000, W = 8.400000\n--------------\nRotiranje, transliranje...\n--------------\n{{9.800000,14.000000},{17.400000,5.600000}}\n{{9.800000,14.000000},{17.400000,5.600000}}\n{{-14.300000,18.870000},{-6.700000,10.470000}}\n{{-3.800000,4.200000},{3.800000,-4.200000}}\n\nX = (-0.000000, -0.000000)\nA = (-3.800000, 4.200000)\nB = (3.800000, 4.200000)\nC = (-3.800000, -4.200000)\nD = (3.800000, -4.200000)\n\nO = 32.000000, P = 63.840000, H = 8.400000, W = 7.600000",
+                    "exit_code": 0,
+                    "success": true
+                },
+                "debug": {
+                    "success": true
+                },
+                "profile[asan]": {
+                    "output": "",
+                    "status": 1,
+                    "success": true,
+                    "parsed_output": []
+                }
+            }
+        },
+        "16": {
+            "success": true,
+            "status": 1,
+            "tools": {
+                "patch": {
+                    "success": true
+                },
+                "compile[debug]": {
+                    "status": 1,
+                    "duration": 1,
+                    "output": "",
+                    "exit_code": 0,
+                    "success": true,
+                    "parsed_output": []
+                },
+                "execute": {
+                    "status": 1,
+                    "duration": 0,
+                    "output": "DaLiSePoklapaju (tmp1, tmp2): true\nDaLiSuSlicni (tmp3, tmp4): false\nDaLiSuPodudarni (tmp5, tmp6): true",
+                    "exit_code": 0,
+                    "success": true
+                },
+                "debug": {
+                    "success": true
+                },
+                "profile[asan]": {
+                    "output": "",
+                    "status": 1,
+                    "success": true,
+                    "parsed_output": []
+                }
+            }
+        },
+        "17": {
+            "success": true,
+            "status": 1,
+            "tools": {
+                "patch": {
+                    "success": true
+                },
+                "compile[debug]": {
+                    "status": 1,
+                    "duration": 1,
+                    "output": "",
+                    "exit_code": 0,
+                    "success": true,
+                    "parsed_output": []
+                },
+                "execute": {
+                    "status": 1,
+                    "duration": 0,
+                    "output": "DaLiSePoklapaju (p, p): true\nDaLiSuSlicni (p, p): true\nDaLiSuPodudarni (p, p): true\n\nDaLiSePoklapaju (p, p): true\nDaLiSuSlicni (p, p): true\nDaLiSuPodudarni (p, p): true\n\nDaLiSePoklapaju (p, r): false\nDaLiSePoklapaju (r, p): false\nDaLiSuSlicni (p, r): true\nDaLiSuSlicni (r, p): true\nDaLiSuPodudarni (p, r): true\nDaLiSuPodudarni (r, p): true\n\nDaLiSePoklapaju (p, p): true\nDaLiSuSlicni (p, p): true\nDaLiSuPodudarni (p, p): true\n\nDaLiSePoklapaju (p, p): true\nDaLiSuSlicni (p, p): true\nDaLiSuPodudarni (p, p): true\n\nr.Povrsina(): 0.763932 <==> h.Povrsina(): 0.763932",
+                    "exit_code": 0,
+                    "success": true
+                },
+                "debug": {
+                    "success": true
+                },
+                "profile[asan]": {
+                    "output": "",
+                    "status": 1,
+                    "success": true,
+                    "parsed_output": []
+                }
+            }
+        },
+        "18": {
+            "success": true,
+            "status": 1,
+            "tools": {
+                "patch": {
+                    "success": true
+                },
+                "compile[debug]": {
+                    "status": 1,
+                    "duration": 0,
+                    "output": "",
+                    "exit_code": 0,
+                    "success": true,
+                    "parsed_output": []
+                },
+                "execute": {
+                    "status": 1,
+                    "duration": 0,
+                    "output": "{{0,10},{7,0}}{{-7,20},{7,0}}{{7,20},{7,0}}{{-7,0},{7,0}}",
+                    "exit_code": 0,
+                    "success": true
+                },
+                "debug": {
+                    "success": true
+                },
+                "profile[asan]": {
+                    "output": "",
+                    "status": 1,
+                    "success": true,
+                    "parsed_output": []
+                }
+            }
+        },
+        "19": {
+            "success": true,
+            "status": 1,
+            "tools": {
+                "patch": {
+                    "success": true
+                },
+                "compile[debug]": {
+                    "status": 1,
+                    "duration": 1,
+                    "output": "",
+                    "exit_code": 0,
+                    "success": true,
+                    "parsed_output": []
+                },
+                "execute": {
+                    "status": 1,
+                    "duration": 0,
+                    "output": "{{1,15},{12,2}}{{-7,20},{12,2}}{{-7,20},{7,20}}{{-7,20},{7,0}}{{-7,0},{-7,-21}}",
+                    "exit_code": 0,
+                    "success": true
+                },
+                "debug": {
+                    "success": true
+                },
+                "profile[asan]": {
+                    "output": "",
+                    "status": 1,
+                    "success": true,
+                    "parsed_output": []
+                }
+            }
+        },
+        "20": {
+            "success": true,
+            "status": 1,
+            "tools": {
+                "patch": {
+                    "success": true
+                },
+                "compile[debug]": {
+                    "status": 1,
+                    "duration": 1,
+                    "output": "",
+                    "exit_code": 0,
+                    "success": true,
+                    "parsed_output": []
+                },
+                "execute": {
+                    "status": 1,
+                    "duration": 0,
+                    "output": "Presjek:\nOK [Nema (c, l)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (l, c)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (c, r)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (r, c)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (c, t)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (t, c)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (c, b)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (b, c)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (c, x)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (x, c)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (c, y)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (y, c)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (c, w)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (w, c)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (c, q)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (q, c)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (c, z)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (z, c)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK! (Ima) [(c, c)]\ntrue\nP = {{-10,10},{10,-10}}\nOK! (Ima) [(c, tmp)]\ntrue\nP = {{0,10},{10,0}}",
+                    "exit_code": 0,
+                    "success": true
+                },
+                "debug": {
+                    "success": true
+                },
+                "profile[asan]": {
+                    "output": "",
+                    "status": 1,
+                    "success": true,
+                    "parsed_output": []
+                }
+            }
+        },
+        "21": {
+            "success": true,
+            "status": 1,
+            "tools": {
+                "patch": {
+                    "success": true
+                },
+                "compile[debug]": {
+                    "status": 1,
+                    "duration": 1,
+                    "output": "",
+                    "exit_code": 0,
+                    "success": true,
+                    "parsed_output": []
+                },
+                "execute": {
+                    "status": 1,
+                    "duration": 0,
+                    "output": "Presjek:\nOK [Nema (c, a)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (a, c)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (c, b)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (b, c)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (c, d)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (d, c)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (c, e)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (e, c)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (c, f)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (f, c)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (c, g)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (g, c)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (c, h)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (h, c)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (c, i)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (i, c)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK! (Ima) [(c, c)]\ntrue\nP = {{5,10},{10,5}}\nOK! (Ima) [(b, g)]\ntrue\nP = {{1,4},{4,1}}\nOK! (Ima) [(g, b)]\ntrue\nP = {{1,4},{4,1}}",
+                    "exit_code": 0,
+                    "success": true
+                },
+                "debug": {
+                    "success": true
+                },
+                "profile[asan]": {
+                    "output": "",
+                    "status": 1,
+                    "success": true,
+                    "parsed_output": []
+                }
+            }
+        },
+        "22": {
+            "success": true,
+            "status": 1,
+            "tools": {
+                "patch": {
+                    "success": true
+                },
+                "compile[debug]": {
+                    "status": 1,
+                    "duration": 1,
+                    "output": "",
+                    "exit_code": 0,
+                    "success": true,
+                    "parsed_output": []
+                },
+                "execute": {
+                    "status": 1,
+                    "duration": 0,
+                    "output": "Presjek:\nOK [Nema (c, a)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (a, c)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (c, b)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (b, c)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (c, d)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (d, c)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (c, e)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (e, c)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (c, f)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (f, c)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (c, g)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (g, c)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (c, h)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (h, c)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (c, i)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (i, c)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK! (Ima) [(c, c)]\ntrue\nP = {{5,10},{10,5}}\nOK! (Ima) [(b, g)]\ntrue\nP = {{6,4},{6,2}}\nOK! (Ima) [(g, b)]\ntrue\nP = {{6,4},{6,2}}",
+                    "exit_code": 0,
+                    "success": true
+                },
+                "debug": {
+                    "success": true
+                },
+                "profile[asan]": {
+                    "output": "",
+                    "status": 1,
+                    "success": true,
+                    "parsed_output": []
+                }
+            }
+        },
+        "23": {
+            "success": true,
+            "status": 1,
+            "tools": {
+                "patch": {
+                    "success": true
+                },
+                "compile[debug]": {
+                    "status": 1,
+                    "duration": 1,
+                    "output": "",
+                    "exit_code": 0,
+                    "success": true,
+                    "parsed_output": []
+                },
+                "execute": {
+                    "status": 1,
+                    "duration": 0,
+                    "output": "Presjek:\nOK [Nema (c, a)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (a, c)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (c, b)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (b, c)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (c, d)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (d, c)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (c, e)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (e, c)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (c, f)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (f, c)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (c, g)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (g, c)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (c, h)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (h, c)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (c, i)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (i, c)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK! (Ima) [(c, c)]\ntrue\nP = {{5,10},{10,5}}\nOK! (Ima) [(b, g)]\ntrue\nP = {{11,12},{12,10}}\nOK! (Ima) [(g, b)]\ntrue\nP = {{11,12},{12,10}}",
+                    "exit_code": 0,
+                    "success": true
+                },
+                "debug": {
+                    "success": true
+                },
+                "profile[asan]": {
+                    "output": "",
+                    "status": 1,
+                    "success": true,
+                    "parsed_output": []
+                }
+            }
+        },
+        "24": {
+            "success": true,
+            "status": 1,
+            "tools": {
+                "patch": {
+                    "success": true
+                },
+                "compile[debug]": {
+                    "status": 1,
+                    "duration": 1,
+                    "output": "",
+                    "exit_code": 0,
+                    "success": true,
+                    "parsed_output": []
+                },
+                "execute": {
+                    "status": 1,
+                    "duration": 0,
+                    "output": "Presjek:\nOK [Nema (c, a)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (a, c)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (c, b)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (b, c)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (c, d)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (d, c)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (c, e)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (e, c)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (c, f)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (f, c)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (c, g)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (g, c)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (c, h)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (h, c)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (c, i)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK [Nema (i, c)]: 'Pravougaonici se ne presjecaju'\ntrue\nOK! (Ima) [(c, c)]\ntrue\nP = {{5,10},{10,5}}\nOK! (Ima) [(b, f)]\ntrue\nP = {{6,11},{6,11}}\nOK! (Ima) [(f, h)]\ntrue\nP = {{7,11},{8,11}}",
+                    "exit_code": 0,
+                    "success": true
+                },
+                "debug": {
+                    "success": true
+                },
+                "profile[asan]": {
+                    "output": "",
+                    "status": 1,
+                    "success": true,
+                    "parsed_output": []
+                }
+            }
+        },
+        "25": {
+            "success": true,
+            "status": 1,
+            "tools": {
+                "patch": {
+                    "success": true
+                },
+                "compile[debug]": {
+                    "status": 1,
+                    "duration": 1,
+                    "output": "",
+                    "exit_code": 0,
+                    "success": true,
+                    "parsed_output": []
+                },
+                "execute": {
+                    "status": 1,
+                    "duration": 0,
+                    "output": "OK! (Ima) [(p, a)]\n[Horizontalna: 18, Vertikalna: 0] {{-10,-10},{8,-10}}\nOK! (Ima) [(a, p)]\n[Horizontalna: 18, Vertikalna: 0] {{-10,-10},{8,-10}}\nOK! (Ima) [(p, b)]\n[Horizontalna: 3, Vertikalna: 0] {{-10,-10},{-7,-10}}\nOK! (Ima) [(p, c)]\n[Horizontalna: 20, Vertikalna: 0] {{-10,-10},{10,-10}}\n\nOK! (Ima) [(p, d)]\n[Horizontalna: 0, Vertikalna: 0] {{-10,10},{-10,10}}\nOK! (Ima) [(e, p)]\n[Horizontalna: 18, Vertikalna: 0] {{-10,10},{8,10}}\nOK! (Ima) [(p, e)]\n[Horizontalna: 18, Vertikalna: 0] {{-10,10},{8,10}}\nOK! (Ima) [(f, p)]\n[Horizontalna: 20, Vertikalna: 0] {{-10,10},{10,10}}\n\nOK! (Ima) [(p, g)]\n[Horizontalna: 0, Vertikalna: 3] {{-10,6},{-10,3}}\nOK! (Ima) [(p, h)]\n[Horizontalna: 0, Vertikalna: 10] {{-10,10},{-10,0}}\nOK! (Ima) [(i, p)]\n[Horizontalna: 0, Vertikalna: 20] {{-10,10},{-10,-10}}\n\nOK! (Ima) [(p, j)]\n[Horizontalna: 0, Vertikalna: 3] {{10,6},{10,3}}\nOK! (Ima) [(k, p)]\n[Horizontalna: 0, Vertikalna: 10] {{10,10},{10,0}}\nOK! (Ima) [(p, l)]\n[Horizontalna: 0, Vertikalna: 20] {{10,10},{10,-10}}\n\nOK [Nema (a, l)]: 'Pravougaonici se ne presjecaju'",
+                    "exit_code": 0,
+                    "success": true
+                },
+                "debug": {
+                    "success": true
+                },
+                "profile[asan]": {
+                    "output": "",
+                    "status": 1,
+                    "success": true,
+                    "parsed_output": []
+                }
+            }
+        },
+        "26": {
+            "success": true,
+            "status": 1,
+            "tools": {
+                "patch": {
+                    "success": true
+                },
+                "compile[debug]": {
+                    "status": 1,
+                    "duration": 1,
+                    "output": "",
+                    "exit_code": 0,
+                    "success": true,
+                    "parsed_output": []
+                },
+                "execute": {
+                    "status": 1,
+                    "duration": 0,
+                    "output": "OK! (Ima) [(p, a)]\n[Horizontalna: 108, Vertikalna: 1] {{-100,-10},{8,-11}}\nOK! (Ima) [(a, p)]\n[Horizontalna: 108, Vertikalna: 1] {{-100,-10},{8,-11}}\nOK! (Ima) [(p, b)]\n[Horizontalna: 93, Vertikalna: 8] {{-100,-10},{-7,-18}}\nOK! (Ima) [(p, c)]\n[Horizontalna: 200, Vertikalna: 20] {{-100,-10},{100,-30}}\n\nOK! (Ima) [(p, d)]\n[Horizontalna: 90, Vertikalna: 5] {{-100,15},{-10,10}}\nOK! (Ima) [(e, p)]\n[Horizontalna: 108, Vertikalna: 8] {{-100,18},{8,10}}\nOK! (Ima) [(p, e)]\n[Horizontalna: 108, Vertikalna: 8] {{-100,18},{8,10}}\nOK! (Ima) [(f, p)]\n[Horizontalna: 200, Vertikalna: 10] {{-100,20},{100,10}}\n\nOK! (Ima) [(p, g)]\n[Horizontalna: 5, Vertikalna: 3] {{-15,6},{-10,3}}\nOK! (Ima) [(p, h)]\n[Horizontalna: 5, Vertikalna: 10] {{-15,10},{-10,0}}\nOK! (Ima) [(i, p)]\n[Horizontalna: 5, Vertikalna: 90] {{-15,60},{-10,-30}}\n\nOK! (Ima) [(p, j)]\n[Horizontalna: 5, Vertikalna: 3] {{10,6},{15,3}}\nOK! (Ima) [(k, p)]\n[Horizontalna: 5, Vertikalna: 10] {{10,10},{15,0}}\nOK! (Ima) [(p, l)]\n[Horizontalna: 7, Vertikalna: 90] {{10,60},{17,-30}}\n\nOK [Nema (a, l)]: 'Pravougaonici se ne presjecaju'\nOK [Nema (a, k)]: 'Pravougaonici se ne presjecaju'\nOK [Nema (f, b)]: 'Pravougaonici se ne presjecaju'",
+                    "exit_code": 0,
+                    "success": true
+                },
+                "debug": {
+                    "success": true
+                },
+                "profile[asan]": {
+                    "output": "",
+                    "status": 1,
+                    "success": true,
+                    "parsed_output": []
+                }
+            }
+        },
+        "27": {
+            "success": true,
+            "status": 1,
+            "tools": {
+                "patch": {
+                    "success": true
+                },
+                "compile[debug]": {
+                    "status": 1,
+                    "duration": 1,
+                    "output": "",
+                    "exit_code": 0,
+                    "success": true,
+                    "parsed_output": []
+                },
+                "execute": {
+                    "status": 1,
+                    "duration": 0,
+                    "output": "{{0,5},{5,0}}\n{{-5,5},{5,-5}}\nCentar: (0, 0)\n{{-5,5},{10,0}}\n{{-5,10},{0,-5}}\n{{-5,5},{0,0}}\n\n{{7,5},{13,1}}\n{{1,5},{7,1}}\n{{7,5},{7,1}}\nW: 0, H: 4",
+                    "exit_code": 0,
+                    "success": true
+                },
+                "debug": {
+                    "success": true
+                },
+                "profile[asan]": {
+                    "output": "",
+                    "status": 1,
+                    "success": true,
+                    "parsed_output": []
+                }
+            }
+        },
+        "28": {
+            "success": true,
+            "status": 1,
+            "tools": {
+                "patch": {
+                    "success": true
+                },
+                "compile[debug]": {
+                    "status": 1,
+                    "duration": 1,
+                    "output": "",
+                    "exit_code": 0,
+                    "success": true,
+                    "parsed_output": []
+                },
+                "execute": {
+                    "status": 1,
+                    "duration": 0,
+                    "output": "{{0,0},{0,0}}\nW = 0, H = 0, Povrsina = 0, Obim: 0\n\n{{10,10},{10,10}}\nW = 0, H = 0, Povrsina = 0, Obim: 0\n\n{{0,10},{0,10}}\nW = 0, H = 0, Povrsina = 0, Obim: 0\n\n{{10,0},{10,0}}\nW = 0, H = 0, Povrsina = 0, Obim: 0\n\n{{0,10},{0,0}}\nW = 0, H = 10, Povrsina = 0, Obim: 20\n\n{{10,10},{10,0}}\nW = 0, H = 10, Povrsina = 0, Obim: 20\n\n{{0,10},{10,10}}\nW = 10, H = 0, Povrsina = 0, Obim: 20\n\n{{0,0},{10,0}}\nW = 10, H = 0, Povrsina = 0, Obim: 20\n\n{{5,5},{5,5}}\nW = 0, H = 0, Povrsina = 0, Obim: 0\n",
+                    "exit_code": 0,
+                    "success": true
+                },
+                "debug": {
+                    "success": true
+                },
+                "profile[asan]": {
+                    "output": "",
+                    "status": 1,
+                    "success": true,
+                    "parsed_output": []
+                }
+            }
+        }
+    },
+    "time": 1717778579,
+    "program_id": 42280,
+    "task_id": "93430"
+}

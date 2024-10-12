@@ -1,0 +1,608 @@
+{
+    "id": 0,
+    "name": "Tehnike programiranja, Zadaća 5, Zadatak 1",
+    "version": "3",
+    "languages": [
+        "C++"
+    ],
+    "tools": {
+        "compile": {
+            "require": "g++",
+            "features": [
+                "optimize",
+                "warn",
+                "pedantic",
+                "C++14"
+            ]
+        },
+        "compile[debug]": {
+            "require": "g++",
+            "features": [
+                "debug",
+                "C++14",
+                "asan"
+            ]
+        },
+        "execute": {
+            "require": "asan"
+        },
+        "debug": [],
+        "profile[asan]": {
+            "require": "asan",
+            "input_file": "stderr.txt",
+            "fast": true
+        }
+    },
+    "prepare": [
+        "compile"
+    ],
+    "tests": [
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "top_of_file",
+                            "code": "//---------------------------------------------------------------------------------------------------------------\n// Tehnike programiranja - Akademska 2023/2024 godina\n// Zadaca 5 - Zadatak 1\n// Odgovorni asistent: Kerim Hodžić - kerim.hodzic@etf.unsa.ba\n// Za sva tehnicka pitanja vezana za autotestove za zadatak 2, obratite se na navedeni mail.\n//---------------------------------------------------------------------------------------------------------------\n"
+                        },
+                        {
+                            "position": "main",
+                            "code": "        {//AT1 (c9): trivijalan AT\n            Razlomak r (10, 17);\n            std::cout << \"Brojnik: \" << r.DajBrojnik() << std::endl\n                      << \"Nazivnik: \" << r.DajNazivnik();\n        } "
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "Brojnik: 10\nNazivnik: 17\t"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 1",
+            "id": 1
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "top_of_file",
+                            "code": "//---------------------------------------------------------------------------------------------------------------\n// Tehnike programiranja - Akademska 2023/2024 godina\n// Zadaca 5 - Zadatak 1\n// Odgovorni asistent: Kerim Hodžić - kerim.hodzic@etf.unsa.ba\n// Za sva tehnicka pitanja vezana za autotestove za zadatak 2, obratite se na navedeni mail.\n//---------------------------------------------------------------------------------------------------------------\n"
+                        },
+                        {
+                            "position": "main",
+                            "code": "        {//AT2 (c9): operator << + sva tri konstruktora\n            Razlomak r (17, 18), t (21), v;\n            std::cout << \"r = \" << r << \", t = \" << t << \", v = \" << v;\n        }"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "r = 17/18, t = 21, v = 0\t"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 2",
+            "id": 2
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "top_of_file",
+                            "code": "//---------------------------------------------------------------------------------------------------------------\n// Tehnike programiranja - Akademska 2023/2024 godina\n// Zadaca 5 - Zadatak 1\n// Odgovorni asistent: Kerim Hodžić - kerim.hodzic@etf.unsa.ba\n// Za sva tehnicka pitanja vezana za autotestove za zadatak 2, obratite se na navedeni mail.\n//---------------------------------------------------------------------------------------------------------------\n"
+                        },
+                        {
+                            "position": "top_of_file",
+                            "code": "#include <type_traits>"
+                        },
+                        {
+                            "position": "main",
+                            "code": "{//AT3 (c9): operator >> (1/3) ...\n     //NAPOMENA: najlogicnija izvedba op>> ce proci\n     //ove ATove. Dodatne izvedbe su nelogicne i nisu u skladu\n     //sa ostaim tipovima...\n\n     //ovdje cu koristiti specijalnu klasu (ne radi se na TP)\n     //da preko stringa simuliram ulaz\n     //cisto da se vide viska razmaci\n\n     //NAPOMENA: pod \"razmakom\" se smatra SVAKI znak koji je BJELINA\n     //odnosno ovih 6 znakova u en-US:\n     //      \\n, |r, \\f, \\v, \\t, ' '\n     // i |r je sa backshashom, ali zbog buga pisem |r. Znaci, i \\R (samo malo r)\n     Razlomak r, q, t;\n     std::istringstream is (\"10/20\"); //ne mora sa \\n zavrsiti\n     is >> r;\n     std::cout << r << std::endl;\n\n     is.str (\"173\"); //samo jedan broj, 173/1\n     is.clear(); //mora, radi EOF\n     is >> r;\n     std::cout << r << std::endl;\n\n     is.str (\"               173/50\"); //ispravno, razmaci prije\n     is.clear();\n     is >> r;\n     std::cout << r << std::endl;\n\n     is.str (\"               173/50       \"); //ispravno, razmaci prije, poslije\n     is.clear();\n     is >> r;\n     std::cout << r << std::endl;\n\n\n     is.str (\"173/51\\n  ne zanima nas sta je nakon     \"); //ispravno\n     is.clear();\n     is >> r; //sljedece citanje bi bilo neispravno\n     std::cout << r << std::endl;\n\n     is.str (\"17/33e ali je vazno da nakon razlomka ide BJELINA\"); //neispravno\n     is.clear();\n     is >> r;\n     if (is.fail()) std::cout << \"OK, neispravno!\" << std::endl;\n     else std::cout << \"Nije OK! Ovo nije ispravan unos!\" << std::endl;\n\n     //nije ispravno ni npr. 10b/20, ni 10/ 20 ni a20/5\n     //necu sve testirati (barem ne u javnim :troll:)\n\n     is.str (\"a17/33\"); //neispravno\n     is.clear();\n     is >> r;\n     if (is.fail()) std::cout << \"OK, neispravno!\" << std::endl;\n     else std::cout << \"Nije OK! Ovo nije ispravan unos!\" << std::endl;\n\n     std::cout << \"VEOMA VAZNO: \" << std::endl;\n     //treba biti MOGUCE unijeti vise razlomaka odjednom! (pazite na std::ws)\n     is.str (\" 1/3   5/7  4/2    nebitno\"); //ispravna prva 3\n     is.clear();\n     is >> r >> q >> t;\n     std::cout << \"r = \" << r << \", q = \" << q << \", t = \" << t;\n\n     //dosta testova :whew:\n    }"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "1/2\n173\n173/50\n173/50\n173/51\nOK, neispravno!\nOK, neispravno!\nVEOMA VAZNO:\nr = 1/3, q = 5/7, t = 2\t"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 3",
+            "id": 3
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "top_of_file",
+                            "code": "//---------------------------------------------------------------------------------------------------------------\n// Tehnike programiranja - Akademska 2023/2024 godina\n// Zadaca 5 - Zadatak 1\n// Odgovorni asistent: Kerim Hodžić - kerim.hodzic@etf.unsa.ba\n// Za sva tehnicka pitanja vezana za autotestove za zadatak 2, obratite se na navedeni mail.\n//---------------------------------------------------------------------------------------------------------------\n"
+                        },
+                        {
+                            "position": "main",
+                            "code": "\t\n    {//AT4 (c9): operator >> (2/3) (direktno iz std::cin)\n     //NAPOMENA: pogledati AT3 za detaljna objasnjenja (i \\R znak je bjelina, malo 'r')\n        Razlomak r, p, q;\n        std::cin >> r; //5/17\n        std::cout << r << std::endl;\n        std::cin.clear(); std::cin.ignore (100, '\\n');\n        //tri zaredom\n        std::cin >> r >> p >> q; //10 20 30 -> 10/1 20/1 30/1\n        std::cout << r << \" \" << p << \" \" << q << std::endl;\n        std::cin.clear(); std::cin.ignore (100, '\\n');\n        std::cin >> r;\n        std::cout << r;\n    }"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "5/17\n10 20 30\n15/17\t"
+                        ],
+                        "environment": {
+                            "stdin": "5/17\n10 20 30\n15/17"
+                        }
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 4",
+            "id": 4
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "top_of_file",
+                            "code": "//---------------------------------------------------------------------------------------------------------------\n// Tehnike programiranja - Akademska 2023/2024 godina\n// Zadaca 5 - Zadatak 1\n// Odgovorni asistent: Kerim Hodžić - kerim.hodzic@etf.unsa.ba\n// Za sva tehnicka pitanja vezana za autotestove za zadatak 2, obratite se na navedeni mail.\n//---------------------------------------------------------------------------------------------------------------\n"
+                        },
+                        {
+                            "position": "main",
+                            "code": "   {//AT5 (c9): operator + (primjer iz postavke)\n        Razlomak r(2337, 3740), q (4014, 5225);\n        std::cout << r << \" + \" << q << \" = \" << r + q;\n    }"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "2337/3740 + 4014/5225 = 44997/32300\t"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 5",
+            "id": 5
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "above_main",
+                            "code": "\t\n//da se malo igramo, da razlomke zadajemo u formatu: a / b.\n//da bude moguce 'Razlomak r = a / b', gdje su 'a' i 'b' specijalni 'brojevi'\n//mozemo nauciti 'user-defined' literale iako se na predavanjima ne rade\nstruct RazlomakBroj {long long int x; RazlomakBroj (long long int x) : x(x) {}};\nRazlomak operator / (const RazlomakBroj &b, const RazlomakBroj &n) { return {b.x, n.x};}\nRazlomakBroj operator \"\" _r (unsigned long long int x) { return RazlomakBroj(x);}"
+                        },
+                        {
+                            "position": "main",
+                            "code": "       {//AT6 (c9): [poucan]: op+, op*\n            Razlomak r = 10_r / 3_r; // 10/3\n            Razlomak v = 10_r / 7_r; //10/7\n            std::cout << r * v << std::endl << r + v; //isti rezultat, mnozenje, sbairanje\n        }"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "100/21\n100/21\t"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 6",
+            "id": 6
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "above_main",
+                            "code": "//da se malo igramo, da razlomke zadajemo u formatu: a / b.\n//da bude moguce 'Razlomak r = a / b', gdje su 'a' i 'b' specijalni 'brojevi'\n//mozemo nauciti 'user-defined' literale iako se na predavanjima ne rade\nstruct RazlomakBroj {long long int x; RazlomakBroj (long long int x) : x(x) {}};\nRazlomak operator / (const RazlomakBroj &b, const RazlomakBroj &n) { return {b.x, n.x};}\nRazlomakBroj operator \"\" _r (unsigned long long int x) { return RazlomakBroj(x);}"
+                        },
+                        {
+                            "position": "main",
+                            "code": "       {//AT7 (c9): op-, op/, op konverzije, kracenje\n         //za _r pogledati 'globalni opseg' komentar i AT6\n         std::cout << 10_r / 7_r - 6_r / 11_r; // 10/7 - 6/11\n         std::cout << std::endl;\n         std::cout << (10_r / 7_r) / (6_r / 11_r); // 10/7 / 6/11\n         std::cout << std::endl;\n         Razlomak r = 124_r / 4_r;\n         std::cout << r;\n         r = r - 11_r / 77_r;\n         std::cout << std::endl;\n         std::cout << r << \" je priblizno \" << static_cast<long double>(r);\n        }"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "68/77\n55/21\n31\n216/7 je priblizno 30.8571\t"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 7",
+            "id": 7
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "above_main",
+                            "code": "\t\ntemplate <class K, class T>\nvoid FunExc (const T &&t)\n    {\n        try {t(); std::cout << \"Nema izuzetka?\" << std::endl;}\n        catch (const K &k) {std::cout << \"Izuzetak: \" << k.what() << std::endl;}\n        catch (...) {std::cout << \"Pogresan tip izutetka!\" << std::endl;}\n    }"
+                        },
+                        {
+                            "position": "main",
+                            "code": "\t\n    {//AT8: izuzetak kod x/0\n        FunExc<std::logic_error> ([](){Razlomak r (10, 0);});\n    }"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "Izuzetak: Nekorektan razlomak\t"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 8",
+            "id": 8
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "above_main",
+                            "code": "//da se malo igramo, da razlomke zadajemo u formatu: a / b.\n//da bude moguce 'Razlomak r = a / b', gdje su 'a' i 'b' specijalni 'brojevi'\n//mozemo nauciti 'user-defined' literale iako se na predavanjima ne rade\nstruct RazlomakBroj {long long int x; RazlomakBroj (long long int x) : x(x) {}};\nRazlomak operator / (const RazlomakBroj &b, const RazlomakBroj &n) { return {b.x, n.x};}\nRazlomakBroj operator \"\" _r (unsigned long long int x) { return RazlomakBroj(x);}"
+                        },
+                        {
+                            "position": "main",
+                            "code": "    {//AT9, +=, *=, -=, /=\n        Razlomak r1 = 10_r / 17_r, r2 = 5_r / 11_r, r3 = 7_r / 4_r;\n        std::cout << r1 << \" \" << r2 << \" \" << r3 << std::endl;\n        std::cout << (r1 *= r3) << \" \" << (r2 -= r3) << std::endl;\n        std::cout << r1 << \" \" << r2 << \" \" << r3 << std::endl;\n        std::cout << (r3 /= r1) << \" \" << (r2 += r1) << std::endl;\n        std::cout << r1 << \" \" << r2 << \" \" << r3 << std::endl;\n    }"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "10/17 5/11 7/4\n35/34 -57/44\n35/34 -57/44 7/4\n17/10 -199/748\n35/34 -199/748 17/10\t"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 9",
+            "id": 9
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "above_main",
+                            "code": "//da se malo igramo, da razlomke zadajemo u formatu: a / b.\n//da bude moguce 'Razlomak r = a / b', gdje su 'a' i 'b' specijalni 'brojevi'\n//mozemo nauciti 'user-defined' literale iako se na predavanjima ne rade\nstruct RazlomakBroj {long long int x; RazlomakBroj (long long int x) : x(x) {}};\nRazlomak operator / (const RazlomakBroj &b, const RazlomakBroj &n) { return {b.x, n.x};}\nRazlomakBroj operator \"\" _r (unsigned long long int x) { return RazlomakBroj(x);}"
+                        },
+                        {
+                            "position": "main",
+                            "code": "{//AT10: ulancani +=, *=, -=, /=\n        Razlomak r1 = 10_r / 17_r, r2 = 5_r / 11_r, r3 = 7_r / 4_r;\n        std::cout << r1 << \" \" << r2 << \" \" << r3 << std::endl;\n        auto r = r1 += r2 += r3;\n        std::cout << \"r: \" << r << \", r1: \" << r1 << \", r2: \" << r2 << \", r3: \" << r3 << std::endl;\n        r = r1 -= r3 -= r2;\n        std::cout << \"r: \" << r << \", r1: \" << r1 << \", r2: \" << r2 << \", r3: \" << r3 << std::endl;\n        r = r2 *= r1 *= r3;\n        std::cout << \"r: \" << r << \", r1: \" << r1 << \", r2: \" << r2 << \", r3: \" << r3 << std::endl;\n        r = r3 /= r2 /= r1;\n        std::cout << \"r: \" << r << \", r1: \" << r1 << \", r2: \" << r2 << \", r3: \" << r3 << std::endl;\n        //kombinovano\n        r -= r1 *= r2 /= r3 += (10_r / 51_r);\n        std::cout << \"r: \" << r << \", r1: \" << r1 << \", r2: \" << r2 << \", r3: \" << r3 << std::endl;\n    }"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "10/17 5/11 7/4\nr: 2089/748, r1: 2089/748, r2: 97/44, r3: 7/4\nr: 2429/748, r1: 2429/748, r2: 97/44, r3: -5/11\nr: -1178065/362032, r1: -12145/8228, r2: -1178065/362032, r3: -5/11\nr: -20/97, r1: -12145/8228, r2: 97/44, r3: -20/97\nr: -6654907351/20657120, r1: 68563383/212960, r2: -479859/2200, r3: -50/4947\t"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 10",
+            "id": 10
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "above_main",
+                            "code": "//da se malo igramo, da razlomke zadajemo u formatu: a / b.\n//da bude moguce 'Razlomak r = a / b', gdje su 'a' i 'b' specijalni 'brojevi'\n//mozemo nauciti 'user-defined' literale iako se na predavanjima ne rade\nstruct RazlomakBroj {long long int x; RazlomakBroj (long long int x) : x(x) {}};\nRazlomak operator / (const RazlomakBroj &b, const RazlomakBroj &n) { return {b.x, n.x};}\nRazlomakBroj operator \"\" _r (unsigned long long int x) { return RazlomakBroj(x);}"
+                        },
+                        {
+                            "position": "main",
+                            "code": "    {//AT11: poredjenja\n        std::cout << std::boolalpha;\n        auto r1 = 10_r / 5_r, r2 = 10_r / 6_r;\n        std::cout << r1 << \" == \" << r2 << \" --> \" << (r1 == r2) << std::endl;\n        std::cout << r1 << \" != \" << r2 << \" --> \" << (r1 != r2) << std::endl;\n        r1 = 10_r / 5_r, r2 = 6_r / 3_r;\n        std::cout << r1 << \" == \" << r2 << \" --> \" << (r1 == r2) << std::endl;\n        std::cout << r1 << \" != \" << r2 << \" --> \" << (r1 != r2) << std::endl;\n\n        r1 = 10_r / 5_r, r2 = 6_r / 3_r;\n        std::cout << r1 << \" > \" << r2 << \" --> \" << (r1 > r2) << std::endl;\n        r1 = 10_r / 5_r, r2 = 18_r / 3_r;\n        std::cout << r1 << \" > \" << r2 << \" --> \" << (r1 > r2) << std::endl;\n        r1 = 100_r / 5_r, r2 = 6_r / 3_r;\n        std::cout << r1 << \" > \" << r2 << \" --> \" << (r1 > r2) << std::endl;\n\n        std::cout << r1 << \" < \" << r2 << \" --> \" << (r1 < r2) << std::endl;\n        r1 = 10_r / 5_r, r2 = 18_r / 3_r;\n        std::cout << r1 << \" < \" << r2 << \" --> \" << (r1 < r2) << std::endl;\n        r1 = 100_r / 5_r, r2 = 6_r / 3_r;\n        std::cout << r1 << \" < \" << r2 << \" --> \" << (r1 < r2) << std::endl;\n\n        std::cout << r1 << \" >= \" << r2 << \" --> \" << (r1 >= r2) << std::endl;\n        r1 = 10_r / 5_r, r2 = 18_r / 3_r;\n        std::cout << r1 << \" >= \" << r2 << \" --> \" << (r1 >= r2) << std::endl;\n        r1 = 100_r / 5_r, r2 = 6_r / 3_r;\n        std::cout << r1 << \" >= \" << r2 << \" --> \" << (r1 >= r2) << std::endl;\n\n        std::cout << r1 << \" <= \" << r2 << \" --> \" << (r1 <= r2) << std::endl;\n        r1 = 10_r / 5_r, r2 = 18_r / 3_r;\n        std::cout << r1 << \" <= \" << r2 << \" --> \" << (r1 <= r2) << std::endl;\n        r1 = 100_r / 5_r, r2 = 6_r / 3_r;\n        std::cout << r1 << \" <= \" << r2 << \" --> \" << (r1 <= r2) << std::endl;\n\n    }"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "2 == 5/3 --> false\n2 != 5/3 --> true\n2 == 2 --> true\n2 != 2 --> false\n2 > 2 --> false\n2 > 6 --> false\n20 > 2 --> true\n20 < 2 --> false\n2 < 6 --> true\n20 < 2 --> false\n20 >= 2 --> true\n2 >= 6 --> false\n20 >= 2 --> true\n20 <= 2 --> false\n2 <= 6 --> true\n20 <= 2 --> false\t"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 11",
+            "id": 11
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "top_of_file",
+                            "code": "//---------------------------------------------------------------------------------------------------------------\n// Tehnike programiranja - Akademska 2023/2024 godina\n// Zadaca 5 - Zadatak 1\n// Odgovorni asistent: Kerim Hodžić - kerim.hodzic@etf.unsa.ba\n// Za sva tehnicka pitanja vezana za autotestove za zadatak 2, obratite se na navedeni mail.\n//---------------------------------------------------------------------------------------------------------------\n"
+                        },
+                        {
+                            "position": "main",
+                            "code": "    {//AT12: op+ i op- (unarni)\n        const Razlomak r1 (5), r2 (-5), r3 (17, -3), r4 (-17, 2);\n        std::cout << r1 << \" \" << r2 << \" \" << r3 << \" \" << r4 << std::endl;\n        std::cout << +r1 << \" \" << +r2 << \" \" << +r3 << \" \" << +r4 << std::endl;\n        std::cout << r1 << \" \" << r2 << \" \" << r3 << \" \" << r4 << std::endl;\n        std::cout << -r1 << \" \" << -r2 << \" \" << -r3 << \" \" << -r4 << std::endl;\n        std::cout << r1 << \" \" << r2 << \" \" << r3 << \" \" << r4 << std::endl;\n        std:: cout << -(-r1);\n\n    }"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "5 -5 -17/3 -17/2\n5 -5 -17/3 -17/2\n5 -5 -17/3 -17/2\n-5 5 17/3 17/2\n5 -5 -17/3 -17/2\n5\t"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 12",
+            "id": 12
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "top_of_file",
+                            "code": "//---------------------------------------------------------------------------------------------------------------\n// Tehnike programiranja - Akademska 2023/2024 godina\n// Zadaca 5 - Zadatak 1\n// Odgovorni asistent: Kerim Hodžić - kerim.hodzic@etf.unsa.ba\n// Za sva tehnicka pitanja vezana za autotestove za zadatak 2, obratite se na navedeni mail.\n//---------------------------------------------------------------------------------------------------------------\n"
+                        },
+                        {
+                            "position": "main",
+                            "code": "    {//AT13: DajBrojnik(), DajNazivnik nad const\n        const Razlomak r (10345, 23134563);\n        std::cout << r.DajBrojnik() << \"/\" << r.DajNazivnik();\n    }"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "10345/23134563\t"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 13",
+            "id": 13
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "top_of_file",
+                            "code": "//---------------------------------------------------------------------------------------------------------------\n// Tehnike programiranja - Akademska 2023/2024 godina\n// Zadaca 5 - Zadatak 1\n// Odgovorni asistent: Kerim Hodžić - kerim.hodzic@etf.unsa.ba\n// Za sva tehnicka pitanja vezana za autotestove za zadatak 2, obratite se na navedeni mail.\n//---------------------------------------------------------------------------------------------------------------\n"
+                        },
+                        {
+                            "position": "main",
+                            "code": "    {//AT14 x++, ++x\n        Razlomak r (17, 33);\n        Razlomak r2 = r++;\n        std::cout << r2 << \" \" << r << std::endl;\n        std::cout << r2++ << \" \" << r++ << std::endl;\n        r2 = ++r;\n        std::cout << r2 << \" \" << r << std::endl;\n        std::cout << ++r2 << \" \" << ++r << std::endl;\n        r = Razlomak(33, 17);\n        r2 = ++++++++++++++++++++++++++++++++++r;\n        std::cout << r2 << \" \" << r << std::endl;\n    }"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "17/33 50/33\n17/33 50/33\n116/33 116/33\n149/33 149/33\n322/17 322/17\t"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 14",
+            "id": 14
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "top_of_file",
+                            "code": "//---------------------------------------------------------------------------------------------------------------\n// Tehnike programiranja - Akademska 2023/2024 godina\n// Zadaca 5 - Zadatak 1\n// Odgovorni asistent: Kerim Hodžić - kerim.hodzic@etf.unsa.ba\n// Za sva tehnicka pitanja vezana za autotestove za zadatak 2, obratite se na navedeni mail.\n//---------------------------------------------------------------------------------------------------------------\n"
+                        },
+                        {
+                            "position": "main",
+                            "code": "    {//AT15 x--, --x\n        Razlomak r (17, 33);\n        Razlomak r2 = r--;\n        std::cout << r2 << \" \" << r << std::endl;\n        std::cout << r2-- << \" \" << r-- << std::endl;\n        r2 = --r;\n        std::cout << r2 << \" \" << r << std::endl;\n        std::cout << --r2 << \" \" << --r << std::endl;\n        r = Razlomak(33, 17);\n        r2 = --------------------------r;\n        std::cout << r2 << \" \" << r << std::endl;\n    }"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "17/33 -16/33\n17/33 -16/33\n-82/33 -82/33\n-115/33 -115/33\n-188/17 -188/17"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 15",
+            "id": 15
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "top_of_file",
+                            "code": "//---------------------------------------------------------------------------------------------------------------\n// Tehnike programiranja - Akademska 2023/2024 godina\n// Zadaca 5 - Zadatak 1\n// Odgovorni asistent: Kerim Hodžić - kerim.hodzic@etf.unsa.ba\n// Za sva tehnicka pitanja vezana za autotestove za zadatak 2, obratite se na navedeni mail.\n//---------------------------------------------------------------------------------------------------------------\n"
+                        },
+                        {
+                            "position": "main",
+                            "code": "\t\n    {//AT16: veci brojevi (1)\n        Razlomak r1 (12345432LL, 12345432234432LL);\n        r1 += (r1 + Razlomak (1));\n        std::cout << r1 << std::endl;\n        r1 -= (r1 + Razlomak (1542LL));\n        std::cout << r1 << std::endl;\n        r1 = r1 * Razlomak (134365678925432LL, 7);\n        std::cout << r1 << std::endl;\n    }"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "23381547207/23381500444\n-1542\n-207191876903016144/7\t"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 16",
+            "id": 16
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "top_of_file",
+                            "code": "//---------------------------------------------------------------------------------------------------------------\n// Tehnike programiranja - Akademska 2023/2024 godina\n// Zadaca 5 - Zadatak 1\n// Odgovorni asistent: Kerim Hodžić - kerim.hodzic@etf.unsa.ba\n// Za sva tehnicka pitanja vezana za autotestove za zadatak 2, obratite se na navedeni mail.\n//---------------------------------------------------------------------------------------------------------------\n"
+                        },
+                        {
+                            "position": "main",
+                            "code": "   {//AT17: veci brojevi (2)\n        Razlomak r1 (12345432LL, 12234432LL);\n        r1 *= (r1 + Razlomak (1));\n        std::cout << r1 << std::endl;\n        r1 /= (r1 + Razlomak (1542LL));\n        std::cout << r1 << std::endl;\n        r1 = r1 + Razlomak (9939LL, 7);\n        std::cout << r1 << std::endl;\n    }"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "526821249273/259863413824\n175607083091/133745401788627\n1329296777626745390/936217812520389\t"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 17",
+            "id": 17
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "above_main",
+                            "code": "template <class K, class T>\nvoid FunExc (const T &&t)\n    {\n        try {t(); std::cout << \"Nema izuzetka?\" << std::endl;}\n        catch (const K &k) {std::cout << \"Izuzetak: \" << k.what() << std::endl;}\n        catch (...) {std::cout << \"Pogresan tip izutetka!\" << std::endl;}\n    }"
+                        },
+                        {
+                            "position": "main",
+                            "code": "   {//AT 18, provjera izuzetaka\n        Razlomak r (12345787543LL, 13214LL);\n        FunExc<std::overflow_error>([r](){r * r;});\n        FunExc<std::overflow_error>([&r](){r *= r;});\n        FunExc<std::overflow_error>([r](){r + r + r + Razlomak(12333333332423432LL);});\n    }"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "Izuzetak: Nemoguce dobiti tacan rezultat\nIzuzetak: Nemoguce dobiti tacan rezultat\nIzuzetak: Nemoguce dobiti tacan rezultat\t"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 18",
+            "id": 18
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "above_main",
+                            "code": "template <class K, class T>\nvoid FunExc (const T &&t)\n    {\n        try {t(); std::cout << \"Nema izuzetka?\" << std::endl;}\n        catch (const K &k) {std::cout << \"Izuzetak: \" << k.what() << std::endl;}\n        catch (...) {std::cout << \"Pogresan tip izutetka!\" << std::endl;}\n    }"
+                        },
+                        {
+                            "position": "main",
+                            "code": "    {//AT19, provjera izuzetaka 2\n        Razlomak r (937887778893423421LL, 12349899957875943LL);\n        FunExc<std::overflow_error>([&r](){r += r; r += r; r += r; r += r; r += r;});\n        FunExc<std::overflow_error>([&r](){r *= r;});\n        FunExc<std::overflow_error>([&r](){r -= Razlomak(12333333333333432LL);});\n    }"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "Izuzetak: Nemoguce dobiti tacan rezultat\nIzuzetak: Nemoguce dobiti tacan rezultat\nIzuzetak: Nemoguce dobiti tacan rezultat\t"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 19",
+            "id": 19
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "top_of_file",
+                            "code": "//---------------------------------------------------------------------------------------------------------------\n// Tehnike programiranja - Akademska 2023/2024 godina\n// Zadaca 5 - Zadatak 1\n// Odgovorni asistent: Kerim Hodžić - kerim.hodzic@etf.unsa.ba\n// Za sva tehnicka pitanja vezana za autotestove za zadatak 2, obratite se na navedeni mail.\n//---------------------------------------------------------------------------------------------------------------\n"
+                        },
+                        {
+                            "position": "main",
+                            "code": "        {//AT20, unos\n            Razlomak r;\n            std::istringstream is (\"10.6/20\"); //neispravno\n            is >> r;\n            if (!is) std::cout << \"OK\" << std::endl;\n            else std::cout << \"Not OK\" << std::endl;\n\n            is.str(\"10/20.4\");\n            is.clear();\n            is >> r;\n            if (!is) std::cout << \"OK\" << std::endl;\n            else std::cout << \"Not OK\" << std::endl;\n\n            is.str(\"10/2001\");\n            is.clear();\n            is >> r;\n            std::cout << r;\n\n        }"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "OK\nOK\n10/2001\t"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 20",
+            "id": 20
+        }
+    ]
+}

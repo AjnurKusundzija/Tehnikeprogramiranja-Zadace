@@ -1,0 +1,134 @@
+{
+    "id": 0,
+    "name": "Tehnike programiranja, Zadaca 1, Zadatak 2",
+    "version": "3",
+    "languages": [
+        "C++"
+    ],
+    "tools": {
+        "compile": {
+            "require": "g++",
+            "features": [
+                "optimize",
+                "warn",
+                "pedantic",
+                "C++14"
+            ]
+        },
+        "compile[debug]": {
+            "require": "g++",
+            "features": [
+                "debug",
+                "C++14",
+                "asan"
+            ]
+        },
+        "execute": {
+            "require": "asan"
+        },
+        "debug": [],
+        "profile[asan]": {
+            "require": "asan",
+            "input_file": "stderr.txt",
+            "fast": true
+        }
+    },
+    "prepare": [
+        "compile"
+    ],
+    "tests": [
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "top_of_file",
+                            "code": "//---------------------------------------------------------------------------------------------------------------\n// Tehnike programiranja - Akademska 2023/2024 godina\n// Zadaca 1 - Zadatak 2\n// Odgovorni asistent: Vahidin Hasić - vhasic1@etf.unsa.ba\n// Za sva tehnicka pitanja vezana za autotestove za zadatak 2, obratite se na navedeni mail.\n//---------------------------------------------------------------------------------------------------------------"
+                        },
+                        {
+                            "position": "main",
+                            "code": "_main();"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "environment": {
+                            "stdin": "5 6\n\n2 3 3 1 2 3\n1 2 4 3 4 4\n2 3 4 5 3 2\n3 4 3 4 4 2\n1 2 3 3 4 3\n1\n\n"
+                        },
+                        "expect": [
+                            "Unesite broj redova i kolona matrice: Unesite elemente matrice: Unesite red filtriranja: \n\nMatrica nakon filtriranja:\n   2.00   2.50   3.00   3.00   3.00   3.50\n   2.00   3.00   3.00   3.00   3.00   3.00\n   2.50   3.00   4.00   4.00   4.00   3.50\n   2.50   3.00   3.00   4.00   3.00   3.00\n   2.50   3.00   3.00   3.50   3.50   3.50"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 1",
+            "id": 1
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "top_of_file",
+                            "code": "//---------------------------------------------------------------------------------------------------------------\n// Tehnike programiranja - Akademska 2023/2024 godina\n// Zadaca 1 - Zadatak 2\n// Odgovorni asistent: Vahidin Hasić - vhasic1@etf.unsa.ba\n// Za sva tehnicka pitanja vezana za autotestove za zadatak 2, obratite se na navedeni mail.\n//---------------------------------------------------------------------------------------------------------------"
+                        },
+                        {
+                            "position": "main",
+                            "code": "_main();"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "Unesite broj redova i kolona matrice: Unesite elemente matrice: Unesite red filtriranja: \n\nGRESKA: Neispravan red filtriranja!"
+                        ],
+                        "environment": {
+                            "stdin": "2 2\n1 2 3 4\n-1\n"
+                        }
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 2",
+            "id": 2
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "top_of_file",
+                            "code": "//---------------------------------------------------------------------------------------------------------------\n// Tehnike programiranja - Akademska 2023/2024 godina\n// Zadaca 1 - Zadatak 2\n// Odgovorni asistent: Vahidin Hasić - vhasic1@etf.unsa.ba\n// Za sva tehnicka pitanja vezana za autotestove za zadatak 2, obratite se na navedeni mail.\n//---------------------------------------------------------------------------------------------------------------"
+                        },
+                        {
+                            "position": "main",
+                            "code": "_main();"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "Unesite broj redova i kolona matrice: Unesite elemente matrice: Unesite red filtriranja: \n\nMatrica nakon filtriranja:\n   2.00   2.50   2.50   3.00"
+                        ],
+                        "environment": {
+                            "stdin": "1 4\n1.0 2.0 3.0 4.0\n2\n"
+                        }
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 3",
+            "id": 3
+        }
+    ]
+}

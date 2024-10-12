@@ -1,0 +1,354 @@
+{
+    "buildhost_description": {
+        "id": "etf.c9prim2",
+        "os": "Linux 5.15.0-82-generic x86_64\nUbuntu 20.04.6 LTS\n"
+    },
+    "tools": {
+        "compile": "9.4.0",
+        "compile[debug]": "9.4.0",
+        "debug": "9.2",
+        "profile[asan]": "9.4.0"
+    },
+    "status": 4,
+    "test_results": {
+        "1": {
+            "success": true,
+            "status": 1,
+            "tools": {
+                "patch": {
+                    "success": true
+                },
+                "compile[debug]": {
+                    "status": 1,
+                    "duration": 1,
+                    "output": "main.cpp: In function ‘int _main()’:\nmain.cpp:266:1: warning: no return statement in function returning non-void [-Wreturn-type]\n  266 | }\n      | ^",
+                    "exit_code": 0,
+                    "success": true,
+                    "parsed_output": [
+                        {
+                            "type": "warning",
+                            "file": "main.cpp",
+                            "line": 259,
+                            "col": "1",
+                            "message": "no return statement in function returning non-void",
+                            "code": "}"
+                        }
+                    ]
+                },
+                "execute": {
+                    "status": 1,
+                    "duration": 0,
+                    "output": "Datoteka sadrzi besmislene podatke",
+                    "exit_code": 0,
+                    "success": true
+                },
+                "debug": {
+                    "success": true
+                },
+                "profile[asan]": {
+                    "output": "",
+                    "status": 1,
+                    "success": true,
+                    "parsed_output": []
+                }
+            }
+        },
+        "2": {
+            "success": true,
+            "status": 1,
+            "tools": {
+                "patch": {
+                    "success": true
+                },
+                "compile[debug]": {
+                    "status": 1,
+                    "duration": 1,
+                    "output": "main.cpp: In function ‘int _main()’:\nmain.cpp:266:1: warning: no return statement in function returning non-void [-Wreturn-type]\n  266 | }\n      | ^",
+                    "exit_code": 0,
+                    "success": true,
+                    "parsed_output": [
+                        {
+                            "type": "warning",
+                            "file": "main.cpp",
+                            "line": 259,
+                            "col": "1",
+                            "message": "no return statement in function returning non-void",
+                            "code": "}"
+                        }
+                    ]
+                },
+                "execute": {
+                    "status": 1,
+                    "duration": 0,
+                    "output": "Vrsta spremnika: Bure\nSadrzaj: Suncokretovo ulje\nVlastita tezina: 5 (kg)\nSpecificna tezina tecnosti: 1300 (kg/m^3)\nZapremina tecnosti: 150 (l)\nUkupna tezina: 200 (kg)\n\nVrsta spremnika: Sanduk\nSadrzaj: Tepsije\nTezine predmeta: 2 3 1 2 2 4 3 1 3 (kg)\nVlastita tezina: 10 (kg)\nUkupna tezina: 31 (kg)\n\nVrsta spremnika: Vreca\nSadrzaj: Brasno\nVlastita tezina: 0.2 (kg)\nTezina pohranjene materije: 5 (kg)\nUkupna tezina: 5.2 (kg)\n",
+                    "exit_code": 0,
+                    "success": true
+                },
+                "debug": {
+                    "success": true
+                },
+                "profile[asan]": {
+                    "output": "",
+                    "status": 1,
+                    "success": true,
+                    "parsed_output": []
+                }
+            }
+        },
+        "4": {
+            "success": true,
+            "status": 1,
+            "tools": {
+                "patch": {
+                    "success": true
+                },
+                "compile[debug]": {
+                    "status": 1,
+                    "duration": 1,
+                    "output": "main.cpp: In function ‘int _main()’:\nmain.cpp:266:1: warning: no return statement in function returning non-void [-Wreturn-type]\n  266 | }\n      | ^",
+                    "exit_code": 0,
+                    "success": true,
+                    "parsed_output": [
+                        {
+                            "type": "warning",
+                            "file": "main.cpp",
+                            "line": 259,
+                            "col": "1",
+                            "message": "no return statement in function returning non-void",
+                            "code": "}"
+                        }
+                    ]
+                },
+                "execute": {
+                    "status": 1,
+                    "duration": 0,
+                    "output": "Datoteka sadrzi besmislene podatke",
+                    "exit_code": 0,
+                    "success": true
+                },
+                "debug": {
+                    "success": true
+                },
+                "profile[asan]": {
+                    "output": "",
+                    "status": 1,
+                    "success": true,
+                    "parsed_output": []
+                }
+            }
+        },
+        "5": {
+            "success": true,
+            "status": 1,
+            "tools": {
+                "patch": {
+                    "success": true
+                },
+                "compile[debug]": {
+                    "status": 1,
+                    "duration": 1,
+                    "output": "main.cpp: In function ‘int _main()’:\nmain.cpp:266:1: warning: no return statement in function returning non-void [-Wreturn-type]\n  266 | }\n      | ^",
+                    "exit_code": 0,
+                    "success": true,
+                    "parsed_output": [
+                        {
+                            "type": "warning",
+                            "file": "main.cpp",
+                            "line": 259,
+                            "col": "1",
+                            "message": "no return statement in function returning non-void",
+                            "code": "}"
+                        }
+                    ]
+                },
+                "execute": {
+                    "status": 1,
+                    "duration": 0,
+                    "output": "Vrsta spremnika: Bure\nSadrzaj: Voda\nVlastita tezina: 15 (kg)\nSpecificna tezina tecnosti: 1000 (kg/m^3)\nZapremina tecnosti: 200 (l)\nUkupna tezina: 215 (kg)\n\nVrsta spremnika: Bure\nSadrzaj: Krv\nVlastita tezina: 5 (kg)\nSpecificna tezina tecnosti: 1300 (kg/m^3)\nZapremina tecnosti: 150 (l)\nUkupna tezina: 200 (kg)\n\nVrsta spremnika: Sanduk\nSadrzaj: Voce\nTezine predmeta: 1 3 5 6 (kg)\nVlastita tezina: 50 (kg)\nUkupna tezina: 65 (kg)\n\nVrsta spremnika: Vreca\nSadrzaj: Secer\nVlastita tezina: 0.5 (kg)\nTezina pohranjene materije: 40 (kg)\nUkupna tezina: 40.5 (kg)\n\nVrsta spremnika: Vreca\nSadrzaj: Brasno\nVlastita tezina: 0.1 (kg)\nTezina pohranjene materije: 25.5 (kg)\nUkupna tezina: 25.6 (kg)\n",
+                    "exit_code": 0,
+                    "success": true
+                },
+                "debug": {
+                    "success": true
+                },
+                "profile[asan]": {
+                    "output": "",
+                    "status": 1,
+                    "success": true,
+                    "parsed_output": []
+                }
+            }
+        },
+        "6": {
+            "success": true,
+            "status": 1,
+            "tools": {
+                "patch": {
+                    "success": true
+                },
+                "compile[debug]": {
+                    "status": 1,
+                    "duration": 2,
+                    "output": "main.cpp: In function ‘int _main()’:\nmain.cpp:266:1: warning: no return statement in function returning non-void [-Wreturn-type]\n  266 | }\n      | ^",
+                    "exit_code": 0,
+                    "success": true,
+                    "parsed_output": [
+                        {
+                            "type": "warning",
+                            "file": "main.cpp",
+                            "line": 259,
+                            "col": "1",
+                            "message": "no return statement in function returning non-void",
+                            "code": "}"
+                        }
+                    ]
+                },
+                "execute": {
+                    "status": 1,
+                    "duration": 0,
+                    "output": "Vrsta spremnika: Vreca\nSadrzaj: Brasno\nVlastita tezina: 0.1 (kg)\nTezina pohranjene materije: 25.5 (kg)\nUkupna tezina: 25.6 (kg)\n4\nVrsta spremnika: Sanduk\nSadrzaj: Voce\nTezine predmeta: 1 3 5 6 (kg)\nVlastita tezina: 50 (kg)\nUkupna tezina: 65 (kg)",
+                    "exit_code": 0,
+                    "success": true
+                },
+                "debug": {
+                    "success": true
+                },
+                "profile[asan]": {
+                    "output": "",
+                    "status": 1,
+                    "success": true,
+                    "parsed_output": []
+                }
+            }
+        },
+        "8": {
+            "success": true,
+            "status": 1,
+            "tools": {
+                "patch": {
+                    "success": true
+                },
+                "compile[debug]": {
+                    "status": 1,
+                    "duration": 1,
+                    "output": "main.cpp: In function ‘int _main()’:\nmain.cpp:266:1: warning: no return statement in function returning non-void [-Wreturn-type]\n  266 | }\n      | ^",
+                    "exit_code": 0,
+                    "success": true,
+                    "parsed_output": [
+                        {
+                            "type": "warning",
+                            "file": "main.cpp",
+                            "line": 259,
+                            "col": "1",
+                            "message": "no return statement in function returning non-void",
+                            "code": "}"
+                        }
+                    ]
+                },
+                "execute": {
+                    "status": 1,
+                    "duration": 0,
+                    "output": "Skladiste je prazno",
+                    "exit_code": 0,
+                    "success": true
+                },
+                "debug": {
+                    "success": true
+                },
+                "profile[asan]": {
+                    "output": "",
+                    "status": 1,
+                    "success": true,
+                    "parsed_output": []
+                }
+            }
+        },
+        "10": {
+            "success": true,
+            "status": 1,
+            "tools": {
+                "patch": {
+                    "success": true
+                },
+                "compile[debug]": {
+                    "status": 1,
+                    "duration": 1,
+                    "output": "main.cpp: In function ‘int _main()’:\nmain.cpp:266:1: warning: no return statement in function returning non-void [-Wreturn-type]\n  266 | }\n      | ^",
+                    "exit_code": 0,
+                    "success": true,
+                    "parsed_output": [
+                        {
+                            "type": "warning",
+                            "file": "main.cpp",
+                            "line": 259,
+                            "col": "1",
+                            "message": "no return statement in function returning non-void",
+                            "code": "}"
+                        }
+                    ]
+                },
+                "execute": {
+                    "status": 1,
+                    "duration": 0,
+                    "output": "Trazena datoteka ne postoji",
+                    "exit_code": 0,
+                    "success": true
+                },
+                "debug": {
+                    "success": true
+                },
+                "profile[asan]": {
+                    "output": "",
+                    "status": 1,
+                    "success": true,
+                    "parsed_output": []
+                }
+            }
+        },
+        "12": {
+            "success": true,
+            "status": 1,
+            "tools": {
+                "patch": {
+                    "success": true
+                },
+                "compile[debug]": {
+                    "status": 1,
+                    "duration": 1,
+                    "output": "main.cpp: In function ‘int _main()’:\nmain.cpp:266:1: warning: no return statement in function returning non-void [-Wreturn-type]\n  266 | }\n      | ^",
+                    "exit_code": 0,
+                    "success": true,
+                    "parsed_output": [
+                        {
+                            "type": "warning",
+                            "file": "main.cpp",
+                            "line": 259,
+                            "col": "1",
+                            "message": "no return statement in function returning non-void",
+                            "code": "}"
+                        }
+                    ]
+                },
+                "execute": {
+                    "status": 1,
+                    "duration": 0,
+                    "output": "Vrsta spremnika: Bure\nSadrzaj: Krv\nVlastita tezina: 5 (kg)\nSpecificna tezina tecnosti: 1300 (kg/m^3)\nZapremina tecnosti: 150 (l)\nUkupna tezina: 200 (kg)\n\nVrsta spremnika: Sanduk\nSadrzaj: Voce\nTezine predmeta: 1 3 5 6 (kg)\nVlastita tezina: 50 (kg)\nUkupna tezina: 65 (kg)\n\nVrsta spremnika: Vreca\nSadrzaj: Brasno\nVlastita tezina: 0.1 (kg)\nTezina pohranjene materije: 25.5 (kg)\nUkupna tezina: 25.6 (kg)\n",
+                    "exit_code": 0,
+                    "success": true
+                },
+                "debug": {
+                    "success": true
+                },
+                "profile[asan]": {
+                    "output": "",
+                    "status": 1,
+                    "success": true,
+                    "parsed_output": []
+                }
+            }
+        }
+    },
+    "time": 1718993454,
+    "program_id": 103,
+    "task_id": "91798"
+}

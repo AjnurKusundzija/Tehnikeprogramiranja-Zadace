@@ -1,0 +1,196 @@
+{
+    "id": 0,
+    "name": "Tehnike programiranja, Zadaća 2, Zadatak 1",
+    "version": "3",
+    "languages": [
+        "C++"
+    ],
+    "tools": {
+        "compile": {
+            "require": "g++",
+            "features": [
+                "optimize",
+                "warn",
+                "pedantic",
+                "C++14"
+            ]
+        },
+        "compile[debug]": {
+            "require": "g++",
+            "features": [
+                "debug",
+                "C++14",
+                "asan"
+            ]
+        },
+        "execute": {
+            "require": "asan"
+        },
+        "debug": [],
+        "profile[asan]": {
+            "require": "asan",
+            "input_file": "stderr.txt",
+            "fast": true
+        }
+    },
+    "prepare": [
+        "compile"
+    ],
+    "tests": [
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "top_of_file",
+                            "code": "//---------------------------------------------------------------------------------------------------------------\n// Tehnike programiranja - Akademska 2023/2024 godina\n// Zadaća 2 - Zadatak 1\n// Odgovorni viši asistent: Haris Čapelj - hcapelj1@etf.unsa.ba\n// Za sva tehnička pitanja vezana za autotestove za zadatak 1, obratite se na navedeni mail.\n//---------------------------------------------------------------------------------------------------------------\n"
+                        },
+                        {
+                            "position": "main",
+                            "code": "// AT 1: Test main funkcije (postavka) - 1\n    {\n        _main();\n    }"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "environment": {
+                            "stdin": "-30 30 -10 10\nI7\nR1\nI20\nS+\nR-3\nI25\nR5\nI-3\nI7\nS-\nR11\nI-35\nR-1\nI10\nT\nR-3\nK\n"
+                        },
+                        "expect": [
+                            "Unesite dimenzije terena (xmin xmax ymin ymax): Robot je vidljiv, nalazi se na poziciji (0,0) i gleda na sjever.\nUnesi komandu: Robot je vidljiv, nalazi se na poziciji (0,7) i gleda na sjever.\nUnesi komandu: Robot je vidljiv, nalazi se na poziciji (0,7) i gleda na sjeverozapad.\nUnesi komandu: Robot je pokusao napustiti teren!\nRobot je vidljiv, nalazi se na poziciji (-3,10) i gleda na sjeverozapad.\nUnesi komandu: Robot je nevidljiv, nalazi se na poziciji (-3,10) i gleda na sjeverozapad.\nUnesi komandu: Robot je nevidljiv, nalazi se na poziciji (-3,10) i gleda na istok.\nUnesi komandu: Robot je nevidljiv, nalazi se na poziciji (22,10) i gleda na istok.\nUnesi komandu: Robot je nevidljiv, nalazi se na poziciji (22,10) i gleda na jugozapad.\nUnesi komandu: Robot je pokusao napustiti teren!\nRobot je nevidljiv, nalazi se na poziciji (22,10) i gleda na jugozapad.\nUnesi komandu: Robot je nevidljiv, nalazi se na poziciji (15,3) i gleda na jugozapad.\nUnesi komandu: Robot je vidljiv, nalazi se na poziciji (15,3) i gleda na jugozapad.\nUnesi komandu: Robot je vidljiv, nalazi se na poziciji (15,3) i gleda na istok.\nUnesi komandu: Robot je vidljiv, nalazi se na poziciji (-20,3) i gleda na istok.\nUnesi komandu: Robot je vidljiv, nalazi se na poziciji (-20,3) i gleda na jugoistok.\nUnesi komandu: Robot je vidljiv, nalazi se na poziciji (-10,-7) i gleda na jugoistok.\nUnesi komandu: ###############################################################\n#                           *                                 #\n#                            *                                #\n#                             *                               #\n#                              *                              #\n#                              *                              #\n#                              *                              #\n#                              *                              #\n#          ************************************               #\n#           *                  *                              #\n#            *                 *                              #\n#             *                *                              #\n#              *                                              #\n#               *                                             #\n#                *                                            #\n#                 *                                           #\n#                  *                                          #\n#                   *                                         #\n#                    O                                        #\n#                                                             #\n#                                                             #\n#                                                             #\n###############################################################\nUnesi komandu: Robot je vidljiv, nalazi se na poziciji (-10,-7) i gleda na zapad.\nUnesi komandu: Dovidjenja!"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 1",
+            "id": 1
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "top_of_file",
+                            "code": "//---------------------------------------------------------------------------------------------------------------\n// Tehnike programiranja - Akademska 2023/2024 godina\n// Zadaća 2 - Zadatak 1\n// Odgovorni viši asistent: Haris Čapelj - hcapelj1@etf.unsa.ba\n// Za sva tehnička pitanja vezana za autotestove za zadatak 1, obratite se na navedeni mail.\n//---------------------------------------------------------------------------------------------------------------\n"
+                        },
+                        {
+                            "position": "main",
+                            "code": "// AT 2: Test main funkcije (postavka) - 2\n    {\n        _main();\n    }\n"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "Unesite dimenzije terena (xmin xmax ymin ymax): Robot je vidljiv, nalazi se na poziciji (-10,2) i gleda na sjever.\nUnesi komandu: Robot je vidljiv, nalazi se na poziciji (-10,2) i gleda na istok.\nUnesi komandu: Komanda trazi parametar koji nije naveden!\nUnesi komandu: Robot je vidljiv, nalazi se na poziciji (-5,2) i gleda na istok.\nUnesi komandu: Robot je nevidljiv, nalazi se na poziciji (-5,2) i gleda na istok.\nUnesi komandu: Robot je nevidljiv, nalazi se na poziciji (-5,2) i gleda na jugoistok.\nUnesi komandu: Robot je nevidljiv, nalazi se na poziciji (-2,-1) i gleda na jugoistok.\nUnesi komandu: Robot je nevidljiv, nalazi se na poziciji (-2,-1) i gleda na jug.\nUnesi komandu: Nerazumljiva komanda!\nUnesi komandu: Robot je vidljiv, nalazi se na poziciji (-2,-1) i gleda na jug.\nUnesi komandu: Parametar komande nije ispravan!\nUnesi komandu: Robot je vidljiv, nalazi se na poziciji (-2,-1) i gleda na zapad.\nUnesi komandu: Parametar komande nije ispravan!\nUnesi komandu: Robot je vidljiv, nalazi se na poziciji (-2,-1) i gleda na zapad.\nUnesi komandu: Robot je vidljiv, nalazi se na poziciji (-12,-1) i gleda na zapad.\nUnesi komandu: Zadan je suvisan parametar nakon komande!\nUnesi komandu: Robot je vidljiv, nalazi se na poziciji (-12,-1) i gleda na jugoistok.\nUnesi komandu: Robot je pokusao napustiti teren!\nRobot je vidljiv, nalazi se na poziciji (-7,-6) i gleda na jugoistok.\nUnesi komandu: ###########################################\n#                                         #\n#                                         #\n#                                         #\n#                                         #\n#                                         #\n#                                         #\n#                                         #\n#                                         #\n#                    ******               #\n#                                         #\n#                                         #\n#                  ***********            #\n#                   *                     #\n#                    *                    #\n#                     *                   #\n#                      *                  #\n#                       O                 #\n###########################################\nUnesi komandu: Robot je vidljiv, nalazi se na poziciji (-7,-6) i gleda na sjeverozapad.\nUnesi komandu: Robot je vidljiv, nalazi se na poziciji (-7,-6) i gleda na sjeverozapad.\nUnesi komandu: Robot je vidljiv, nalazi se na poziciji (-14,1) i gleda na sjeverozapad.\nUnesi komandu: Robot je vidljiv, nalazi se na poziciji (-14,1) i gleda na istok.\nUnesi komandu: Zadan je suvisan parametar nakon komande!\nUnesi komandu: Dovidjenja!"
+                        ],
+                        "environment": {
+                            "stdin": "-30 10 -6 10\nR-2\nI\nI   5\nS+\n     R -1\n     I3\nR7\nM\nS-\nIXY2\nR-2\nI2XY\nI0\nI10\nT2\nR3\nI8\nT\nR4\nR0\nI7\nR5\nKK\nK"
+                        }
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 2",
+            "id": 2
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "top_of_file",
+                            "code": "//---------------------------------------------------------------------------------------------------------------\n// Tehnike programiranja - Akademska 2023/2024 godina\n// Zadaća 2 - Zadatak 1\n// Odgovorni viši asistent: Haris Čapelj - hcapelj1@etf.unsa.ba\n// Za sva tehnička pitanja vezana za autotestove za zadatak 1, obratite se na navedeni mail.\n//---------------------------------------------------------------------------------------------------------------\n"
+                        },
+                        {
+                            "position": "main",
+                            "code": "// AT 4: Test main funkcije - Razni slucajevi gresaka\n    {\n        _main();\n    }"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "Unesite dimenzije terena (xmin xmax ymin ymax): Robot je vidljiv, nalazi se na poziciji (-10,2) i gleda na sjever.\nUnesi komandu: Nerazumljiva komanda!\nUnesi komandu: Nerazumljiva komanda!\nUnesi komandu: Komanda trazi parametar koji nije naveden!\nUnesi komandu: Parametar komande nije ispravan!\nUnesi komandu: Komanda trazi parametar koji nije naveden!\nUnesi komandu: Parametar komande nije ispravan!\nUnesi komandu: Zadan je suvisan parametar nakon komande!\nUnesi komandu: Parametar komande nije ispravan!\nUnesi komandu: Nerazumljiva komanda!\nUnesi komandu: Zadan je suvisan parametar nakon komande!\nUnesi komandu: Zadan je suvisan parametar nakon komande!\nUnesi komandu: Zadan je suvisan parametar nakon komande!\nUnesi komandu: Zadan je suvisan parametar nakon komande!\nUnesi komandu: Dovidjenja!"
+                        ],
+                        "environment": {
+                            "stdin": "-30 10 -6 10\nznj\n   F\nI\nI D\nR\nR s\nI 2 F\n   I F 2\nS*\nS+-\nS-+\nTT\nT82\nK"
+                        }
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 3",
+            "id": 3
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "top_of_file",
+                            "code": "//---------------------------------------------------------------------------------------------------------------\n// Tehnike programiranja - Akademska 2023/2024 godina\n// Zadaća 2 - Zadatak 1\n// Odgovorni viši asistent: Haris Čapelj - hcapelj1@etf.unsa.ba\n// Za sva tehnička pitanja vezana za autotestove za zadatak 1, obratite se na navedeni mail.\n//---------------------------------------------------------------------------------------------------------------\n"
+                        },
+                        {
+                            "position": "main",
+                            "code": "// AT 5: Test main funkcije - Slovo T\n    {\n        _main();\n    }\n"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "Unesite dimenzije terena (xmin xmax ymin ymax): Robot je vidljiv, nalazi se na poziciji (0,0) i gleda na sjever.\nUnesi komandu: Robot je vidljiv, nalazi se na poziciji (0,10) i gleda na sjever.\nUnesi komandu: #################################\n#               O               #\n#               *               #\n#               *               #\n#               *               #\n#               *               #\n#               *               #\n#               *               #\n#               *               #\n#               *               #\n#               *               #\n#               *               #\n#                               #\n#                               #\n#                               #\n#                               #\n#                               #\n#                               #\n#                               #\n#                               #\n#                               #\n#                               #\n#################################\nUnesi komandu: Robot je vidljiv, nalazi se na poziciji (0,10) i gleda na sjeverozapad.\nUnesi komandu: Robot je vidljiv, nalazi se na poziciji (0,10) i gleda na zapad.\nUnesi komandu: Robot je vidljiv, nalazi se na poziciji (-15,10) i gleda na zapad.\nUnesi komandu: #################################\n#O***************               #\n#               *               #\n#               *               #\n#               *               #\n#               *               #\n#               *               #\n#               *               #\n#               *               #\n#               *               #\n#               *               #\n#               *               #\n#                               #\n#                               #\n#                               #\n#                               #\n#                               #\n#                               #\n#                               #\n#                               #\n#                               #\n#                               #\n#################################\nUnesi komandu: Robot je vidljiv, nalazi se na poziciji (-15,10) i gleda na sjeveroistok.\nUnesi komandu: Robot je vidljiv, nalazi se na poziciji (-15,10) i gleda na sjever.\nUnesi komandu: Robot je vidljiv, nalazi se na poziciji (-15,10) i gleda na istok.\nUnesi komandu: Robot je vidljiv, nalazi se na poziciji (15,10) i gleda na istok.\nUnesi komandu: #################################\n#******************************O#\n#               *               #\n#               *               #\n#               *               #\n#               *               #\n#               *               #\n#               *               #\n#               *               #\n#               *               #\n#               *               #\n#               *               #\n#                               #\n#                               #\n#                               #\n#                               #\n#                               #\n#                               #\n#                               #\n#                               #\n#                               #\n#                               #\n#################################\nUnesi komandu: Robot je vidljiv, nalazi se na poziciji (15,10) i gleda na sjeverozapad.\nUnesi komandu: Robot je vidljiv, nalazi se na poziciji (15,10) i gleda na zapad.\nUnesi komandu: Robot je vidljiv, nalazi se na poziciji (0,10) i gleda na zapad.\nUnesi komandu: #################################\n#***************O***************#\n#               *               #\n#               *               #\n#               *               #\n#               *               #\n#               *               #\n#               *               #\n#               *               #\n#               *               #\n#               *               #\n#               *               #\n#                               #\n#                               #\n#                               #\n#                               #\n#                               #\n#                               #\n#                               #\n#                               #\n#                               #\n#                               #\n#################################\nUnesi komandu: Robot je vidljiv, nalazi se na poziciji (0,10) i gleda na istok.\nUnesi komandu: Robot je vidljiv, nalazi se na poziciji (0,10) i gleda na sjever.\nUnesi komandu: Robot je vidljiv, nalazi se na poziciji (0,10) i gleda na jug.\nUnesi komandu: Robot je vidljiv, nalazi se na poziciji (0,-10) i gleda na jug.\nUnesi komandu: #################################\n#*******************************#\n#               *               #\n#               *               #\n#               *               #\n#               *               #\n#               *               #\n#               *               #\n#               *               #\n#               *               #\n#               *               #\n#               *               #\n#               *               #\n#               *               #\n#               *               #\n#               *               #\n#               *               #\n#               *               #\n#               *               #\n#               *               #\n#               *               #\n#               O               #\n#################################\nUnesi komandu: Dovidjenja!"
+                        ],
+                        "environment": {
+                            "stdin": "-15 15 -10 10\nI10\nT\nR1\nR1\nI15\nT\nR5\nR1\nR-2\nI30\nT\nR3\nR1\nI15\nT\nR4\nR2\nR4\nI20\nT\nK"
+                        }
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 4",
+            "id": 4
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "top_of_file",
+                            "code": "//---------------------------------------------------------------------------------------------------------------\n// Tehnike programiranja - Akademska 2023/2024 godina\n// Zadaća 2 - Zadatak 1\n// Odgovorni viši asistent: Haris Čapelj - hcapelj1@etf.unsa.ba\n// Za sva tehnička pitanja vezana za autotestove za zadatak 1, obratite se na navedeni mail.\n//---------------------------------------------------------------------------------------------------------------\n"
+                        },
+                        {
+                            "position": "main",
+                            "code": "// AT 7: Test main funkcije - Slovo P\n    {\n        _main();\n    }"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "Unesite dimenzije terena (xmin xmax ymin ymax): Robot je vidljiv, nalazi se na poziciji (0,0) i gleda na sjever.\nUnesi komandu: Robot je pokusao napustiti teren!\nRobot je vidljiv, nalazi se na poziciji (0,20) i gleda na sjever.\nUnesi komandu: Robot je vidljiv, nalazi se na poziciji (0,20) i gleda na jug.\nUnesi komandu: Robot je pokusao napustiti teren!\nRobot je vidljiv, nalazi se na poziciji (0,-20) i gleda na jug.\nUnesi komandu: Robot je vidljiv, nalazi se na poziciji (0,-20) i gleda na sjever.\nUnesi komandu: Robot je pokusao napustiti teren!\nRobot je vidljiv, nalazi se na poziciji (0,20) i gleda na sjever.\nUnesi komandu: Robot je vidljiv, nalazi se na poziciji (0,20) i gleda na jug.\nUnesi komandu: Robot je vidljiv, nalazi se na poziciji (0,20) i gleda na sjever.\nUnesi komandu: Robot je vidljiv, nalazi se na poziciji (0,20) i gleda na zapad.\nUnesi komandu: Robot je vidljiv, nalazi se na poziciji (0,20) i gleda na istok.\nUnesi komandu: Robot je vidljiv, nalazi se na poziciji (10,20) i gleda na istok.\nUnesi komandu: Robot je vidljiv, nalazi se na poziciji (10,20) i gleda na sjeveroistok.\nUnesi komandu: Robot je vidljiv, nalazi se na poziciji (10,20) i gleda na jugoistok.\nUnesi komandu: Robot je vidljiv, nalazi se na poziciji (15,15) i gleda na jugoistok.\nUnesi komandu: Robot je vidljiv, nalazi se na poziciji (15,15) i gleda na jug.\nUnesi komandu: Robot je vidljiv, nalazi se na poziciji (15,10) i gleda na jug.\nUnesi komandu: Robot je vidljiv, nalazi se na poziciji (15,10) i gleda na jugozapad.\nUnesi komandu: Robot je vidljiv, nalazi se na poziciji (10,5) i gleda na jugozapad.\nUnesi komandu: Robot je vidljiv, nalazi se na poziciji (10,5) i gleda na zapad.\nUnesi komandu: Robot je vidljiv, nalazi se na poziciji (0,5) i gleda na zapad.\nUnesi komandu: ###########################################\n#                    ***********          #\n#                    *          *         #\n#                    *           *        #\n#                    *            *       #\n#                    *             *      #\n#                    *              *     #\n#                    *              *     #\n#                    *              *     #\n#                    *              *     #\n#                    *              *     #\n#                    *              *     #\n#                    *             *      #\n#                    *            *       #\n#                    *           *        #\n#                    *          *         #\n#                    O**********          #\n#                    *                    #\n#                    *                    #\n#                    *                    #\n#                    *                    #\n#                    *                    #\n#                    *                    #\n#                    *                    #\n#                    *                    #\n#                    *                    #\n#                    *                    #\n#                    *                    #\n#                    *                    #\n#                    *                    #\n#                    *                    #\n#                    *                    #\n#                    *                    #\n#                    *                    #\n#                    *                    #\n#                    *                    #\n#                    *                    #\n#                    *                    #\n#                    *                    #\n#                    *                    #\n#                    *                    #\n#                    *                    #\n###########################################\nUnesi komandu: Dovidjenja!"
+                        ],
+                        "environment": {
+                            "stdin": "-20 20 -20 20\nI30\nR4\nI50\nR-4\nI50\nR4\nR4\nR2\nR-4\nI10\nR1\nR-2\nI5\nR-1\nI5\nR-1\nI5\nR-1\nI10\nT\nK"
+                        }
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 5",
+            "id": 5
+        }
+    ]
+}

@@ -1,0 +1,92 @@
+{
+    "id": 0,
+    "name": "Tehnike programiranja, Skriveni Z 4, Zadatak 3",
+    "version": "3",
+    "languages": [
+        "C++"
+    ],
+    "tools": {
+        "compile": {
+            "require": "g++",
+            "features": [
+                "optimize",
+                "warn",
+                "pedantic",
+                "C++14"
+            ]
+        },
+        "compile[debug]": {
+            "require": "g++",
+            "features": [
+                "debug",
+                "C++14",
+                "asan"
+            ]
+        },
+        "execute": {
+            "require": "asan"
+        },
+        "debug": [],
+        "profile[asan]": {
+            "require": "asan",
+            "input_file": "stderr.txt",
+            "fast": true
+        }
+    },
+    "prepare": [
+        "compile"
+    ],
+    "tests": [
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "top_of_file",
+                            "code": "//---------------------------------------------------------------------------------------------------------------\n// Tehnike programiranja - Akademska 2023/2024 godina\n// Zadaća 4 - Zadatak 3\n// Odgovorni asistent: Vahidin Hasić vhasic1@etf.unsa.ba\n// Za sva tehnička pitanja vezana za autotestove za zadatak 4, obratite se na navedeni mail.\n//---------------------------------------------------------------------------------------------------------------"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "environment": {
+                            "stdin": "2 \n1 \nNeko Nekić\n15 5 2024 11 15 \n1\nHuso Husić\n20 5 2024 15 00 \n2\n1\nNeko Drugi\n15 1 2024 15 55\n3\n20 5 2024\n7\n20 5 2024\n8\n9\n1\nNeko Nekić\n15 5 2024 11 15\n1\nHuso Husić\n20 5 2024 15 00\n6\nHuso Husić\n5\n2\n10"
+                        },
+                        "expect": [
+                            "Unesite maksimalni broj pregleda: 1. Registriraj Pregled\n2. Daj Broj Pregleda\n3. Daj Broj Pregleda Na Datum\n4. Daj Najraniji Pregled\n5. Obrisi Najraniji Pregled\n6. Obrisi Preglede Pacijenta\n7. Ispisi Preglede Na Datum\n8. Ispisi Sve Preglede\n9. Isprazni Kolekciju\n10. Izlaz\nUnesite izbor: Unesite ime pacijenta: Unesite datum i vrijeme pregleda (dan mjesec godina sati minute): 1. Registriraj Pregled\n2. Daj Broj Pregleda\n3. Daj Broj Pregleda Na Datum\n4. Daj Najraniji Pregled\n5. Obrisi Najraniji Pregled\n6. Obrisi Preglede Pacijenta\n7. Ispisi Preglede Na Datum\n8. Ispisi Sve Preglede\n9. Isprazni Kolekciju\n10. Izlaz\nUnesite izbor: Unesite ime pacijenta: Unesite datum i vrijeme pregleda (dan mjesec godina sati minute): 1. Registriraj Pregled\n2. Daj Broj Pregleda\n3. Daj Broj Pregleda Na Datum\n4. Daj Najraniji Pregled\n5. Obrisi Najraniji Pregled\n6. Obrisi Preglede Pacijenta\n7. Ispisi Preglede Na Datum\n8. Ispisi Sve Preglede\n9. Isprazni Kolekciju\n10. Izlaz\nUnesite izbor: Ukupan broj pregleda: 2\n1. Registriraj Pregled\n2. Daj Broj Pregleda\n3. Daj Broj Pregleda Na Datum\n4. Daj Najraniji Pregled\n5. Obrisi Najraniji Pregled\n6. Obrisi Preglede Pacijenta\n7. Ispisi Preglede Na Datum\n8. Ispisi Sve Preglede\n9. Isprazni Kolekciju\n10. Izlaz\nUnesite izbor: Unesite ime pacijenta: Unesite datum i vrijeme pregleda (dan mjesec godina sati minute): Dostignut maksimalni broj pregleda\n1. Registriraj Pregled\n2. Daj Broj Pregleda\n3. Daj Broj Pregleda Na Datum\n4. Daj Najraniji Pregled\n5. Obrisi Najraniji Pregled\n6. Obrisi Preglede Pacijenta\n7. Ispisi Preglede Na Datum\n8. Ispisi Sve Preglede\n9. Isprazni Kolekciju\n10. Izlaz\nUnesite izbor: Unesite datum (dan mjesec godina): Broj pregleda na datum: 1\n1. Registriraj Pregled\n2. Daj Broj Pregleda\n3. Daj Broj Pregleda Na Datum\n4. Daj Najraniji Pregled\n5. Obrisi Najraniji Pregled\n6. Obrisi Preglede Pacijenta\n7. Ispisi Preglede Na Datum\n8. Ispisi Sve Preglede\n9. Isprazni Kolekciju\n10. Izlaz\nUnesite izbor: Unesite datum: Huso Husić                   20/5/2024 15:00\n1. Registriraj Pregled\n2. Daj Broj Pregleda\n3. Daj Broj Pregleda Na Datum\n4. Daj Najraniji Pregled\n5. Obrisi Najraniji Pregled\n6. Obrisi Preglede Pacijenta\n7. Ispisi Preglede Na Datum\n8. Ispisi Sve Preglede\n9. Isprazni Kolekciju\n10. Izlaz\nUnesite izbor: Svi pregledi:\nNeko Nekić                   15/5/2024 11:15\nHuso Husić                   20/5/2024 15:00\n1. Registriraj Pregled\n2. Daj Broj Pregleda\n3. Daj Broj Pregleda Na Datum\n4. Daj Najraniji Pregled\n5. Obrisi Najraniji Pregled\n6. Obrisi Preglede Pacijenta\n7. Ispisi Preglede Na Datum\n8. Ispisi Sve Preglede\n9. Isprazni Kolekciju\n10. Izlaz\nUnesite izbor: Kolekcija ispraznjena.\n1. Registriraj Pregled\n2. Daj Broj Pregleda\n3. Daj Broj Pregleda Na Datum\n4. Daj Najraniji Pregled\n5. Obrisi Najraniji Pregled\n6. Obrisi Preglede Pacijenta\n7. Ispisi Preglede Na Datum\n8. Ispisi Sve Preglede\n9. Isprazni Kolekciju\n10. Izlaz\nUnesite izbor: Unesite ime pacijenta: Unesite datum i vrijeme pregleda (dan mjesec godina sati minute): 1. Registriraj Pregled\n2. Daj Broj Pregleda\n3. Daj Broj Pregleda Na Datum\n4. Daj Najraniji Pregled\n5. Obrisi Najraniji Pregled\n6. Obrisi Preglede Pacijenta\n7. Ispisi Preglede Na Datum\n8. Ispisi Sve Preglede\n9. Isprazni Kolekciju\n10. Izlaz\nUnesite izbor: Unesite ime pacijenta: Unesite datum i vrijeme pregleda (dan mjesec godina sati minute): 1. Registriraj Pregled\n2. Daj Broj Pregleda\n3. Daj Broj Pregleda Na Datum\n4. Daj Najraniji Pregled\n5. Obrisi Najraniji Pregled\n6. Obrisi Preglede Pacijenta\n7. Ispisi Preglede Na Datum\n8. Ispisi Sve Preglede\n9. Isprazni Kolekciju\n10. Izlaz\nUnesite izbor: Unesite ime pacijenta: Pregledi za pacijenta Huso Husić su obrisani.\n1. Registriraj Pregled\n2. Daj Broj Pregleda\n3. Daj Broj Pregleda Na Datum\n4. Daj Najraniji Pregled\n5. Obrisi Najraniji Pregled\n6. Obrisi Preglede Pacijenta\n7. Ispisi Preglede Na Datum\n8. Ispisi Sve Preglede\n9. Isprazni Kolekciju\n10. Izlaz\nUnesite izbor: Najraniji pregled je obrisan.\n1. Registriraj Pregled\n2. Daj Broj Pregleda\n3. Daj Broj Pregleda Na Datum\n4. Daj Najraniji Pregled\n5. Obrisi Najraniji Pregled\n6. Obrisi Preglede Pacijenta\n7. Ispisi Preglede Na Datum\n8. Ispisi Sve Preglede\n9. Isprazni Kolekciju\n10. Izlaz\nUnesite izbor: Ukupan broj pregleda: 0\n1. Registriraj Pregled\n2. Daj Broj Pregleda\n3. Daj Broj Pregleda Na Datum\n4. Daj Najraniji Pregled\n5. Obrisi Najraniji Pregled\n6. Obrisi Preglede Pacijenta\n7. Ispisi Preglede Na Datum\n8. Ispisi Sve Preglede\n9. Isprazni Kolekciju\n10. Izlaz\nUnesite izbor: Kraj programa."
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 1",
+            "id": 1
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "main",
+                            "code": "        Datum d(15, 4, 2021);\n        Vrijeme v(23, 59);\n\n        d.Ispisi();\n        std::cout << std::endl;\n        v.Ispisi();\n        std::cout << std::endl;\n\n        try\n        {\n            d.Postavi(-1, 2, 2023);\n        }\n        catch(const std::domain_error& e)\n        {\n            std::cout << e.what() << '\\n';\n        }\n\n        try\n        {\n            v.Postavi(25, 10);\n        }\n        catch (const std::domain_error &e)\n        {\n            std::cout << e.what() << '\\n';\n        }\n\n        Pregled p(\"Neko Nekić\", d, v);\n        p.Ispisi();\n\n        Pregledi pregledi(0);\n        try {\n            pregledi.RegistrirajPregled(\"Neko Nekić\", 1, 1, 2022, 8, 0);\n        } catch (const std::range_error &e) {\n            std::cout << e.what() << '\\n';\n        }\n        try\n        {\n            p = pregledi.DajNajranijiPregled();\n        }\n        catch (const std::domain_error &e)\n        {\n            std::cout << e.what() << '\\n';\n        }\n        try\n        {\n            pregledi.ObrisiNajranijiPregled();\n        }\n        catch (const std::range_error &e)\n        {\n            std::cout << e.what() << '\\n';\n        }"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "\t15/4/2021\n23:59\nNeispravan datum\nNeispravno vrijeme\nNeko Nekić                   15/4/2021 23:59\nDostignut maksimalni broj pregleda\nNema registriranih pregleda\nPrazna kolekcija"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 10",
+            "id": 11
+        }
+    ]
+}

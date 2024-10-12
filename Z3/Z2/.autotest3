@@ -1,0 +1,190 @@
+{
+    "id": 0,
+    "name": "Tehnike programiranja, Zadaća 3, Zadatak 2",
+    "version": "3",
+    "languages": [
+        "C++"
+    ],
+    "tools": {
+        "compile": {
+            "require": "g++",
+            "features": [
+                "optimize",
+                "warn",
+                "pedantic",
+                "C++14"
+            ]
+        },
+        "compile[debug]": {
+            "require": "g++",
+            "features": [
+                "debug",
+                "C++14",
+                "asan"
+            ]
+        },
+        "execute": {
+            "require": "asan"
+        },
+        "debug": [],
+        "profile[asan]": {
+            "require": "asan",
+            "input_file": "stderr.txt",
+            "fast": true
+        }
+    },
+    "prepare": [
+        "compile"
+    ],
+    "tests": [
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "top_of_file",
+                            "code": "//---------------------------------------------------------------------------------------------------------------\n// Tehnike programiranja - Akademska 2023/2024 godina\n// Zadaca 3 - Zadatak 2\n// Odgovorni asistent: Majda Čurtić-Hodžić - mcurtic1@etf.unsa.ba\n// Za sva tehnicka pitanja vezana za autotestove za zadatak 2, obratite se na navedeni mail.\n//---------------------------------------------------------------------------------------------------------------"
+                        },
+                        {
+                            "position": "main",
+                            "code": "_main();"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "environment": {
+                            "stdin": "I\nabc qwe stsda abc abc dhi qwe hrkw dhi\n\n\nAbc\nhrkw\nxyzzy\n#?@@!\n"
+                        },
+                        "expect": [
+                            "Unesite naziv poglavlja: \nUnesite sadrzaj stranice 1: \nUnesite sadrzaj stranice 2:\nUnesite naziv poglavlja:\n\nKreirani indeks pojmova:\nABC: I/1/1, I/1/15, I/1/19\nDHI: I/1/23, I/1/36\nHRKW: I/1/31\nQWE: I/1/5, I/1/27\nSTSDA: I/1/9\n\nUnesite rijec:\nRijec nadjena na pozicijama: I/1/1 I/1/15 I/1/19\nUnesite rijec: \nRijec nadjena na pozicijama: I/1/31\nUnesite rijec: \nRijec nije nadjena!\nUnesite rijec: \nNeispravna rijec!\nUnesite rijec:\nDovidjenja!"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 1",
+            "id": 1
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "top_of_file",
+                            "code": "//---------------------------------------------------------------------------------------------------------------\n// Tehnike programiranja - Akademska 2023/2024 godina\n// Zadaca 3 - Zadatak 2\n// Odgovorni asistent: Majda Čurtić-Hodžić - mcurtic1@etf.unsa.ba\n// Za sva tehnicka pitanja vezana za autotestove za zadatak 2, obratite se na navedeni mail.\n//---------------------------------------------------------------------------------------------------------------"
+                        },
+                        {
+                            "position": "main",
+                            "code": "_main();"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "environment": {
+                            "stdin": "I\n\nII\npqr, ab/123 (qwe) tt2\n\n"
+                        },
+                        "expect": [
+                            "Unesite naziv poglavlja: \nUnesite sadrzaj stranice 1:\nUnesite naziv poglavlja: \nUnesite sadrzaj stranice 1: \nUnesite sadrzaj stranice 2:\nUnesite naziv poglavlja:\n\nKreirani indeks pojmova:\n123: II/1/9\nAB: II/1/6\nPQR: II/1/1\nQWE: II/1/14\nTT2: II/1/19\n\nUnesite rijec:\nDovidjenja!"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 2",
+            "id": 2
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "top_of_file",
+                            "code": "//---------------------------------------------------------------------------------------------------------------\n// Tehnike programiranja - Akademska 2023/2024 godina\n// Zadaca 3 - Zadatak 2\n// Odgovorni asistent: Majda Čurtić-Hodžić - mcurtic1@etf.unsa.ba\n// Za sva tehnicka pitanja vezana za autotestove za zadatak 2, obratite se na navedeni mail.\n//---------------------------------------------------------------------------------------------------------------"
+                        },
+                        {
+                            "position": "main",
+                            "code": "_main();"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "environment": {
+                            "stdin": "\n?\nwhat?\nok\n.\naaaaaa\n\n\n"
+                        },
+                        "expect": [
+                            "Unesite naziv poglavlja:\n\nKreirani indeks pojmova:\n\nUnesite rijec: \nNeispravna rijec!\nUnesite rijec: \nNeispravna rijec!\nUnesite rijec: \nRijec nije nadjena!\nUnesite rijec: \nNeispravna rijec!\nUnesite rijec: \nRijec nije nadjena!\nUnesite rijec:\nDovidjenja!"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 3",
+            "id": 3
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "top_of_file",
+                            "code": "//---------------------------------------------------------------------------------------------------------------\n// Tehnike programiranja - Akademska 2023/2024 godina\n// Zadaca 3 - Zadatak 2\n// Odgovorni asistent: Majda Čurtić-Hodžić - mcurtic1@etf.unsa.ba\n// Za sva tehnicka pitanja vezana za autotestove za zadatak 2, obratite se na navedeni mail.\n//---------------------------------------------------------------------------------------------------------------"
+                        },
+                        {
+                            "position": "main",
+                            "code": "Knjiga Nova={{\"1.\",{\"prvo\"}}, {\"2.\", {\"drugo\"}}, {\"3.\", {\"trece\"}}};\nstd::map<std::string, std::set<std::tuple<std::string, int, int>>> indeksi_pojmova{KreirajIndeksPojmova(Nova)};\ntry{\n    std::set<std::tuple<std::string, int, int>>pozicije{PretraziIndeksPojmova(\"...\",indeksi_pojmova)};\n    std::cout<<\"GRESKA!\"<<std::endl;\n}\ncatch(std::domain_error &e){\n    std::cout<<\"IZUZETAK: \"<<e.what()<<\"!\"<<std::endl;\n}"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "IZUZETAK: Neispravna rijec!\n"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 4",
+            "id": 4
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "top_of_file",
+                            "code": "//---------------------------------------------------------------------------------------------------------------\n// Tehnike programiranja - Akademska 2023/2024 godina\n// Zadaca 3 - Zadatak 2\n// Odgovorni asistent: Majda Čurtić-Hodžić - mcurtic1@etf.unsa.ba\n// Za sva tehnicka pitanja vezana za autotestove za zadatak 2, obratite se na navedeni mail.\n//---------------------------------------------------------------------------------------------------------------"
+                        },
+                        {
+                            "position": "main",
+                            "code": "Knjiga Nova = {\n    {\"I\", {\"Pazljivo procitati zadatak!\"}},\n    {\"II\", {\"Izdvojiti lagano zahtjeve.\"}},\n    {\"III\", {\"Napisati kod PAZLJIVO :)\"}},\n    {\"IV\", {\"Lagano ubrati sve bodove ;)\"}}\n};\nstd::map<std::string, std::set<std::tuple<std::string, int, int>>> indeksi_pojmova{KreirajIndeksPojmova(Nova)};\ntry{\n    std::set<std::tuple<std::string, int, int>> pozicije1{PretraziIndeksPojmova(\"lAgAnO\",indeksi_pojmova)};\n    std::cout<<\"Rijec se pojavljuje \"<<pozicije1.size()<<\"x u knjizi.\"<<std::endl;\n    std::set<std::tuple<std::string, int, int>> pozicije2{PretraziIndeksPojmova(\"pazLJiVo\",indeksi_pojmova)};\n    std::cout<<\"Rijec se pojavljuje \"<<pozicije2.size()<<\"x u knjizi.\"<<std::endl;\n    std::set<std::tuple<std::string, int, int>> pozicije3{PretraziIndeksPojmova(\":)\",indeksi_pojmova)};\n    std::cout<<\"Rijec se pojavljuje \"<<pozicije3.size()<<\"x u knjizi.\"<<std::endl;\n}\ncatch(std::domain_error &e){\n    std::cout<<\"IZUZETAK: \"<<e.what()<<\"!\"<<std::endl;\n}"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "Rijec se pojavljuje 2x u knjizi.\nRijec se pojavljuje 2x u knjizi.\nIZUZETAK: Neispravna rijec!\n"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 5",
+            "id": 5
+        }
+    ]
+}

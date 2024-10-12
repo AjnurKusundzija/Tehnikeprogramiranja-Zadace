@@ -1,0 +1,190 @@
+{
+    "id": 0,
+    "name": "Tehnike programiranja, Zadaća 1, Zadatak 4",
+    "version": "3",
+    "languages": [
+        "C++"
+    ],
+    "tools": {
+        "compile": {
+            "require": "g++",
+            "features": [
+                "optimize",
+                "warn",
+                "pedantic",
+                "C++14"
+            ]
+        },
+        "compile[debug]": {
+            "require": "g++",
+            "features": [
+                "debug",
+                "C++14",
+                "asan"
+            ]
+        },
+        "execute": {
+            "require": "asan"
+        },
+        "debug": [],
+        "profile[asan]": {
+            "require": "asan",
+            "input_file": "stderr.txt",
+            "fast": true
+        }
+    },
+    "prepare": [
+        "compile"
+    ],
+    "tests": [
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "top_of_file",
+                            "code": "//---------------------------------------------------------------------------------------------------------------\n// Tehnike programiranja - Akademska 2023/2024 godina\n// Zadaća 1 - Zadatak 4\n// Odgovorni viši asistent: Haris Čapelj - hcapelj1@etf.unsa.ba\n// Za sva tehnička pitanja vezana za autotestove za zadatak 4, obratite se na navedeni mail.\n//---------------------------------------------------------------------------------------------------------------"
+                        },
+                        {
+                            "position": "main",
+                            "code": "// AT 1: Test main funkcije (postavka) - 1\n    {\n        _main();\n    }"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "environment": {
+                            "stdin": "BABA OD 100 KILA\n3 DEDE OD PO 3 KILE...\nLOPATA\nHura, stigla je zadaca iz TP-a!\nPa budaletino jedna, valjda je onaj isti\nCIGLA\nLOPATA"
+                        },
+                        "expect": [
+                            "Unesite kljuc: Neispravan kljuc, ponovite unos:\nUnesite kljuc: Neispravan kljuc, ponovite unos:\nUnesite kljuc: Kljuc prihvacen. Unesite poruku: Sifrirana poruka: Siga, lttuaa ce kosava tn IP-t!\n\nPokusajte pogoditi kljuc: Niste pogodili kljuc, probajte ponovo!\nPokusajte pogoditi kljuc: Pokusaj desifriranja: Qaap, lrlopa aw edsynu in GH-n!\nNiste pogodili kljuc, probajte ponovo!\nPokusajte pogoditi kljuc: Pokusaj desifriranja: Hura, stigla je zadaca iz TP-a!\nBravo, pogodili ste kljuc!"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 1",
+            "id": 1
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "top_of_file",
+                            "code": "//---------------------------------------------------------------------------------------------------------------\n// Tehnike programiranja - Akademska 2023/2024 godina\n// Zadaća 1 - Zadatak 4\n// Odgovorni viši asistent: Haris Čapelj - hcapelj1@etf.unsa.ba\n// Za sva tehnička pitanja vezana za autotestove za zadatak 4, obratite se na navedeni mail.\n//---------------------------------------------------------------------------------------------------------------"
+                        },
+                        {
+                            "position": "main",
+                            "code": "// AT 2: Test main funkcije (ispravnost) - 1\n    {\n        _main();\n    }"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "environment": {
+                            "stdin": "Kljuc\nKLJUC\nOvo je proba na ispravnost.\nkljuC\nKljuc\nKLJUC"
+                        },
+                        "expect": [
+                            "Unesite kljuc: Neispravan kljuc, ponovite unos:\nUnesite kljuc: Kljuc prihvacen. Unesite poruku: Sifrirana poruka: Ygx dg zcxvc xl rmrblehqce.\n\nPokusajte pogoditi kljuc: Niste pogodili kljuc, probajte ponovo!\nPokusajte pogoditi kljuc: Niste pogodili kljuc, probajte ponovo!\nPokusajte pogoditi kljuc: Pokusaj desifriranja: Ovo je proba na ispravnost.\nBravo, pogodili ste kljuc!"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 2",
+            "id": 2
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "top_of_file",
+                            "code": "//---------------------------------------------------------------------------------------------------------------\n// Tehnike programiranja - Akademska 2023/2024 godina\n// Zadaća 1 - Zadatak 4\n// Odgovorni viši asistent: Haris Čapelj - hcapelj1@etf.unsa.ba\n// Za sva tehnička pitanja vezana za autotestove za zadatak 4, obratite se na navedeni mail.\n//---------------------------------------------------------------------------------------------------------------"
+                        },
+                        {
+                            "position": "main",
+                            "code": "// AT 3: Test main funkcije (ispravnost) - 2\n    {\n        _main();\n    }\n"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "Unesite kljuc: Kljuc prihvacen. Unesite poruku: Sifrirana poruka: Gfe bclrm.\n\nPokusajte pogoditi kljuc: Pokusaj desifriranja: Sve dobro.\nBravo, pogodili ste kljuc!"
+                        ],
+                        "environment": {
+                            "stdin": "OKAY\nSve dobro.\nOKAY"
+                        }
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 3",
+            "id": 3
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "top_of_file",
+                            "code": "//---------------------------------------------------------------------------------------------------------------\n// Tehnike programiranja - Akademska 2023/2024 godina\n// Zadaća 1 - Zadatak 4\n// Odgovorni viši asistent: Haris Čapelj - hcapelj1@etf.unsa.ba\n// Za sva tehnička pitanja vezana za autotestove za zadatak 4, obratite se na navedeni mail.\n//---------------------------------------------------------------------------------------------------------------"
+                        },
+                        {
+                            "position": "main",
+                            "code": "// AT 4: Test funkcije ViginereSifriranje - Osnovno\n    {\n        std::string poruka{\"Danas je lijep dan za testiranje!\"};\n\n        // Specificno se mora vratiti string:\n        std::string rezultat = ViginereSifriranje(poruka,\"TP\");\n\n        std::cout << rezultat << std::endl;\n        std::cout << ViginereSifriranje(poruka,\"NESTO\") << std::endl;\n        std::cout << ViginereSifriranje(poruka,\"NEKADUGARIJEC\") << std::endl;\n        std::cout << ViginereSifriranje(\"Idemo probati sa drugom porukom...\", \"ABC\") << std::endl;\n    }"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "Wpgpl yx abyxe wpg ot ixhmxkpgyx!\nQeftg wi dbxrt vtb me lxggmjtbwi!\nQexav dk lzrnt fnr ja wyytzzjrlr!\nIegmp rrpdauk sb frvion roswkpo..."
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 4",
+            "id": 4
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "top_of_file",
+                            "code": "//---------------------------------------------------------------------------------------------------------------\n// Tehnike programiranja - Akademska 2023/2024 godina\n// Zadaća 1 - Zadatak 4\n// Odgovorni viši asistent: Haris Čapelj - hcapelj1@etf.unsa.ba\n// Za sva tehnička pitanja vezana za autotestove za zadatak 4, obratite se na navedeni mail.\n//---------------------------------------------------------------------------------------------------------------"
+                        },
+                        {
+                            "position": "main",
+                            "code": "// AT 6: Test funkcije ViginereDesifriranje - Osnovno\n    {\n        std::string poruka{\"Wpgpl yx abyxe wpg ot ixhmxkpgyx!\"};\n\n        // Specificno se mora vratiti string:\n        std::string rezultat = ViginereDesifriranje(poruka,\"TP\");\n\n        std::cout << rezultat << std::endl;\n        std::cout << ViginereDesifriranje(\"Qeftg wi dbxrt vtb me lxggmjtbwi!\",\"NESTO\") << std::endl;\n        std::cout << ViginereDesifriranje(\"Qexav dk lzrnt fnr ja wyytzzjrlr!\",\"NEKADUGARIJEC\") << std::endl;\n        std::cout << ViginereDesifriranje(\"Iegmp rrpdauk sb frvion roswkpo...\", \"ABC\") << std::endl;\n\n        // Idemo probati odmah konvertovati poruku :)\n        std::cout << std::endl << ViginereDesifriranje(ViginereSifriranje(\"Malo se igramo :)\", \"SOVIM\"),\"SOVIM\");\n    }"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "\tDanas je lijep dan za testiranje!\nDanas je lijep dan za testiranje!\nDanas je lijep dan za testiranje!\nIdemo probati sa drugom porukom...\n\nMalo se igramo :)"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 5",
+            "id": 5
+        }
+    ]
+}

@@ -1,0 +1,97 @@
+{
+    "id": 0,
+    "name": "Tehnike programiranja, Z2, Zadatak 2",
+    "version": "3",
+    "languages": [
+        "C++"
+    ],
+    "tools": {
+        "compile": {
+            "require": "g++",
+            "features": [
+                "optimize",
+                "warn",
+                "pedantic",
+                "C++14"
+            ]
+        },
+        "compile[debug]": {
+            "require": "g++",
+            "features": [
+                "debug",
+                "C++14",
+                "asan"
+            ]
+        },
+        "execute": {
+            "require": "asan"
+        },
+        "debug": [],
+        "profile[asan]": {
+            "require": "asan",
+            "input_file": "stderr.txt",
+            "fast": true
+        }
+    },
+    "prepare": [
+        "compile"
+    ],
+    "tests": [
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "top_of_file",
+                            "code": "//---------------------------------------------------------------------------------------------------------------\n// Tehnike programiranja - Akademska 2023/2024 godina\n// Zadaca 2 - Zadatak 2\n// Odgovorni asistent: Vahidin Hasić - vhasic1@etf.unsa.ba\n// Za sva tehnicka pitanja vezana za autotestove za zadatak 2, obratite se na navedeni mail.\n//---------------------------------------------------------------------------------------------------------------"
+                        },
+                        {
+                            "position": "main",
+                            "code": "_main();"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "Unesite dimenzije prve matrice: Unesite elemente prve matrice: Unesite dimenzije druge matrice: Unesite elemente druge matrice: Njihov Kroneckerov proizvod glasi:\n 12   9  45  -4  -3 -15 \n  0 -15   6  -0   5  -2 \n  0   0   0  20  15  75 \n  0  -0   0   0 -25  10",
+                            "Unesite dimenzije prve matrice: Unesite elemente prve matrice: Unesite dimenzije druge matrice: Unesite elemente druge matrice: Njihov Kroneckerov proizvod glasi:\n 12   9  45  -4  -3 -15 \n  0 -15   6   0   5  -2 \n  0   0   0  20  15  75 \n  0   0   0   0 -25  10"
+                        ],
+                        "environment": {
+                            "stdin": "2 2\n3 -1 0 5\n2 3\n4 3 15 0 -5 2\n"
+                        }
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 1",
+            "id": 1
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "main",
+                            "code": "    std::deque<std::deque<int>> mat1 = {{3, -1}, {1, 5}};\n    std::deque<std::deque<double>> mat2 = {{4.2, 3.1, 15.4}, {1.02, -5.8, 2.6}};\n    auto result = GeneraliziraniKroneckerovProizvod(mat1, mat2, [](int x, double y)\n                                                    { return x + y; });\n    for (const auto &row : result)\n    {\n        for (const auto &elem : row)\n            std::cout << elem << ' ';\n        std::cout << '\\n';\n    }"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "7.2 6.1 18.4 3.2 2.1 14.4\n4.02 -2.8 5.6 0.02 -6.8 1.6\n5.2 4.1 16.4 9.2 8.1 20.4\n2.02 -4.8 3.6 6.02 -0.8 7.6"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 6",
+            "id": 6
+        }
+    ]
+}

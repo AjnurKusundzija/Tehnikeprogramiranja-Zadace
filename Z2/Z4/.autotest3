@@ -1,0 +1,308 @@
+{
+    "id": 0,
+    "name": "Tehnike programiranja, Zadaća 2, Zadatak 4",
+    "version": "3",
+    "languages": [
+        "C++"
+    ],
+    "tools": {
+        "compile": {
+            "require": "g++",
+            "features": [
+                "optimize",
+                "warn",
+                "pedantic",
+                "C++14"
+            ]
+        },
+        "compile[debug]": {
+            "require": "g++",
+            "features": [
+                "debug",
+                "C++14",
+                "asan"
+            ]
+        },
+        "execute": {
+            "require": "asan"
+        },
+        "debug": [],
+        "profile[asan]": {
+            "require": "asan",
+            "input_file": "stderr.txt",
+            "fast": true
+        }
+    },
+    "prepare": [
+        "compile"
+    ],
+    "tests": [
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "top_of_file",
+                            "code": "//---------------------------------------------------------------------------------------------------------------\n// Tehnike programiranja - Akademska 2023/2024 godina\n// Zadaca 2 - Zadatak 4\n// Odgovorni asistent: Tarik Pozderac - tpozderac1@etf.unsa.ba\n// Za sva tehnicka pitanja vezana za autotestove za zadatak 4, obratite se na navedeni mail.\n//---------------------------------------------------------------------------------------------------------------"
+                        },
+                        {
+                            "position": "main",
+                            "code": "_main();"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "Unesite elemente (* za kraj reda, * na pocetku reda za kraj unosa):\n\nMatrica nakon sortiranja:\n9 8 9\n4 5 1 1 7 3 2\n2 5 1 6 7\n3 3 2 3\n\nUnesite elemente sekvence koja se trazi (* za kraj reda):\nTrazena sekvenca se nalazi u 3. redu (nakon sortiranja)"
+                        ],
+                        "environment": {
+                            "stdin": "2 5 1 6 7 *\n9 8 9 *\n3 3 2 3 *\n4 5 1 1 7 3 2 *\n*\n2 5 1 6 7 *"
+                        }
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 1",
+            "id": 1
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "top_of_file",
+                            "code": "//---------------------------------------------------------------------------------------------------------------\n// Tehnike programiranja - Akademska 2023/2024 godina\n// Zadaca 2 - Zadatak 4\n// Odgovorni asistent: Tarik Pozderac - tpozderac1@etf.unsa.ba\n// Za sva tehnicka pitanja vezana za autotestove za zadatak 4, obratite se na navedeni mail.\n//---------------------------------------------------------------------------------------------------------------"
+                        },
+                        {
+                            "position": "main",
+                            "code": "_main();"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "Unesite elemente (* za kraj reda, * na pocetku reda za kraj unosa):\n\nMatrica nakon sortiranja:\n9 8 9\n4 5 1 1 7 3 2\n2 5 1 6 7\n3 3 2 3\n\nUnesite elemente sekvence koja se trazi (* za kraj reda):\nTrazena sekvenca se ne nalazi u matrici"
+                        ],
+                        "environment": {
+                            "stdin": "2 5 1 6 7 *\n9 8 9 *\n3 3 2 3 *\n4 5 1 1 7 3 2 *\n*\n9 8 9 1 *\n"
+                        }
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 2",
+            "id": 2
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "top_of_file",
+                            "code": "//---------------------------------------------------------------------------------------------------------------\n// Tehnike programiranja - Akademska 2023/2024 godina\n// Zadaca 2 - Zadatak 4\n// Odgovorni asistent: Tarik Pozderac - tpozderac1@etf.unsa.ba\n// Za sva tehnicka pitanja vezana za autotestove za zadatak 4, obratite se na navedeni mail.\n//---------------------------------------------------------------------------------------------------------------"
+                        },
+                        {
+                            "position": "main",
+                            "code": "_main();"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "Unesite elemente (* za kraj reda, * na pocetku reda za kraj unosa):\n\nMatrica nakon sortiranja:\n1\n1\n1\n\nUnesite elemente sekvence koja se trazi (* za kraj reda):\nTrazena sekvenca se nalazi u 1. redu (nakon sortiranja)"
+                        ],
+                        "environment": {
+                            "stdin": "1 *\n1 *\n1 *\n*\n1 *"
+                        }
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 3",
+            "id": 3
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "top_of_file",
+                            "code": "//---------------------------------------------------------------------------------------------------------------\n// Tehnike programiranja - Akademska 2023/2024 godina\n// Zadaca 2 - Zadatak 4\n// Odgovorni asistent: Tarik Pozderac - tpozderac1@etf.unsa.ba\n// Za sva tehnicka pitanja vezana za autotestove za zadatak 4, obratite se na navedeni mail.\n//---------------------------------------------------------------------------------------------------------------"
+                        },
+                        {
+                            "position": "main",
+                            "code": "_main();"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "Unesite elemente (* za kraj reda, * na pocetku reda za kraj unosa):\n\nMatrica nakon sortiranja:\n3 2 1\n1 2 3\n2 2 2\n1 1 1\n\nUnesite elemente sekvence koja se trazi (* za kraj reda):\nTrazena sekvenca se nalazi u 2. redu (nakon sortiranja)"
+                        ],
+                        "environment": {
+                            "stdin": "1 2 3 *\n3 2 1 *\n2 2 2 *\n1 1 1 *\n*\n1 2 3 *\n"
+                        }
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 4",
+            "id": 4
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "top_of_file",
+                            "code": "//---------------------------------------------------------------------------------------------------------------\n// Tehnike programiranja - Akademska 2023/2024 godina\n// Zadaca 2 - Zadatak 4\n// Odgovorni asistent: Tarik Pozderac - tpozderac1@etf.unsa.ba\n// Za sva tehnicka pitanja vezana za autotestove za zadatak 4, obratite se na navedeni mail.\n//---------------------------------------------------------------------------------------------------------------"
+                        },
+                        {
+                            "position": "main",
+                            "code": "_main();"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "Unesite elemente (* za kraj reda, * na pocetku reda za kraj unosa):\n\nMatrica nakon sortiranja:\n3 2 1\n1 2 3\n2 2 2\n1 1 1\n\nUnesite elemente sekvence koja se trazi (* za kraj reda):\nTrazena sekvenca se ne nalazi u matrici"
+                        ],
+                        "environment": {
+                            "stdin": "1 2 3 *\n3 2 1 *\n2 2 2 *\n1 1 1 *\n*\n1 3 2 *"
+                        }
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 5",
+            "id": 5
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "top_of_file",
+                            "code": "//---------------------------------------------------------------------------------------------------------------\n// Tehnike programiranja - Akademska 2023/2024 godina\n// Zadaca 2 - Zadatak 4\n// Odgovorni asistent: Tarik Pozderac - tpozderac1@etf.unsa.ba\n// Za sva tehnicka pitanja vezana za autotestove za zadatak 4, obratite se na navedeni mail.\n//---------------------------------------------------------------------------------------------------------------"
+                        },
+                        {
+                            "position": "main",
+                            "code": "    std::vector<int> a = {1,2};\n    std::vector<int> b = {2,3};\n    std::vector<int> c = {3,4};\n    std::vector<std::vector<int>> M = {a,b,c};\n    SortirajPoDobrotiRedova(M);\n    std::cout << \"Matrica nakon sortiranja: \" << std::endl;\n\n    for (auto red : M)\n    {\n        for (auto broj : red)\n            std::cout << broj << \" \";\n        std::cout << std::endl;\n    }\n    return 0;"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "Matrica nakon sortiranja:\n3 4\n2 3\n1 2"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 6",
+            "id": 6
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "top_of_file",
+                            "code": "//---------------------------------------------------------------------------------------------------------------\n// Tehnike programiranja - Akademska 2023/2024 godina\n// Zadaca 2 - Zadatak 4\n// Odgovorni asistent: Tarik Pozderac - tpozderac1@etf.unsa.ba\n// Za sva tehnicka pitanja vezana za autotestove za zadatak 4, obratite se na navedeni mail.\n//---------------------------------------------------------------------------------------------------------------\n#include <string>"
+                        },
+                        {
+                            "position": "main",
+                            "code": "std::vector<std::string> a = {\"TP\",\"Zadaca\",\"2\"};\n    std::vector<std::string> b = {\"TP\",\"zadaca\",\"2\"};\n    std::vector<std::string> c = {\"zadaca\",\"TP\"};\n    std::vector<std::vector<std::string>> M = {a,b,c};\n    SortirajPoDobrotiRedova(M);\n    std::cout << \"Matrica nakon sortiranja: \" << std::endl;\n\n    for (auto red : M)\n    {\n        for (auto element : red)\n            std::cout << element << \" \";\n        std::cout << std::endl;\n    }\n    return 0;"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "Matrica nakon sortiranja:\nzadaca TP\nTP zadaca 2\nTP Zadaca 2"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 7",
+            "id": 7
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "top_of_file",
+                            "code": "//---------------------------------------------------------------------------------------------------------------\n// Tehnike programiranja - Akademska 2023/2024 godina\n// Zadaca 2 - Zadatak 4\n// Odgovorni asistent: Tarik Pozderac - tpozderac1@etf.unsa.ba\n// Za sva tehnicka pitanja vezana za autotestove za zadatak 4, obratite se na navedeni mail.\n//---------------------------------------------------------------------------------------------------------------"
+                        },
+                        {
+                            "position": "main",
+                            "code": "    std::vector<int> a = {1,2};\n    std::vector<int> b = {2,3};\n    std::vector<int> c = {6,5};\n    std::vector<int> d = {5,6};\n    std::vector<std::vector<int>> M = {a,b,c};\n    SortirajPoDobrotiRedova(M);\n    std::cout <<\"Matrica nakon sortiranja: \" << std::endl;\n\n    for (auto red : M)\n    {\n        for (auto broj : red)\n            std::cout << broj << \" \";\n        std::cout << std::endl;\n    }\n\n    if(std::binary_search(M.begin(),M.end(),d,Kriterij<int>))\n        std::cout << \"ima ga\";\n    else\n        std::cout << \"nema ga\";\n    return 0;\n"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "Matrica nakon sortiranja:\n6 5\n2 3\n1 2\nnema ga"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 8",
+            "id": 8
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "top_of_file",
+                            "code": "//---------------------------------------------------------------------------------------------------------------\n// Tehnike programiranja - Akademska 2023/2024 godina\n// Zadaca 2 - Zadatak 4\n// Odgovorni asistent: Tarik Pozderac - tpozderac1@etf.unsa.ba\n// Za sva tehnicka pitanja vezana za autotestove za zadatak 4, obratite se na navedeni mail.\n//---------------------------------------------------------------------------------------------------------------"
+                        },
+                        {
+                            "position": "main",
+                            "code": "    std::vector<int> a = {1,2};\n    std::vector<int> b = {2,3};\n    std::vector<int> c = {6,5};\n    std::vector<int> d = {6,5};\n    std::vector<std::vector<int>> M = {a,b,c};\n    SortirajPoDobrotiRedova(M);\n    std::cout << \"Matrica nakon sortiranja: \" << std::endl;\n\n    for (auto red : M)\n    {\n        for (auto broj : red)\n            std::cout << broj << \" \";\n        std::cout << std::endl;\n    }\n\n    if(std::binary_search(M.begin(),M.end(),d,Kriterij<int>))\n        std::cout << \"ima ga\";\n    else\n        std::cout << \"nema ga\";\n    return 0;"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "Matrica nakon sortiranja:\n6 5\n2 3\n1 2\nima ga"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 9",
+            "id": 9
+        }
+    ]
+}

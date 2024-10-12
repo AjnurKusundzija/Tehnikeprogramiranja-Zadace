@@ -1,0 +1,218 @@
+{
+    "id": 0,
+    "name": "Tehnike programiranja, Zadaća 4, Zadatak 2",
+    "version": "3",
+    "languages": [
+        "C++"
+    ],
+    "tools": {
+        "compile": {
+            "require": "g++",
+            "features": [
+                "optimize",
+                "warn",
+                "pedantic",
+                "C++14"
+            ]
+        },
+        "compile[debug]": {
+            "require": "g++",
+            "features": [
+                "debug",
+                "C++14",
+                "asan"
+            ]
+        },
+        "execute": {
+            "require": "asan"
+        },
+        "debug": [],
+        "profile[asan]": {
+            "require": "asan",
+            "input_file": "stderr.txt",
+            "fast": true
+        }
+    },
+    "prepare": [
+        "compile"
+    ],
+    "tests": [
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "top_of_file",
+                            "code": "//---------------------------------------------------------------------------------------------------------------\n// Tehnike programiranja - Akademska 2023/2024 godina\n// Zadaca 4 - Zadatak 2\n// Odgovorni asistent: Majda Čurtić-Hodžić - mcurtic1@etf.unsa.ba\n// Za sva tehnicka pitanja vezana za autotestove za zadatak 2, obratite se na navedeni mail.\n//---------------------------------------------------------------------------------------------------------------"
+                        },
+                        {
+                            "position": "main",
+                            "code": "_main();"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "environment": {
+                            "stdin": "3\nRambo Sulejmanovic\n13 5 1956\n17\n1\nZan Klod Sejdic\n13 5 1962\n17\n1\nMila Milic\n12 5 1973\n28\n2\n"
+                        },
+                        "expect": [
+                            "Unesite broj gradjana: \nUnesite podatke za 1. gradjanina:\nIme i prezime: Datum rodjenja: Sifra regije: Pol ( 1-Musko, 2-Zensko ): \nUnesite podatke za 2. gradjanina: \nIme i prezime: Datum rodjenja: Sifra regije: Pol ( 1-Musko, 2-Zensko ): \nUnesite podatke za 3. gradjanina:\nIme i prezime: Datum rodjenja: Sifra regije: Pol ( 1-Musko, 2-Zensko ): \nGradjani sortirani po starosti:\nRambo Sulejmanovic 13.5.1956 JMBG: 1305956170000\nZan Klod Sejdic 13.5.1962 JMBG: 1305962170004\nMila Milic 12.5.1973 JMBG: 1205973285003"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 1",
+            "id": 1
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "top_of_file",
+                            "code": "//---------------------------------------------------------------------------------------------------------------\n// Tehnike programiranja - Akademska 2023/2024 godina\n// Zadaca 4 - Zadatak 2\n// Odgovorni asistent: Majda Čurtić-Hodžić - mcurtic1@etf.unsa.ba\n// Za sva tehnicka pitanja vezana za autotestove za zadatak 2, obratite se na navedeni mail.\n//---------------------------------------------------------------------------------------------------------------"
+                        },
+                        {
+                            "position": "main",
+                            "code": "_main();"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "environment": {
+                            "stdin": "1\nNeko Nekic\n31 2 1999\n17\n1\nNeko Nekic\n29 2 1999\n17\n1\nNeko Nekic\n28 2 1999\n109\n1\nNeko Nekic\n28 2 2022\n17\n1\nNeko Nekic\n29 2 2000\n17\n1\n"
+                        },
+                        "expect": [
+                            "Unesite broj gradjana: \nUnesite podatke za 1. gradjanina:\nIme i prezime: Datum rodjenja: Sifra regije: Pol ( 1-Musko, 2-Zensko ): \nNeispravni podaci. Molimo ponovite unos.\n\nUnesite podatke za 1. gradjanina:\nIme i prezime: Datum rodjenja: Sifra regije: Pol ( 1-Musko, 2-Zensko ): \nNeispravni podaci. Molimo ponovite unos.\n\nUnesite podatke za 1. gradjanina:\nIme i prezime: Datum rodjenja: Sifra regije: Pol ( 1-Musko, 2-Zensko ): \nNeispravni podaci. Molimo ponovite unos.\n\nUnesite podatke za 1. gradjanina:\nIme i prezime: Datum rodjenja: Sifra regije: Pol ( 1-Musko, 2-Zensko ): \nNeispravni podaci. Molimo ponovite unos.\n\nUnesite podatke za 1. gradjanina:\nIme i prezime: Datum rodjenja: Sifra regije: Pol ( 1-Musko, 2-Zensko ): \nGradjani sortirani po starosti:\nNeko Nekic 29.2.2000 JMBG: 2902000170004\n"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 2",
+            "id": 2
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "top_of_file",
+                            "code": "//---------------------------------------------------------------------------------------------------------------\n// Tehnike programiranja - Akademska 2023/2024 godina\n// Zadaca 4 - Zadatak 2\n// Odgovorni asistent: Majda Čurtić-Hodžić - mcurtic1@etf.unsa.ba\n// Za sva tehnicka pitanja vezana za autotestove za zadatak 2, obratite se na navedeni mail.\n//---------------------------------------------------------------------------------------------------------------"
+                        },
+                        {
+                            "position": "main",
+                            "code": "_main();"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "environment": {
+                            "stdin": "0\n"
+                        },
+                        "expect": [
+                            "Unesite broj gradjana: \n\nGradjani sortirani po starosti:\n"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 3",
+            "id": 3
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "top_of_file",
+                            "code": "//---------------------------------------------------------------------------------------------------------------\n// Tehnike programiranja - Akademska 2023/2024 godina\n// Zadaca 4 - Zadatak 2\n// Odgovorni asistent: Majda Čurtić-Hodžić - mcurtic1@etf.unsa.ba\n// Za sva tehnicka pitanja vezana za autotestove za zadatak 2, obratite se na navedeni mail.\n//---------------------------------------------------------------------------------------------------------------"
+                        },
+                        {
+                            "position": "main",
+                            "code": "int n=5;\nGradjaninBiH** gradjani = new GradjaninBiH*[n]{};\ntry{\n    gradjani [0]=new GradjaninBiH(\"Aki Akic\", 603923003262);\n    gradjani [1]=new GradjaninBiH(\"Aka Akic\", 3105004788025);\n    gradjani [2]=new GradjaninBiH(\"Laki Lakic\", 2912946473517);\n    gradjani [3]=new GradjaninBiH(\"Lakana Lakic\", 701928698511);\n    gradjani [4]=new GradjaninBiH(\"Eko Ekic\", 1407004984451);\n\n    for (int i = 0; i < n; ++i) {\n        std::cout << gradjani[i]->DajImeIPrezime() << \" \" << gradjani[i]->DajDanRodjenja() << \".\"\n                  << gradjani[i]->DajMjesecRodjenja() << \".\" << gradjani[i]->DajGodinuRodjenja() << \" JMBG: \"\n                  << std::setw(13) << std::setfill('0') << gradjani[i]->DajJMBG() << std::endl;\n    }\n} catch (const std::logic_error& e) {\n    std::cout << e.what() << std::endl;\n}\nfor(int i=0; i<n; i++) delete gradjani[i];\ndelete[] gradjani;\n"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "Aki Akic 6.3.1923 JMBG: 0603923003262\nAka Akic 31.5.2004 JMBG: 3105004788025\nLaki Lakic 29.12.1946 JMBG: 2912946473517\nLakana Lakic 7.1.1928 JMBG: 0701928698511\nEko Ekic 14.7.2004 JMBG: 1407004984451\n"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 4",
+            "id": 4
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "top_of_file",
+                            "code": "//---------------------------------------------------------------------------------------------------------------\n// Tehnike programiranja - Akademska 2023/2024 godina\n// Zadaca 4 - Zadatak 2\n// Odgovorni asistent: Majda Čurtić-Hodžić - mcurtic1@etf.unsa.ba\n// Za sva tehnicka pitanja vezana za autotestove za zadatak 2, obratite se na navedeni mail.\n//---------------------------------------------------------------------------------------------------------------"
+                        },
+                        {
+                            "position": "main",
+                            "code": "int n=4;\nGradjaninBiH** gradjani = new GradjaninBiH*[n]{};\ntry{\n    gradjani [0]=new GradjaninBiH(\"Aki Akic\", 603923003262);\n    gradjani [1]=new GradjaninBiH(\"Laki Lakic\", 2912946473517);\n    gradjani [2]=new GradjaninBiH(\"Lakana Lakic\", 603923003262);\n    gradjani [3]=new GradjaninBiH(\"Eko Ekic\", 1407004984451);\n\n    for (int i = 0; i < 4; ++i) {\n        std::cout << gradjani[i]->DajImeIPrezime() << \" \" << gradjani[i]->DajDanRodjenja() << \".\"\n                  << gradjani[i]->DajMjesecRodjenja() << \".\" << gradjani[i]->DajGodinuRodjenja() << \" JMBG: \"\n                  << std::setw(13) << std::setfill('0') << gradjani[i]->DajJMBG() << std::endl;\n    }\n} catch (const std::logic_error& e) {\n    std::cout << e.what() << std::endl;\n}\nfor(int i=0; i<n; i++) delete gradjani[i];\ndelete[] gradjani;\n"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "Vec postoji gradjanin sa istim JMBG\n"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 5",
+            "id": 5
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "top_of_file",
+                            "code": "//---------------------------------------------------------------------------------------------------------------\n// Tehnike programiranja - Akademska 2023/2024 godina\n// Zadaca 4 - Zadatak 2\n// Odgovorni asistent: Majda Čurtić-Hodžić - mcurtic1@etf.unsa.ba\n// Za sva tehnicka pitanja vezana za autotestove za zadatak 2, obratite se na navedeni mail.\n//---------------------------------------------------------------------------------------------------------------"
+                        },
+                        {
+                            "position": "main",
+                            "code": "int n=4;\nGradjaninBiH** gradjani = new GradjaninBiH*[n]{};\ntry{\n    gradjani [0]=new GradjaninBiH(\"Aki Akic\", 603923003262);\n    gradjani [1]=new GradjaninBiH(\"Laki Lakic\", 2912946473517);\n    gradjani [2]=new GradjaninBiH(\"Lakana Lakic\", 7101928698511);\n    gradjani [3]=new GradjaninBiH(\"Eko Ekic\", 1407004984451);\n\n    for (int i = 0; i < 4; ++i) {\n        std::cout << gradjani[i]->DajImeIPrezime() << \" \" << gradjani[i]->DajDanRodjenja() << \".\"\n                  << gradjani[i]->DajMjesecRodjenja() << \".\" << gradjani[i]->DajGodinuRodjenja() << \" JMBG: \"\n                  << std::setw(13) << std::setfill('0') << gradjani[i]->DajJMBG() << std::endl;\n    }\n} catch (const std::logic_error& e) {\n    std::cout << e.what() << std::endl;\n}\nfor(int i=0; i<n; i++) delete gradjani[i];\ndelete[] gradjani;\n"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "JMBG nije validan\n"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 6",
+            "id": 6
+        }
+    ]
+}

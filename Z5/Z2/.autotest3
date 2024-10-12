@@ -1,0 +1,605 @@
+{
+    "id": 0,
+    "name": "Tehnike programiranja, Zadaća 5, Zadatak 2",
+    "version": "3",
+    "languages": [
+        "C++"
+    ],
+    "tools": {
+        "compile": {
+            "require": "g++",
+            "features": [
+                "optimize",
+                "warn",
+                "pedantic",
+                "C++14"
+            ]
+        },
+        "compile[debug]": {
+            "require": "g++",
+            "features": [
+                "debug",
+                "C++14",
+                "asan"
+            ]
+        },
+        "execute": {
+            "require": "asan"
+        },
+        "debug": [],
+        "profile[asan]": {
+            "require": "asan",
+            "input_file": "stderr.txt",
+            "fast": true
+        }
+    },
+    "prepare": [
+        "compile"
+    ],
+    "tests": [
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "top_of_file",
+                            "code": "//---------------------------------------------------------------------------------------------------------------\n// Tehnike programiranja - Akademska 2023/2024 godina\n// Zadaca 5 - Zadatak 2\n// Odgovorni asistent: Majda Čurtić-Hodžić - mcurtic1@etf.unsa.ba\n// Za sva tehnicka pitanja vezana za autotestove za zadatak 2, obratite se na navedeni mail.\n//---------------------------------------------------------------------------------------------------------------\n"
+                        },
+                        {
+                            "position": "main",
+                            "code": "try {\n    Berza A(1000);\n    std::cout << \"Berza A uspjesno kreirana.\" << std::endl;\n    Berza B(-500);\n    std::cout << \"Berza B uspjesno kreirana.\" << std::endl;\n} catch (const std::range_error& e) {\n    std::cout << \"Izuzetak: \" << e.what() << std::endl;\n}"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "Berza A uspjesno kreirana.\nIzuzetak: Ilegalne granicne cijene\n"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 1",
+            "id": 1
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "top_of_file",
+                            "code": "//---------------------------------------------------------------------------------------------------------------\n// Tehnike programiranja - Akademska 2023/2024 godina\n// Zadaca 5 - Zadatak 2\n// Odgovorni asistent: Majda Čurtić-Hodžić - mcurtic1@etf.unsa.ba\n// Za sva tehnicka pitanja vezana za autotestove za zadatak 2, obratite se na navedeni mail.\n//---------------------------------------------------------------------------------------------------------------\n"
+                        },
+                        {
+                            "position": "main",
+                            "code": "try {\n    Berza A(100, 10000);\n    std::cout << \"Berza A uspjesno kreirana.\" << std::endl;\n    Berza B(10000, 9900);\n    std::cout << \"Berza B uspjesno kreirana.\" << std::endl;\n} catch (const std::range_error& e) {\n    std::cout << \"Izuzetak: \" << e.what() << std::endl;\n}"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "Berza A uspjesno kreirana.\nIzuzetak: Ilegalne granicne cijene\n"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 2",
+            "id": 2
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "top_of_file",
+                            "code": "//---------------------------------------------------------------------------------------------------------------\n// Tehnike programiranja - Akademska 2023/2024 godina\n// Zadaca 5 - Zadatak 2\n// Odgovorni asistent: Majda Čurtić-Hodžić - mcurtic1@etf.unsa.ba\n// Za sva tehnicka pitanja vezana za autotestove za zadatak 2, obratite se na navedeni mail.\n//---------------------------------------------------------------------------------------------------------------\n"
+                        },
+                        {
+                            "position": "top_of_file",
+                            "code": "#include <type_traits>"
+                        },
+                        {
+                            "position": "main",
+                            "code": "bool canConvert = std::is_convertible<int, Berza>::value;\nstd::cout << (canConvert ? \":(\" : \":)\") << std::endl;"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            ":)\n"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 3",
+            "id": 3
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "top_of_file",
+                            "code": "//---------------------------------------------------------------------------------------------------------------\n// Tehnike programiranja - Akademska 2023/2024 godina\n// Zadaca 5 - Zadatak 2\n// Odgovorni asistent: Majda Čurtić-Hodžić - mcurtic1@etf.unsa.ba\n// Za sva tehnicka pitanja vezana za autotestove za zadatak 2, obratite se na navedeni mail.\n//---------------------------------------------------------------------------------------------------------------\n"
+                        },
+                        {
+                            "position": "main",
+                            "code": "Berza B(100, 1000);\n\ntry {\n    B.RegistrirajCijenu(50);\n    std::cout << \"Minimalna cijena: \" << B.DajMinimalnuCijenu() << \"\\nMaksimalna Cijena: \" << B.DajMaksimalnuCijenu() << std::endl;\n} catch (const std::range_error& e) {\n    std::cout << \"Range error: \" << e.what() << std::endl;\n}\n\ntry {\n    B.RegistrirajCijenu(150);\n    std::cout << \"Minimalna cijena: \" << B.DajMinimalnuCijenu() << \"\\nMaksimalna Cijena: \" << B.DajMaksimalnuCijenu() << std::endl;\n} catch (const std::range_error& e) {\n    std::cout << \"Range error: \" << e.what() << std::endl;\n}\n\ntry {\n    B.RegistrirajCijenu(1050);\n    std::cout << \"Minimalna cijena: \" << B.DajMinimalnuCijenu() << \"\\nMaksimalna Cijena: \" << B.DajMaksimalnuCijenu() << std::endl;\n} catch (const std::range_error& e) {\n    std::cout << \"Range error: \" << e.what() << std::endl;\n}\n"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "Range error: Ilegalna cijena\nMinimalna cijena: 150\nMaksimalna Cijena: 150\nRange error: Ilegalna cijena\n"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 4",
+            "id": 4
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "top_of_file",
+                            "code": "//---------------------------------------------------------------------------------------------------------------\n// Tehnike programiranja - Akademska 2023/2024 godina\n// Zadaca 5 - Zadatak 2\n// Odgovorni asistent: Majda Čurtić-Hodžić - mcurtic1@etf.unsa.ba\n// Za sva tehnicka pitanja vezana za autotestove za zadatak 2, obratite se na navedeni mail.\n//---------------------------------------------------------------------------------------------------------------\n"
+                        },
+                        {
+                            "position": "main",
+                            "code": "Berza A(100, 1000);\n\nA.RegistrirajCijenu(200);\nA.RegistrirajCijenu(300);\nA.RegistrirajCijenu(400);\n\nstd::cout << \"Broj registriranih cijena prije brisanja: \" << A.DajBrojRegistriranihCijena() << std::endl;\n\nA.BrisiSve();\n\nstd::cout << \"Broj registriranih cijena nakon brisanja: \" << A.DajBrojRegistriranihCijena() << std::endl;\n"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "Broj registriranih cijena prije brisanja: 3\nBroj registriranih cijena nakon brisanja: 0\n"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 5",
+            "id": 5
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "top_of_file",
+                            "code": "//---------------------------------------------------------------------------------------------------------------\n// Tehnike programiranja - Akademska 2023/2024 godina\n// Zadaca 5 - Zadatak 2\n// Odgovorni asistent: Majda Čurtić-Hodžić - mcurtic1@etf.unsa.ba\n// Za sva tehnicka pitanja vezana za autotestove za zadatak 2, obratite se na navedeni mail.\n//---------------------------------------------------------------------------------------------------------------\n"
+                        },
+                        {
+                            "position": "main",
+                            "code": "Berza B(100, 1000);\n\ntry {\n    std::cout << \"Minimalna cijena: \" << B.DajMinimalnuCijenu() << std::endl;\n} catch (const std::range_error& e) {\n    std::cout << \"Izuzetak:  \" << e.what() << std::endl;\n}\n\ntry {\n    std::cout << \"Maksimalna cijena: \" << B.DajMaksimalnuCijenu() << std::endl;\n} catch (const std::range_error& e) {\n    std::cout << \"Izuzetak:  \" << e.what() << std::endl;\n}\n\nB.RegistrirajCijenu(200);\nB.RegistrirajCijenu(800);\n\ntry {\n    std::cout << \"Minimalna cijena: \" << B.DajMinimalnuCijenu() << std::endl;\n} catch (const std::range_error& e) {\n    std::cout << \"Izuzetak:  \" << e.what() << std::endl;\n}\n\ntry {\n    std::cout << \"Maksimalna cijena: \" << B.DajMaksimalnuCijenu() << std::endl;\n} catch (const std::range_error& e) {\n    std::cout << \"Izuzetak:  \" << e.what() << std::endl;\n}\n"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "Minimalna cijena: Izuzetak:  Nema registriranih cijena\nMaksimalna cijena: Izuzetak:  Nema registriranih cijena\nMinimalna cijena: 200\nMaksimalna cijena: 800\n"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 6",
+            "id": 6
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "top_of_file",
+                            "code": "//---------------------------------------------------------------------------------------------------------------\n// Tehnike programiranja - Akademska 2023/2024 godina\n// Zadaca 5 - Zadatak 2\n// Odgovorni asistent: Majda Čurtić-Hodžić - mcurtic1@etf.unsa.ba\n// Za sva tehnicka pitanja vezana za autotestove za zadatak 2, obratite se na navedeni mail.\n//---------------------------------------------------------------------------------------------------------------\n"
+                        },
+                        {
+                            "position": "main",
+                            "code": "Berza B(200, 500);\nB.RegistrirajCijenu(380);\n\ntry {\n    ++B;\n    std::cout << \"Maksimalna cijena nakon inkrementacije (++b): \" << B.DajMaksimalnuCijenu() << std::endl;\n    ++B;\n    std::cout << \"Maksimalna cijena nakon inkrementacije (++b): \" << B.DajMaksimalnuCijenu() << std::endl;\n    ++B;\n    std::cout << \"Maksimalna cijena nakon inkrementacije (++b): \" << B.DajMaksimalnuCijenu() << std::endl;\n} catch (const std::range_error& e) {\n    std::cout << \"Izuzetak: \" << e.what() << std::endl;\n}\nstd::cout << \"Maksimalna cijena nakon inkrementacija (++b): \" << B.DajMaksimalnuCijenu() << std::endl;"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "Maksimalna cijena nakon inkrementacije (++b): 480\nIzuzetak: Prekoracen dozvoljeni opseg cijena\nMaksimalna cijena nakon inkrementacija (++b): 480\n"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 7",
+            "id": 7
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "top_of_file",
+                            "code": "//---------------------------------------------------------------------------------------------------------------\n// Tehnike programiranja - Akademska 2023/2024 godina\n// Zadaca 5 - Zadatak 2\n// Odgovorni asistent: Majda Čurtić-Hodžić - mcurtic1@etf.unsa.ba\n// Za sva tehnicka pitanja vezana za autotestove za zadatak 2, obratite se na navedeni mail.\n//---------------------------------------------------------------------------------------------------------------\n"
+                        },
+                        {
+                            "position": "main",
+                            "code": "Berza B(100, 500);\nB.RegistrirajCijenu(380);\n\ntry {\n    --B;\n    std::cout << \"Maksimalna cijena nakon dekrementacije (--b): \" << B.DajMaksimalnuCijenu() << std::endl;\n    --B;\n    std::cout << \"Maksimalna cijena nakon dekrementacije (--b): \" << B.DajMaksimalnuCijenu() << std::endl;\n    --B;\n    std::cout << \"Maksimalna cijena nakon dekrementacije (--b): \" << B.DajMaksimalnuCijenu() << std::endl;\n} catch (const std::range_error& e) {\n    std::cout << \"Izuzetak: \" << e.what() << std::endl;\n}\nstd::cout << \"Maksimalna cijena nakon dekrementacija (--b): \" << B.DajMaksimalnuCijenu() << std::endl;\n"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "Maksimalna cijena nakon dekrementacije (--b): 280\nMaksimalna cijena nakon dekrementacije (--b): 180\nIzuzetak: Prekoracen dozvoljeni opseg cijena\nMaksimalna cijena nakon dekrementacija (--b): 180\n"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 8",
+            "id": 8
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "top_of_file",
+                            "code": "//---------------------------------------------------------------------------------------------------------------\n// Tehnike programiranja - Akademska 2023/2024 godina\n// Zadaca 5 - Zadatak 2\n// Odgovorni asistent: Majda Čurtić-Hodžić - mcurtic1@etf.unsa.ba\n// Za sva tehnicka pitanja vezana za autotestove za zadatak 2, obratite se na navedeni mail.\n//---------------------------------------------------------------------------------------------------------------\n"
+                        },
+                        {
+                            "position": "main",
+                            "code": "Berza B(100, 500);\nB.RegistrirajCijenu(380);\n\ntry {\n    B++;\n    std::cout << \"Maksimalna cijena nakon inkrementacije (b++): \" << B.DajMaksimalnuCijenu() << std::endl;\n    B++;\n    std::cout << \"Maksimalna cijena nakon inkrementacije (b++): \" << B.DajMaksimalnuCijenu() << std::endl;\n    B++;\n    std::cout << \"Maksimalna cijena nakon inkrementacije (b++): \" << B.DajMaksimalnuCijenu() << std::endl;\n} catch (const std::range_error& e) {\n    std::cout << \"Izuzetak: \" << e.what() << std::endl;\n}\nstd::cout << \"Maksimalna cijena nakon inkrementacija (b++): \" << B.DajMaksimalnuCijenu() << std::endl;\n"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "Maksimalna cijena nakon inkrementacije (b++): 480\nIzuzetak: Prekoracen dozvoljeni opseg cijena\nMaksimalna cijena nakon inkrementacija (b++): 480\n"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 9",
+            "id": 9
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "top_of_file",
+                            "code": "//---------------------------------------------------------------------------------------------------------------\n// Tehnike programiranja - Akademska 2023/2024 godina\n// Zadaca 5 - Zadatak 2\n// Odgovorni asistent: Majda Čurtić-Hodžić - mcurtic1@etf.unsa.ba\n// Za sva tehnicka pitanja vezana za autotestove za zadatak 2, obratite se na navedeni mail.\n//---------------------------------------------------------------------------------------------------------------\n"
+                        },
+                        {
+                            "position": "main",
+                            "code": "Berza B(100, 500);\nB.RegistrirajCijenu(380);\n\ntry {\n    B--;\n    std::cout << \"Maksimalna cijena nakon dekrementacije (b--): \" << B.DajMaksimalnuCijenu() << std::endl;\n    B--;\n    std::cout << \"Maksimalna cijena nakon dekrementacije (b--): \" << B.DajMaksimalnuCijenu() << std::endl;\n    B--;\n    std::cout << \"Maksimalna cijena nakon dekrementacije (b--): \" << B.DajMaksimalnuCijenu() << std::endl;\n} catch (const std::range_error& e) {\n    std::cout << \"Izuzetak: \" << e.what() << std::endl;\n}\nstd::cout << \"Maksimalna cijena nakon dekrementacija (b--): \" << B.DajMaksimalnuCijenu() << std::endl;\n"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "Maksimalna cijena nakon dekrementacije (b--): 280\nMaksimalna cijena nakon dekrementacije (b--): 180\nIzuzetak: Prekoracen dozvoljeni opseg cijena\nMaksimalna cijena nakon dekrementacija (b--): 180\n"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 10",
+            "id": 10
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "top_of_file",
+                            "code": "//---------------------------------------------------------------------------------------------------------------\n// Tehnike programiranja - Akademska 2023/2024 godina\n// Zadaca 5 - Zadatak 2\n// Odgovorni asistent: Majda Čurtić-Hodžić - mcurtic1@etf.unsa.ba\n// Za sva tehnicka pitanja vezana za autotestove za zadatak 2, obratite se na navedeni mail.\n//---------------------------------------------------------------------------------------------------------------\n"
+                        },
+                        {
+                            "position": "main",
+                            "code": "Berza B(100, 500);\nB.RegistrirajCijenu(300);\nBerza nova = B;\n\ntry {\n    nova = nova + 150;\n    std::cout << \"Nove cijene nakon dodavanja 150: \";\n    nova.Ispisi();\n} catch (const std::domain_error& e) {\n    std::cout << \"Izuzetak:  \" << e.what() << std::endl;\n}\n\ntry {\n    nova = nova - 150;\n    std::cout << \"Nove cijene nakon oduzimanja 150: \";\n    nova.Ispisi();\n} catch (const std::domain_error& e) {\n    std::cout << \"Izuzetak:  \" << e.what() << std::endl;\n}\n\ntry {\n    Berza nova = B + 300;\n    std::cout << \"Nove cijene nakon dodavanja 300: \";\n    nova.Ispisi();\n} catch (const std::domain_error& e) {\n    std::cout << \"Izuzetak:  \" << e.what() << std::endl;\n}\n"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "Nove cijene nakon dodavanja 150: 4.50\nNove cijene nakon oduzimanja 150: 3.00\nIzuzetak:  Prekoracen dozvoljeni opseg cijena\n"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 11",
+            "id": 11
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "top_of_file",
+                            "code": "//---------------------------------------------------------------------------------------------------------------\n// Tehnike programiranja - Akademska 2023/2024 godina\n// Zadaca 5 - Zadatak 2\n// Odgovorni asistent: Majda Čurtić-Hodžić - mcurtic1@etf.unsa.ba\n// Za sva tehnicka pitanja vezana za autotestove za zadatak 2, obratite se na navedeni mail.\n//---------------------------------------------------------------------------------------------------------------\n"
+                        },
+                        {
+                            "position": "main",
+                            "code": "Berza B(100, 500);\nB.RegistrirajCijenu(300);\nBerza nova = B;\n\ntry {\n    nova = nova + 150;\n    std::cout << \"Nove cijene nakon dodavanja 150: \";\n    nova.Ispisi();\n} catch (const std::domain_error& e) {\n    std::cout << \"Izuzetak:  \" << e.what() << std::endl;\n}\n\ntry {\n    nova = nova - 150;\n    std::cout << \"Nove cijene nakon oduzimanja 150: \";\n    nova.Ispisi();\n} catch (const std::domain_error& e) {\n    std::cout << \"Izuzetak:  \" << e.what() << std::endl;\n}\n\ntry {\n    Berza nova = B - 300;\n    std::cout << \"Nove cijene nakon oduzimanja 300: \";\n    nova.Ispisi();\n} catch (const std::domain_error& e) {\n    std::cout << \"Izuzetak:  \" << e.what() << std::endl;\n}\n"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "Nove cijene nakon dodavanja 150: 4.50\nNove cijene nakon oduzimanja 150: 3.00\nIzuzetak:  Prekoracen dozvoljeni opseg cijena\n"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 12",
+            "id": 12
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "top_of_file",
+                            "code": "//---------------------------------------------------------------------------------------------------------------\n// Tehnike programiranja - Akademska 2023/2024 godina\n// Zadaca 5 - Zadatak 2\n// Odgovorni asistent: Majda Čurtić-Hodžić - mcurtic1@etf.unsa.ba\n// Za sva tehnicka pitanja vezana za autotestove za zadatak 2, obratite se na navedeni mail.\n//---------------------------------------------------------------------------------------------------------------\n"
+                        },
+                        {
+                            "position": "main",
+                            "code": "Berza B(100, 500);\nB.RegistrirajCijenu(300);\nBerza nova = B;\n\ntry {\n    nova = 150 + nova;\n    std::cout << \"Nove cijene nakon dodavanja na 150: \";\n    nova.Ispisi();\n} catch (const std::domain_error& e) {\n    std::cout << \"Izuzetak:  \" << e.what() << std::endl;\n}\n\ntry {\n    nova = 550 - nova;\n    std::cout << \"Nove cijene nakon oduzimanja od 550: \";\n    nova.Ispisi();\n} catch (const std::domain_error& e) {\n    std::cout << \"Izuzetak:  \" << e.what() << std::endl;\n}\n\ntry {\n    Berza nova = 300 - B;\n    std::cout << \"Nove cijene nakon oduzimanja od 300: \";\n    nova.Ispisi();\n} catch (const std::domain_error& e) {\n    std::cout << \"Izuzetak:  \" << e.what() << std::endl;\n}\n"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "Nove cijene nakon dodavanja na 150: 4.50\nNove cijene nakon oduzimanja od 550: 1.00\nIzuzetak:  Prekoracen dozvoljeni opseg cijena\n"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 13",
+            "id": 13
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "top_of_file",
+                            "code": "//---------------------------------------------------------------------------------------------------------------\n// Tehnike programiranja - Akademska 2023/2024 godina\n// Zadaca 5 - Zadatak 2\n// Odgovorni asistent: Majda Čurtić-Hodžić - mcurtic1@etf.unsa.ba\n// Za sva tehnicka pitanja vezana za autotestove za zadatak 2, obratite se na navedeni mail.\n//---------------------------------------------------------------------------------------------------------------\n"
+                        },
+                        {
+                            "position": "main",
+                            "code": "Berza B(100, 500);\nB.RegistrirajCijenu(300);\nBerza nova = B;\n\ntry {\n    nova = 150 + nova;\n    std::cout << \"Nove cijene nakon dodavanja na 150: \";\n    nova.Ispisi();\n} catch (const std::domain_error& e) {\n    std::cout << \"Izuzetak:  \" << e.what() << std::endl;\n}\n\ntry {\n    nova = 550 - nova;\n    std::cout << \"Nove cijene nakon oduzimanja od 550: \";\n    nova.Ispisi();\n} catch (const std::domain_error& e) {\n    std::cout << \"Izuzetak:  \" << e.what() << std::endl;\n}\n\ntry {\n    Berza nova = 300 + B;\n    std::cout << \"Nove cijene nakon dodavanja na 300: \";\n    nova.Ispisi();\n} catch (const std::domain_error& e) {\n    std::cout << \"Izuzetak:  \" << e.what() << std::endl;\n}\n"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "Nove cijene nakon dodavanja na 150: 4.50\nNove cijene nakon oduzimanja od 550: 1.00\nIzuzetak:  Prekoracen dozvoljeni opseg cijena\n"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 14",
+            "id": 14
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "top_of_file",
+                            "code": "//---------------------------------------------------------------------------------------------------------------\n// Tehnike programiranja - Akademska 2023/2024 godina\n// Zadaca 5 - Zadatak 2\n// Odgovorni asistent: Majda Čurtić-Hodžić - mcurtic1@etf.unsa.ba\n// Za sva tehnicka pitanja vezana za autotestove za zadatak 2, obratite se na navedeni mail.\n//---------------------------------------------------------------------------------------------------------------\n"
+                        },
+                        {
+                            "position": "main",
+                            "code": "Berza A(10, 500);\nBerza B(10, 500);\n\nA.RegistrirajCijenu(200);\nB.RegistrirajCijenu(300);\n\ntry {\n    Berza nova = A + B;\n    std::cout << \"Nove cijene nakon sabiranja berzi: \";\n    nova.Ispisi();\n} catch (const std::exception& e) {\n    std::cout << \"Izuzetak: \" << e.what() << std::endl;\n}\n\nB.RegistrirajCijenu(250);\n\ntry {\n    Berza nova = A + B;\n    std::cout << \"Nove cijene nakon sabiranja berzi: \";\n    nova.Ispisi();\n} catch (const std::exception& e) {\n    std::cout << \"Izuzetak: \" << e.what() << std::endl;\n}\nA.RegistrirajCijenu(200);\n\ntry {\n    Berza nova = A - B;\n    std::cout << \"Nove cijene nakon oduzimanja jedne berze od druge: \";\n    nova.Ispisi();\n} catch (const std::exception& e) {\n    std::cout << \"Izuzetak: \" << e.what() << std::endl;\n}\ntry {\n    Berza nova = B - A;\n    std::cout << \"Nove cijene nakon oduzimanja jedne berze od druge: \";\n    nova.Ispisi();\n} catch (const std::exception& e) {\n    std::cout << \"Izuzetak: \" << e.what() << std::endl;\n}"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "Nove cijene nakon sabiranja berzi: 5.00\nIzuzetak: Nesaglasni operandi\nIzuzetak: Prekoracen dozvoljeni opseg cijena\nNove cijene nakon oduzimanja jedne berze od druge: 1.00\n0.50\n"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 15",
+            "id": 15
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "top_of_file",
+                            "code": "//---------------------------------------------------------------------------------------------------------------\n// Tehnike programiranja - Akademska 2023/2024 godina\n// Zadaca 5 - Zadatak 2\n// Odgovorni asistent: Majda Čurtić-Hodžić - mcurtic1@etf.unsa.ba\n// Za sva tehnicka pitanja vezana za autotestove za zadatak 2, obratite se na navedeni mail.\n//---------------------------------------------------------------------------------------------------------------\n"
+                        },
+                        {
+                            "position": "main",
+                            "code": "Berza A(10, 500);\nBerza B(10, 500);\n\nA.RegistrirajCijenu(200);\nB.RegistrirajCijenu(300);\n\ntry {\n    Berza nova = B - A;\n    std::cout << \"Nove cijene nakon oduzimanja jedne berze od druge: \";\n    nova.Ispisi();\n} catch (const std::exception& e) {\n    std::cout << \"Izuzetak: \" << e.what() << std::endl;\n}\n\nB.RegistrirajCijenu(250);\n\ntry {\n    Berza nova = B - A;\n    std::cout << \"Nove cijene nakon oduzimanja jedne berze od druge: \";\n    nova.Ispisi();\n} catch (const std::exception& e) {\n    std::cout << \"Izuzetak: \" << e.what() << std::endl;\n}\nA.RegistrirajCijenu(200);\n\ntry {\n    Berza nova = A - B;\n    std::cout << \"Nove cijene nakon oduzimanja jedne berze od druge: \";\n    nova.Ispisi();\n} catch (const std::exception& e) {\n    std::cout << \"Izuzetak: \" << e.what() << std::endl;\n}\ntry {\n    Berza nova = B + A;\n    std::cout << \"Nove cijene nakon sabiranja berzi: \";\n    nova.Ispisi();\n} catch (const std::exception& e) {\n    std::cout << \"Izuzetak: \" << e.what() << std::endl;\n}\n"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "Nove cijene nakon oduzimanja jedne berze od druge: 1.00\nIzuzetak: Nesaglasni operandi\nIzuzetak: Prekoracen dozvoljeni opseg cijena\nNove cijene nakon sabiranja berzi: 5.00\n4.50\n"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 16",
+            "id": 16
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "top_of_file",
+                            "code": "//---------------------------------------------------------------------------------------------------------------\n// Tehnike programiranja - Akademska 2023/2024 godina\n// Zadaca 5 - Zadatak 2\n// Odgovorni asistent: Majda Čurtić-Hodžić - mcurtic1@etf.unsa.ba\n// Za sva tehnicka pitanja vezana za autotestove za zadatak 2, obratite se na navedeni mail.\n//---------------------------------------------------------------------------------------------------------------\n"
+                        },
+                        {
+                            "position": "main",
+                            "code": "Berza B(100, 600);\nB.RegistrirajCijenu(300);\nB.RegistrirajCijenu(350);\n\ntry {\n    B += 100;\n    std::cout << \"Cijene nakon dodavanja 100: \";\n    B.Ispisi();\n} catch (const std::exception& e) {\n    std::cout << \"Izuzetak:  \" << e.what() << std::endl;\n}\n\ntry {\n    B += 400;\n    std::cout << \"Cijene nakon dodavanja 400: \";\n    B.Ispisi();\n} catch (const std::exception& e) {\n    std::cout << \"Izuzetak:  \" << e.what() << std::endl;\n}\n\nBerza A(100, 600);\nA.RegistrirajCijenu(150);\ntry {\n    B += A;\n    std::cout << \"Cijene nakon dodavanja druge berze: \";\n    B.Ispisi();\n} catch (const std::exception& e) {\n    std::cout << \"Izuzetak:  \" << e.what() << std::endl;\n}\nA.RegistrirajCijenu(100);\ntry {\n    B += A;\n    std::cout << \"Cijene nakon dodavanja druge berze: \";\n    B.Ispisi();\n} catch (const std::exception& e) {\n    std::cout << \"Izuzetak:  \" << e.what() << std::endl;\n}\nA.BrisiSve();\nA.RegistrirajCijenu(300);\nA.RegistrirajCijenu(350);\ntry {\n    B += A;\n    std::cout << \"Cijene nakon dodavanja druge berze: \";\n    B.Ispisi();\n} catch (const std::exception& e) {\n    std::cout << \"Izuzetak:  \" << e.what() << std::endl;\n}\n"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "Cijene nakon dodavanja 100: 4.50\n4.00\nIzuzetak:  Prekoracen dozvoljeni opseg cijena\nIzuzetak:  Nesaglasni operandi\nCijene nakon dodavanja druge berze: 5.50\n5.50\nIzuzetak:  Prekoracen dozvoljeni opseg cijena\n"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 17",
+            "id": 17
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "top_of_file",
+                            "code": "//---------------------------------------------------------------------------------------------------------------\n// Tehnike programiranja - Akademska 2023/2024 godina\n// Zadaca 5 - Zadatak 2\n// Odgovorni asistent: Majda Čurtić-Hodžić - mcurtic1@etf.unsa.ba\n// Za sva tehnicka pitanja vezana za autotestove za zadatak 2, obratite se na navedeni mail.\n//---------------------------------------------------------------------------------------------------------------\n"
+                        },
+                        {
+                            "position": "main",
+                            "code": "Berza B(100, 600);\nB.RegistrirajCijenu(300);\nB.RegistrirajCijenu(350);\n\ntry {\n    B -= 100;\n    std::cout << \"Cijene nakon oduzimanja 100: \";\n    B.Ispisi();\n} catch (const std::exception& e) {\n    std::cout << \"Izuzetak:  \" << e.what() << std::endl;\n}\n\ntry {\n    B -= 400;\n    std::cout << \"Cijene nakon oduzimanja 400: \";\n    B.Ispisi();\n} catch (const std::exception& e) {\n    std::cout << \"Izuzetak:  \" << e.what() << std::endl;\n}\n\nBerza A(100, 600);\nA.RegistrirajCijenu(100);\ntry {\n    B -= A;\n    std::cout << \"Cijene nakon dodavanja druge berze: \";\n    B.Ispisi();\n} catch (const std::exception& e) {\n    std::cout << \"Izuzetak:  \" << e.what() << std::endl;\n}\nA.RegistrirajCijenu(100);\ntry {\n    B -= A;\n    std::cout << \"Cijene nakon dodavanja druge berze: \";\n    B.Ispisi();\n} catch (const std::exception& e) {\n    std::cout << \"Izuzetak:  \" << e.what() << std::endl;\n}\nA.BrisiSve();\nA.RegistrirajCijenu(300);\nA.RegistrirajCijenu(350);\ntry {\n    B -= A;\n    std::cout << \"Cijene nakon dodavanja druge berze: \";\n    B.Ispisi();\n} catch (const std::exception& e) {\n    std::cout << \"Izuzetak:  \" << e.what() << std::endl;\n}\n"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "Cijene nakon oduzimanja 100: 2.50\n2.00\nIzuzetak:  Prekoracen dozvoljeni opseg cijena\nIzuzetak:  Nesaglasni operandi\nCijene nakon dodavanja druge berze: 1.50\n1.00\nIzuzetak:  Prekoracen dozvoljeni opseg cijena\n"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 18",
+            "id": 18
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "top_of_file",
+                            "code": "//---------------------------------------------------------------------------------------------------------------\n// Tehnike programiranja - Akademska 2023/2024 godina\n// Zadaca 5 - Zadatak 2\n// Odgovorni asistent: Majda Čurtić-Hodžić - mcurtic1@etf.unsa.ba\n// Za sva tehnicka pitanja vezana za autotestove za zadatak 2, obratite se na navedeni mail.\n//---------------------------------------------------------------------------------------------------------------\n"
+                        },
+                        {
+                            "position": "main",
+                            "code": "Berza b1(100, 500);\nBerza b2(100, 500);\nBerza b3(200, 600);\n\nb1.RegistrirajCijenu(300);\nb1.RegistrirajCijenu(400);\nb2.RegistrirajCijenu(300);\nb2.RegistrirajCijenu(400);\nb3.RegistrirajCijenu(300);\nb3.RegistrirajCijenu(500);\n\nif (b1 == b2) {\n    std::cout << \"b1 je jednak b2.\" << std::endl;\n} else {\n    std::cout << \"b1 nije jednak b2.\" << std::endl;\n}\n\nif (b1 == b3) {\n    std::cout << \"b1 je jednak b3.\" << std::endl;\n} else {\n    std::cout << \"b1 nije jednak b3.\" << std::endl;\n}\n\nif (b1 != b3) {\n    std::cout << \"b1 nije jednak b3.\" << std::endl;\n} else {\n    std::cout << \"b1 je jednak b3.\" << std::endl;\n}\n\nif (b1 != b2) {\n    std::cout << \"b1 nije jednak b2.\" << std::endl;\n} else {\n    std::cout << \"b1 je jednak b2.\" << std::endl;\n}\n\ntry {\n    std::cout << \"Cijena b1 na indeksu 1: \" << b1[1] << std::endl;\n    std::cout << \"Cijena b2 na indeksu 2: \" << b2[2] << std::endl;\n    std::cout << \"Cijena b3 na indeksu 3: \" << b3[3] << std::endl;\n} catch (const std::range_error& e) {\n    std::cout << \"Izuzetak: \" << e.what() << std::endl;\n}\n"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "b1 je jednak b2.\nb1 nije jednak b3.\nb1 nije jednak b3.\nb1 je jednak b2.\nCijena b1 na indeksu 1: 300\nCijena b2 na indeksu 2: 400\nCijena b3 na indeksu 3: Izuzetak: Neispravan indeks\n"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 19",
+            "id": 19
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "top_of_file",
+                            "code": "//---------------------------------------------------------------------------------------------------------------\n// Tehnike programiranja - Akademska 2023/2024 godina\n// Zadaca 5 - Zadatak 2\n// Odgovorni asistent: Majda Čurtić-Hodžić - mcurtic1@etf.unsa.ba\n// Za sva tehnicka pitanja vezana za autotestove za zadatak 2, obratite se na navedeni mail.\n//---------------------------------------------------------------------------------------------------------------\n"
+                        },
+                        {
+                            "position": "main",
+                            "code": "const Berza b(100, 500);\n\ntry {\n    std::cout << \"Broj registriranih cijena: \" << b.DajBrojRegistriranihCijena() << std::endl;\n    std::cout << \"Minimalna cijena: \" << b.DajMinimalnuCijenu() << std::endl;\n    std::cout << \"Maksimalna cijena: \" << b.DajMaksimalnuCijenu() << std::endl;\n} catch (const std::range_error& e) {\n    std::cout << \"Izuzetak: \" << e.what() << std::endl;\n}\n\ntry {\n    std::cout << \"Cijena na indeksu 1 (ako postoji): \" << b[1] << std::endl;\n} catch (const std::range_error& e) {\n    std::cout << \"Izuzetak: \" << e.what() << std::endl;\n}\n"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "Broj registriranih cijena: 0\nMinimalna cijena: Izuzetak: Nema registriranih cijena\nCijena na indeksu 1 (ako postoji): Izuzetak: Neispravan indeks\n"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 20",
+            "id": 20
+        }
+    ]
+}

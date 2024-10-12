@@ -1,0 +1,402 @@
+{
+    "id": 0,
+    "name": "Tehnike programiranja, Zadaća 1, Zadatak 3",
+    "version": "3",
+    "languages": [
+        "C++"
+    ],
+    "tools": {
+        "compile": {
+            "require": "g++",
+            "features": [
+                "optimize",
+                "warn",
+                "pedantic",
+                "C++14"
+            ]
+        },
+        "compile[debug]": {
+            "require": "g++",
+            "features": [
+                "debug",
+                "C++14",
+                "asan"
+            ]
+        },
+        "execute": {
+            "require": "asan"
+        },
+        "debug": [],
+        "profile[asan]": {
+            "require": "asan",
+            "input_file": "stderr.txt",
+            "fast": true
+        }
+    },
+    "prepare": [
+        "compile"
+    ],
+    "tests": [
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "top_of_file",
+                            "code": "//---------------------------------------------------------------------------------------------------------------\n// Tehnike programiranja - Akademska 2023/2024 godina\n// Zadaca 1 - Zadatak 3\n// Odgovorni asistent: Majda Čurtić-Hodžić - mcurtic1@etf.unsa.ba\n// Za sva tehnicka pitanja vezana za autotestove za zadatak 3, obratite se na navedeni mail.\n//---------------------------------------------------------------------------------------------------------------"
+                        },
+                        {
+                            "position": "main",
+                            "code": "_main();"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "environment": {
+                            "stdin": "Reperi 2PAC i 50Cent znaju da zbir brojeva 327, 39 i -4162 iznosi -3796! Oni također znaju da 123xy nije broj, mada 456 jeste. Šta se može reći za 0?\n"
+                        },
+                        "expect": [
+                            "Unesite string: Brojevi unutar stringa: 327 39 -4162 -3796 456 0\n"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 1",
+            "id": 1
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "top_of_file",
+                            "code": "//---------------------------------------------------------------------------------------------------------------\n// Tehnike programiranja - Akademska 2023/2024 godina\n// Zadaca 1 - Zadatak 3\n// Odgovorni asistent: Majda Čurtić-Hodžić - mcurtic1@etf.unsa.ba\n// Za sva tehnicka pitanja vezana za autotestove za zadatak 3, obratite se na navedeni mail.\n//---------------------------------------------------------------------------------------------------------------"
+                        },
+                        {
+                            "position": "main",
+                            "code": "_main();"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "environment": {
+                            "stdin": "Rekli smo da 1234567890123456789012345abcde nije broj...\n"
+                        },
+                        "expect": [
+                            "Unesite string: Uneseni string ne sadrzi nijedan broj!\n"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 2",
+            "id": 2
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "top_of_file",
+                            "code": "//---------------------------------------------------------------------------------------------------------------\n// Tehnike programiranja - Akademska 2023/2024 godina\n// Zadaca 1 - Zadatak 3\n// Odgovorni asistent: Majda Čurtić-Hodžić - mcurtic1@etf.unsa.ba\n// Za sva tehnicka pitanja vezana za autotestove za zadatak 3, obratite se na navedeni mail.\n//---------------------------------------------------------------------------------------------------------------"
+                        },
+                        {
+                            "position": "main",
+                            "code": "_main();"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "environment": {
+                            "stdin": "Broj 1234567890123456789012345 je prevelik i za tip long long int!\n"
+                        },
+                        "expect": [
+                            "Unesite string: PROBLEM: Uneseni string sadrzi prevelik broj!!!\n"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 3",
+            "id": 3
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "top_of_file",
+                            "code": "//---------------------------------------------------------------------------------------------------------------\n// Tehnike programiranja - Akademska 2023/2024 godina\n// Zadaca 1 - Zadatak 3\n// Odgovorni asistent: Majda Čurtić-Hodžić - mcurtic1@etf.unsa.ba\n// Za sva tehnicka pitanja vezana za autotestove za zadatak 3, obratite se na navedeni mail.\n//---------------------------------------------------------------------------------------------------------------"
+                        },
+                        {
+                            "position": "main",
+                            "code": "_main();"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "environment": {
+                            "stdin": "-123 123-123 123- 123\n"
+                        },
+                        "expect": [
+                            "Unesite string: Brojevi unutar stringa: -123 123 -123 123 123\n"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 4",
+            "id": 4
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "top_of_file",
+                            "code": "//---------------------------------------------------------------------------------------------------------------\n// Tehnike programiranja - Akademska 2023/2024 godina\n// Zadaca 1 - Zadatak 3\n// Odgovorni asistent: Majda Čurtić-Hodžić - mcurtic1@etf.unsa.ba\n// Za sva tehnicka pitanja vezana za autotestove za zadatak 3, obratite se na navedeni mail.\n//---------------------------------------------------------------------------------------------------------------"
+                        },
+                        {
+                            "position": "main",
+                            "code": "std::string ulaz{\"Ovo je 123456789012345678901234563 -90 test.\"};\ntry{\n    std::vector<long long int> brojevi{BrojeviUStringu(ulaz)};\n    for(auto a:brojevi) std::cout << a << \" \";\n}\ncatch(std::range_error e){\n    std::cout << \"Izuzetak sa porukom: \" << e.what() << std::endl;\n}"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "Izuzetak sa porukom: Prevelik broj\n"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 5",
+            "id": 5
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "top_of_file",
+                            "code": "//---------------------------------------------------------------------------------------------------------------\n// Tehnike programiranja - Akademska 2023/2024 godina\n// Zadaca 1 - Zadatak 3\n// Odgovorni asistent: Majda Čurtić-Hodžić - mcurtic1@etf.unsa.ba\n// Za sva tehnicka pitanja vezana za autotestove za zadatak 3, obratite se na navedeni mail.\n//---------------------------------------------------------------------------------------------------------------"
+                        },
+                        {
+                            "position": "main",
+                            "code": "std::string tekst{\"\"};\ntry{\n    std::vector<long long int> brojevi = BrojeviUStringu(tekst);\n    if(brojevi.empty()) std::cout<<\"Ovdje se neko sali!\"<<std::endl;\n}\ncatch(...){\n    std::cout<<\"Ja sam saljivdzija, a ne programer!\"<<std::endl;\n}"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "Ovdje se neko sali!\n"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 6",
+            "id": 6
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "top_of_file",
+                            "code": "//---------------------------------------------------------------------------------------------------------------\n// Tehnike programiranja - Akademska 2023/2024 godina\n// Zadaca 1 - Zadatak 3\n// Odgovorni asistent: Majda Čurtić-Hodžić - mcurtic1@etf.unsa.ba\n// Za sva tehnicka pitanja vezana za autotestove za zadatak 3, obratite se na navedeni mail.\n//---------------------------------------------------------------------------------------------------------------"
+                        },
+                        {
+                            "position": "main",
+                            "code": "std::string tekst{\"2k2 + (1k2 x 1k2)/(1k2 + 1k2) = 2k2 + 1k44/2k2 = 2k2 + 0k65 = 2k85\"};\ntry{\n    std::vector<long long int> brojevi = BrojeviUStringu(tekst);\n    for(auto br:brojevi) std::cout<<br<<\" \";\n}\ncatch(...){\n    std::cout<<\"Neocekivan izuzetak!\"<<std::endl;\n}"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "2 2 2 2 2 2 44 2 2 65 85 \n"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 7",
+            "id": 7
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "top_of_file",
+                            "code": "//---------------------------------------------------------------------------------------------------------------\n// Tehnike programiranja - Akademska 2023/2024 godina\n// Zadaca 1 - Zadatak 3\n// Odgovorni asistent: Majda Čurtić-Hodžić - mcurtic1@etf.unsa.ba\n// Za sva tehnicka pitanja vezana za autotestove za zadatak 3, obratite se na navedeni mail.\n//---------------------------------------------------------------------------------------------------------------"
+                        },
+                        {
+                            "position": "main",
+                            "code": "std::string tekst{\"Najveci broj je 9223372036854775807, a najmanji -9223372036854775807\"};\ntry{\n    std::vector<long long int> brojevi = BrojeviUStringu(tekst);\n    std::cout<<brojevi.size()<<std::endl;\n}\ncatch(...){\n    std::cout<<\"Neocekivan izuzetak!!!\"<<std::endl;\n}"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "2\n"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 8",
+            "id": 8
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "top_of_file",
+                            "code": "//---------------------------------------------------------------------------------------------------------------\n// Tehnike programiranja - Akademska 2023/2024 godina\n// Zadaca 1 - Zadatak 3\n// Odgovorni asistent: Majda Čurtić-Hodžić - mcurtic1@etf.unsa.ba\n// Za sva tehnicka pitanja vezana za autotestove za zadatak 3, obratite se na navedeni mail.\n//---------------------------------------------------------------------------------------------------------------"
+                        },
+                        {
+                            "position": "main",
+                            "code": "_main();"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "environment": {
+                            "stdin": "Evo broja pi s tacnoscu od 20 decimala: 3.141592653589793238462\n"
+                        },
+                        "expect": [
+                            "Unesite string: PROBLEM: Uneseni string sadrzi prevelik broj!!!\n"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 9",
+            "id": 9
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "top_of_file",
+                            "code": "//---------------------------------------------------------------------------------------------------------------\n// Tehnike programiranja - Akademska 2023/2024 godina\n// Zadaca 1 - Zadatak 3\n// Odgovorni asistent: Majda Čurtić-Hodžić - mcurtic1@etf.unsa.ba\n// Za sva tehnicka pitanja vezana za autotestove za zadatak 3, obratite se na navedeni mail.\n//---------------------------------------------------------------------------------------------------------------"
+                        },
+                        {
+                            "position": "top_of_file",
+                            "code": "#include <random>"
+                        },
+                        {
+                            "position": "main",
+                            "code": "std::random_device rd;\nstd::mt19937 gen(rd());\nstd::uniform_real_distribution<> dist(-10, 10);\nstd::string niz_brojeva;\n\nfor (int i = 0; i < 10; ++i) niz_brojeva += std::to_string(dist(gen)) + (i < 9 ? \", \" : \"\");\ntry{\n    std::vector<long long int> brojevi=BrojeviUStringu(niz_brojeva);\n\n    if (brojevi.size()==20) std::cout << \"Tacno :) \" << std::endl;\n    else std::cout << \"Netacno :( \" << std::endl;\n}\ncatch(...){\n    std::cout<<\"Neocekivan izuzetak!!!\"<<std::endl;\n}"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "Tacno :)\n"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 10",
+            "id": 10
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "top_of_file",
+                            "code": "//---------------------------------------------------------------------------------------------------------------\n// Tehnike programiranja - Akademska 2023/2024 godina\n// Zadaca 1 - Zadatak 3\n// Odgovorni asistent: Majda Čurtić-Hodžić - mcurtic1@etf.unsa.ba\n// Za sva tehnicka pitanja vezana za autotestove za zadatak 3, obratite se na navedeni mail.\n//---------------------------------------------------------------------------------------------------------------"
+                        },
+                        {
+                            "position": "main",
+                            "code": "std::string tekst{\"1 dan sam bio raspolozen da napisem 100tinjak linija koda, a preostalih 1000000 sam napisa 2. dan za 9223372036854775807s.\"};\ntry{\n    std::vector<long long int> brojevi = BrojeviUStringu(tekst);\n    for(auto br:brojevi) std::cout<<br<<\" \";\n}\ncatch(...){\n    std::cout<<\"Neocekivan izuzetak!!!\"<<std::endl;\n}"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "1 1000000 2\n"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 11",
+            "id": 11,
+            "options": [
+                "hidden"
+            ]
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "top_of_file",
+                            "code": "//---------------------------------------------------------------------------------------------------------------\n// Tehnike programiranja - Akademska 2023/2024 godina\n// Zadaca 1 - Zadatak 3\n// Odgovorni asistent: Majda Čurtić-Hodžić - mcurtic1@etf.unsa.ba\n// Za sva tehnicka pitanja vezana za autotestove za zadatak 3, obratite se na navedeni mail.\n//---------------------------------------------------------------------------------------------------------------"
+                        },
+                        {
+                            "position": "main",
+                            "code": "std::string tekst;\ntekst=std::to_string(LONG_LONG_MAX)+\" -\"+std::to_string(LONG_LONG_MAX/10)+\"9\";\ntry{\n    std::vector<long long int> brojevi = BrojeviUStringu(tekst);\n    for(auto br:brojevi) std::cout<<br<<\" \";\n    //1 1000000 2\n}\ncatch(std::range_error r){\n    std::cout<<\"Premali broj\"<<std::endl;\n}"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "Premali broj\n"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 12",
+            "id": 12,
+            "options": [
+                "hidden"
+            ]
+        }
+    ]
+}

@@ -1,0 +1,183 @@
+{
+    "buildhost_description": {
+        "id": "etf.c9sec2",
+        "os": "Linux 5.4.0-159-generic x86_64\nUbuntu 20.04.6 LTS\n"
+    },
+    "tools": {
+        "compile": "9.4.0",
+        "compile[debug]": "9.4.0",
+        "debug": "9.2",
+        "profile[asan]": "9.4.0"
+    },
+    "status": 4,
+    "test_results": {
+        "1": {
+            "success": true,
+            "status": 1,
+            "tools": {
+                "patch": {
+                    "success": true
+                },
+                "compile[debug]": {
+                    "status": 1,
+                    "duration": 1,
+                    "output": "",
+                    "exit_code": 0,
+                    "success": true,
+                    "parsed_output": []
+                },
+                "execute": {
+                    "status": 1,
+                    "duration": 0,
+                    "output": "Unesite kljuc: Neispravan kljuc, ponovite unos:\nUnesite kljuc: Neispravan kljuc, ponovite unos:\nUnesite kljuc: Kljuc prihvacen. Unesite poruku: Sifrirana poruka: Siga, lttuaa ce kosava tn IP-t!\n\nPokusajte pogoditi kljuc: Niste pogodili kljuc, probajte ponovo!\nPokusajte pogoditi kljuc: Pokusaj desifriranja: Qaap, lrlopa aw edsynu in GH-n!\nNiste pogodili kljuc, probajte ponovo!\nPokusajte pogoditi kljuc: Pokusaj desifriranja: Hura, stigla je zadaca iz TP-a!\nBravo, pogodili ste kljuc!",
+                    "exit_code": 0,
+                    "success": true
+                },
+                "debug": {
+                    "success": true
+                },
+                "profile[asan]": {
+                    "output": "",
+                    "status": 1,
+                    "success": true,
+                    "parsed_output": []
+                }
+            }
+        },
+        "2": {
+            "success": true,
+            "status": 1,
+            "tools": {
+                "patch": {
+                    "success": true
+                },
+                "compile[debug]": {
+                    "status": 1,
+                    "duration": 1,
+                    "output": "",
+                    "exit_code": 0,
+                    "success": true,
+                    "parsed_output": []
+                },
+                "execute": {
+                    "status": 1,
+                    "duration": 0,
+                    "output": "Unesite kljuc: Neispravan kljuc, ponovite unos:\nUnesite kljuc: Kljuc prihvacen. Unesite poruku: Sifrirana poruka: Ygx dg zcxvc xl rmrblehqce.\n\nPokusajte pogoditi kljuc: Niste pogodili kljuc, probajte ponovo!\nPokusajte pogoditi kljuc: Niste pogodili kljuc, probajte ponovo!\nPokusajte pogoditi kljuc: Pokusaj desifriranja: Ovo je proba na ispravnost.\nBravo, pogodili ste kljuc!",
+                    "exit_code": 0,
+                    "success": true
+                },
+                "debug": {
+                    "success": true
+                },
+                "profile[asan]": {
+                    "output": "",
+                    "status": 1,
+                    "success": true,
+                    "parsed_output": []
+                }
+            }
+        },
+        "3": {
+            "success": true,
+            "status": 1,
+            "tools": {
+                "patch": {
+                    "success": true
+                },
+                "compile[debug]": {
+                    "status": 1,
+                    "duration": 0,
+                    "output": "",
+                    "exit_code": 0,
+                    "success": true,
+                    "parsed_output": []
+                },
+                "execute": {
+                    "status": 1,
+                    "duration": 0,
+                    "output": "Unesite kljuc: Kljuc prihvacen. Unesite poruku: Sifrirana poruka: Gfe bclrm.\n\nPokusajte pogoditi kljuc: Pokusaj desifriranja: Sve dobro.\nBravo, pogodili ste kljuc!",
+                    "exit_code": 0,
+                    "success": true
+                },
+                "debug": {
+                    "success": true
+                },
+                "profile[asan]": {
+                    "output": "",
+                    "status": 1,
+                    "success": true,
+                    "parsed_output": []
+                }
+            }
+        },
+        "4": {
+            "success": true,
+            "status": 1,
+            "tools": {
+                "patch": {
+                    "success": true
+                },
+                "compile[debug]": {
+                    "status": 1,
+                    "duration": 1,
+                    "output": "",
+                    "exit_code": 0,
+                    "success": true,
+                    "parsed_output": []
+                },
+                "execute": {
+                    "status": 1,
+                    "duration": 0,
+                    "output": "Wpgpl yx abyxe wpg ot ixhmxkpgyx!\nQeftg wi dbxrt vtb me lxggmjtbwi!\nQexav dk lzrnt fnr ja wyytzzjrlr!\nIegmp rrpdauk sb frvion roswkpo...",
+                    "exit_code": 0,
+                    "success": true
+                },
+                "debug": {
+                    "success": true
+                },
+                "profile[asan]": {
+                    "output": "",
+                    "status": 1,
+                    "success": true,
+                    "parsed_output": []
+                }
+            }
+        },
+        "5": {
+            "success": true,
+            "status": 1,
+            "tools": {
+                "patch": {
+                    "success": true
+                },
+                "compile[debug]": {
+                    "status": 1,
+                    "duration": 0,
+                    "output": "",
+                    "exit_code": 0,
+                    "success": true,
+                    "parsed_output": []
+                },
+                "execute": {
+                    "status": 1,
+                    "duration": 1,
+                    "output": "Danas je lijep dan za testiranje!\nDanas je lijep dan za testiranje!\nDanas je lijep dan za testiranje!\nIdemo probati sa drugom porukom...\n\nMalo se igramo :)",
+                    "exit_code": 0,
+                    "success": true
+                },
+                "debug": {
+                    "success": true
+                },
+                "profile[asan]": {
+                    "output": "",
+                    "status": 1,
+                    "success": true,
+                    "parsed_output": []
+                }
+            }
+        }
+    },
+    "time": 1711922637,
+    "program_id": 68333,
+    "task_id": "49322"
+}

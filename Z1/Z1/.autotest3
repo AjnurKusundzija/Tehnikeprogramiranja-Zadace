@@ -1,0 +1,327 @@
+{
+    "id": 0,
+    "name": "Tehnike programiranja, Zadaća 1, Zadatak 1",
+    "version": "3",
+    "languages": [
+        "C++"
+    ],
+    "tools": {
+        "compile": {
+            "require": "g++",
+            "features": [
+                "optimize",
+                "warn",
+                "pedantic",
+                "C++14"
+            ]
+        },
+        "compile[debug]": {
+            "require": "g++",
+            "features": [
+                "debug",
+                "C++14",
+                "asan"
+            ]
+        },
+        "execute": {
+            "require": "asan"
+        },
+        "debug": [],
+        "profile[asan]": {
+            "require": "asan",
+            "input_file": "stderr.txt",
+            "fast": true
+        }
+    },
+    "prepare": [
+        "compile"
+    ],
+    "tests": [
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "top_of_file",
+                            "code": "//---------------------------------------------------------------------------------------------------------------\n// Tehnike programiranja - Akademska 2023/2024 godina\n// Zadaca 1 - Zadatak 1\n// Odgovorni asistent: Tarik Pozderac - tpozderac1@etf.unsa.ba\n// Za sva tehnicka pitanja vezana za autotestove za zadatak 1, obratite se na navedeni mail.\n//---------------------------------------------------------------------------------------------------------------\n"
+                        },
+                        {
+                            "position": "main",
+                            "code": "{\n  _main();\n}"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "environment": {
+                            "stdin": "25 310 0 11 31 3 7 .\n"
+                        },
+                        "expect": [
+                            "Unesite brojeve (bilo koji ne-broj oznacava kraj):\nRezultati razvrstavanja po broju kvadrata:\n0: 0\n1: 25\n3: 310 11 3\n4: 31 7\n"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 1",
+            "id": 1
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "top_of_file",
+                            "code": "//---------------------------------------------------------------------------------------------------------------\n// Tehnike programiranja - Akademska 2023/2024 godina\n// Zadaca 1 - Zadatak 1\n// Odgovorni asistent: Tarik Pozderac - tpozderac1@etf.unsa.ba\n// Za sva tehnicka pitanja vezana za autotestove za zadatak 1, obratite se na navedeni mail.\n//---------------------------------------------------------------------------------------------------------------\n"
+                        },
+                        {
+                            "position": "main",
+                            "code": "{\n  _main();\n}"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "Unesite brojeve (bilo koji ne-broj oznacava kraj):\nNije podrzano razvrstavanje negativnih brojeva!"
+                        ],
+                        "environment": {
+                            "stdin": "1 22 333 -4444 5555 -66666 .\n"
+                        }
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 2",
+            "id": 2
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "top_of_file",
+                            "code": "//---------------------------------------------------------------------------------------------------------------\n// Tehnike programiranja - Akademska 2023/2024 godina\n// Zadaca 1 - Zadatak 1\n// Odgovorni asistent: Tarik Pozderac - tpozderac1@etf.unsa.ba\n// Za sva tehnicka pitanja vezana za autotestove za zadatak 1, obratite se na navedeni mail.\n//---------------------------------------------------------------------------------------------------------------"
+                        },
+                        {
+                            "position": "main",
+                            "code": "try\n{\n    int a,n=-10;\n    a=BrojKvadrata(n);\n}\ncatch(std::domain_error e)\n{\n    std::cout<<e.what();\n}"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "Broj mora biti nenegativan"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 3",
+            "id": 3
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "top_of_file",
+                            "code": "//---------------------------------------------------------------------------------------------------------------\n// Tehnike programiranja - Akademska 2023/2024 godina\n// Zadaca 1 - Zadatak 1\n// Odgovorni asistent: Tarik Pozderac - tpozderac1@etf.unsa.ba\n// Za sva tehnicka pitanja vezana za autotestove za zadatak 1, obratite se na navedeni mail.\n//---------------------------------------------------------------------------------------------------------------"
+                        },
+                        {
+                            "position": "main",
+                            "code": "try\n{\n    int a,n=-10;\n    a=BrojKvadrata(n);\n}\ncatch(std::domain_error e)\n{\n    std::cout<<\"Izuzetak: \"<<e.what();\n}\n"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "Izuzetak: Broj mora biti nenegativan"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 4",
+            "id": 4
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "top_of_file",
+                            "code": "//---------------------------------------------------------------------------------------------------------------\n// Tehnike programiranja - Akademska 2023/2024 godina\n// Zadaca 1 - Zadatak 1\n// Odgovorni asistent: Tarik Pozderac - tpozderac1@etf.unsa.ba\n// Za sva tehnicka pitanja vezana za autotestove za zadatak 1, obratite se na navedeni mail.\n//---------------------------------------------------------------------------------------------------------------"
+                        },
+                        {
+                            "position": "main",
+                            "code": "try\n{\n    int a,n0=0,n1=100,n2=1394, n3=7620, n4=111;\n    std::cout<<BrojKvadrata(n0)<<std::endl;\n    std::cout<<BrojKvadrata(n1)<<std::endl;\n    std::cout<<BrojKvadrata(n2)<<std::endl;\n    std::cout<<BrojKvadrata(n3)<<std::endl;\n    std::cout<<BrojKvadrata(n4)<<std::endl;\n}\ncatch(std::domain_error e)\n{\n    std::cout<<e.what();\n}\n"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "0\n1\n2\n3\n4\n"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 5",
+            "id": 5
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "top_of_file",
+                            "code": "//---------------------------------------------------------------------------------------------------------------\n// Tehnike programiranja - Akademska 2023/2024 godina\n// Zadaca 1 - Zadatak 1\n// Odgovorni asistent: Tarik Pozderac - tpozderac1@etf.unsa.ba\n// Za sva tehnicka pitanja vezana za autotestove za zadatak 1, obratite se na navedeni mail.\n//---------------------------------------------------------------------------------------------------------------"
+                        },
+                        {
+                            "position": "main",
+                            "code": "    try{\n    std::vector<int> v = {100,200,1394,7620,111};\n    auto rez=RazvrstajPoBrojuKvadrata(v,TretmanNegativnih::PrijaviGresku);\n    std::cout<<\"Rezultati razvrstavanja po broju kvadrata: \\n\";\n    for(int i=0;i<5;i++){\n        if(rez.at(i).size()==0)continue;\n        std::cout<<i<<\": \";\n        for(int i:rez.at(i))std::cout<<i<<\" \";\n        std::cout<<std::endl;\n\n    }}\n    catch(std::domain_error e){\n        std::cout<<e.what();\n    }"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "Rezultati razvrstavanja po broju kvadrata:\n1: 100\n2: 200 1394\n3: 7620\n4: 111"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 6",
+            "id": 6
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "top_of_file",
+                            "code": "//---------------------------------------------------------------------------------------------------------------\n// Tehnike programiranja - Akademska 2023/2024 godina\n// Zadaca 1 - Zadatak 1\n// Odgovorni asistent: Tarik Pozderac - tpozderac1@etf.unsa.ba\n// Za sva tehnicka pitanja vezana za autotestove za zadatak 1, obratite se na navedeni mail.\n//---------------------------------------------------------------------------------------------------------------"
+                        },
+                        {
+                            "position": "main",
+                            "code": "    try{\n    std::vector<int> v = {100,-200,1394,-7620,111};\n    auto rez=RazvrstajPoBrojuKvadrata(v,TretmanNegativnih::PrijaviGresku);\n    std::cout<<\"Rezultati razvrstavanja po broju kvadrata: \\n\";\n    for(int i=0;i<5;i++){\n        if(rez.at(i).size()==0)continue;\n        std::cout<<i<<\": \";\n        for(int i:rez.at(i))std::cout<<i<<\" \";\n        std::cout<<std::endl;\n\n    }}\n    catch(std::domain_error e){\n        std::cout<<e.what();\n    }"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "Nije predvidjeno razvrstavanje negativnih brojeva"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 7",
+            "id": 7
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "top_of_file",
+                            "code": "//---------------------------------------------------------------------------------------------------------------\n// Tehnike programiranja - Akademska 2023/2024 godina\n// Zadaca 1 - Zadatak 1\n// Odgovorni asistent: Tarik Pozderac - tpozderac1@etf.unsa.ba\n// Za sva tehnicka pitanja vezana za autotestove za zadatak 1, obratite se na navedeni mail.\n//---------------------------------------------------------------------------------------------------------------"
+                        },
+                        {
+                            "position": "main",
+                            "code": "    try{\n    std::vector<int> v = {100,-200,1394,-7620,111};\n    auto rez=RazvrstajPoBrojuKvadrata(v,TretmanNegativnih::IgnorirajZnak);\n    std::cout<<\"Rezultati razvrstavanja po broju kvadrata: \\n\";\n    for(int i=0;i<5;i++){\n        if(rez.at(i).size()==0)continue;\n        std::cout<<i<<\": \";\n        for(int i:rez.at(i))std::cout<<i<<\" \";\n        std::cout<<std::endl;\n\n    }}\n    catch(std::domain_error e){\n        std::cout<<e.what();\n    }"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "Rezultati razvrstavanja po broju kvadrata:\n1: 100\n2: -200 1394\n3: -7620\n4: 111"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 8",
+            "id": 8
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "top_of_file",
+                            "code": "//---------------------------------------------------------------------------------------------------------------\n// Tehnike programiranja - Akademska 2023/2024 godina\n// Zadaca 1 - Zadatak 1\n// Odgovorni asistent: Tarik Pozderac - tpozderac1@etf.unsa.ba\n// Za sva tehnicka pitanja vezana za autotestove za zadatak 1, obratite se na navedeni mail.\n//---------------------------------------------------------------------------------------------------------------"
+                        },
+                        {
+                            "position": "main",
+                            "code": "    try{\n    std::vector<int> v = {100,-200,1394,-7620,111};\n    auto rez=RazvrstajPoBrojuKvadrata(v,TretmanNegativnih::TretirajKao0);\n    std::cout<<\"Rezultati razvrstavanja po broju kvadrata: \\n\";\n    for(int i=0;i<5;i++){\n        if(rez.at(i).size()==0)continue;\n        std::cout<<i<<\": \";\n        for(int i:rez.at(i))std::cout<<i<<\" \";\n        std::cout<<std::endl;\n\n    }}\n    catch(std::domain_error e){\n        std::cout<<e.what();\n    }\n"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "Rezultati razvrstavanja po broju kvadrata:\n0: -200 -7620\n1: 100\n2: 1394\n4: 111"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 9",
+            "id": 9
+        },
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "top_of_file",
+                            "code": "//---------------------------------------------------------------------------------------------------------------\n// Tehnike programiranja - Akademska 2023/2024 godina\n// Zadaca 1 - Zadatak 1\n// Odgovorni asistent: Tarik Pozderac - tpozderac1@etf.unsa.ba\n// Za sva tehnicka pitanja vezana za autotestove za zadatak 1, obratite se na navedeni mail.\n//---------------------------------------------------------------------------------------------------------------"
+                        },
+                        {
+                            "position": "main",
+                            "code": "    try{\n    std::vector<int> v = {100,-200,1394,-7620,111};\n    auto rez=RazvrstajPoBrojuKvadrata(v,TretmanNegativnih::Odbaci);\n    std::cout<<\"Rezultati razvrstavanja po broju kvadrata: \\n\";\n    for(int i=0;i<5;i++){\n        if(rez.at(i).size()==0)continue;\n        std::cout<<i<<\": \";\n        for(int i:rez.at(i))std::cout<<i<<\" \";\n        std::cout<<std::endl;\n\n    }}\n    catch(std::domain_error e){\n        std::cout<<e.what();\n    }"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "Rezultati razvrstavanja po broju kvadrata:\n1: 100\n2: 1394\n4: 111\n"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 10",
+            "id": 10
+        }
+    ]
+}

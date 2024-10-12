@@ -1,0 +1,74 @@
+{
+    "id": 0,
+    "name": "Tehnike programiranja, Zadaća 4, Zadatak 6",
+    "version": "3",
+    "languages": [
+        "C++"
+    ],
+    "tools": {
+        "compile": {
+            "require": "g++",
+            "features": [
+                "optimize",
+                "warn",
+                "pedantic",
+                "C++14"
+            ]
+        },
+        "compile[debug]": {
+            "require": "g++",
+            "features": [
+                "debug",
+                "C++14",
+                "asan"
+            ]
+        },
+        "execute": {
+            "require": "asan"
+        },
+        "debug": [],
+        "profile[asan]": {
+            "require": "asan",
+            "input_file": "stderr.txt",
+            "fast": true
+        }
+    },
+    "prepare": [
+        "compile"
+    ],
+    "tests": [
+        {
+            "tools": [
+                {
+                    "patch": [
+                        {
+                            "position": "top_of_file",
+                            "code": "//---------------------------------------------------------------------------------------------------------------\n// Tehnike programiranja - Akademska 2023/2024 godina\n// Zadaća 4 - Zadatak 6\n// Odgovorni viši asistent: Haris Čapelj - hcapelj1@etf.unsa.ba\n// Za sva tehnička pitanja vezana za autotestove za zadatak 6, obratite se na navedeni mail.\n//---------------------------------------------------------------------------------------------------------------"
+                        },
+                        {
+                            "position": "above_main",
+                            "code": "static size_t alocirano(0);\n\nvoid* operator new(size_t vel)\n{\n    alocirano += vel;\n    return std::malloc(vel);\n}\n\nvoid operator delete (void* ptr) noexcept\n{\n    free(ptr);\n}\nvoid operator delete(void* ptr, unsigned long var)\n{\n    free(ptr);\n}\n\nvoid operator delete[] (void* ptr) noexcept\n{\n    free(ptr);\n}"
+                        },
+                        {
+                            "position": "main",
+                            "code": "// AT 1: Test nacina alokacije svih klasa\n    {\n        alocirano = 0;\n        Student s(14212, \"1\",\"Benjamin\", \"Francuska revolucija 23\", \"12/34-56\");\n\n        std::cout << \"Student: \" << alocirano << std::endl;\n\n        alocirano = 0;\n        Laptop l(123, \"Dell\", \"CPU 3.0 GHz, 4 GB RAM\");\n\n        std::cout << \"Laptop: \" << alocirano << std::endl;\n\n        alocirano = 0;\n        Administracija etf;\n\n        std::cout << \"Prazna administracija: \" << alocirano << std::endl;\n\n        etf.RegistrirajNoviLaptop(123, \"Dell\", \"CPU 3.0 GHz, 4 GB RAM\");\n        etf.RegistrirajNoviLaptop(331, \"ASUS\", \"CPU 3.5 GHz, 2 GB RAM\");\n        etf.RegistrirajNoviLaptop(122, \"Dell 2\", \"CPU 3.2 GHz, 6 GB RAM\");\n\n        std::cout << \"Sa laptopima: \" << alocirano << std::endl;\n\n        etf.RegistrirajNovogStudenta(14212, \"1\",\"Benjamin\", \"Francuska revolucija 23\", \"12/34-56\");\n        etf.RegistrirajNovogStudenta(17528, \"2\",\"Ivan\", \"Trg vjecnih studenata 12\", \"048/597-585\");\n        etf.RegistrirajNovogStudenta(17525, \"3\", \"Ante\",\"Trg vjecnih studenata 11\", \"062/582-757\");\n\n        std::cout << \"Sa studentima: \" << alocirano << std::endl;\n\n        etf.ZaduziLaptop(14212, 122);\n        etf.ZaduziLaptop(17525,331);\n\n        std::cout << \"Nakon zaduzenja: \" << alocirano << std::endl;\n    }"
+                        }
+                    ]
+                },
+                "compile[debug]",
+                {
+                    "execute": {
+                        "expect": [
+                            "Student: 55\nLaptop: 44\nPrazna administracija: 0\nSa laptopima: 486\nSa studentima: 1147\nNakon zaduzenja: 1147",
+                            "Student: 55\nLaptop: 44\nPrazna administracija: 0\nSa laptopima: 654\nSa studentima: 1519\nNakon zaduzenja: 1519"
+                        ]
+                    }
+                },
+                "debug",
+                "profile[asan]"
+            ],
+            "name": "Test 1",
+            "id": 1
+        }
+    ]
+}
